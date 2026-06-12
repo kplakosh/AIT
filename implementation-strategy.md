@@ -143,29 +143,23 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 2 — Design System & Shared Components (1–1½ days)
+### Phase 2 — Design System & Shared Components (1–1½ days) ✅
 
 **Goal:** Reusable building blocks before page work.
 
-1. **`Container`** — max-width wrapper with responsive padding
-2. **`Section`** — consistent vertical spacing + optional background variant
-3. **`SectionHeading`** — H2 with optional subtitle/divider
-4. **`Card`** — bordered/shadowed panel for service blocks
-5. **`Button`** — primary (Contact CTA) and ghost variants
-6. **`Header`**
-   - Logo (links to `/`)
-   - Desktop nav: Home · Services · Contact
-   - Sticky on scroll with subtle shadow
-   - Active route indicator
-7. **`MobileNav`**
-   - Hamburger toggle
-   - Full-screen or slide-down menu
-   - Body scroll lock when open
-8. **`Footer`**
-   - Copyright line (existing text)
-   - Optional: repeat nav links (same 3 items — not a new section)
+1. ✅ **`Container`** — max-width wrapper with narrow/wide size options
+2. ✅ **`Section`** — vertical spacing + variants (default, muted, white, dark, gradient)
+3. ✅ **`SectionHeading`** — H2 with gold divider, subtitle, alignment options
+4. ✅ **`Card`** — default, elevated, and accent variants
+5. ✅ **`Button`** — primary, secondary, ghost + sm/md/lg sizes
+6. ✅ **`PageHeader`** — reusable gradient page title band
+7. ✅ **`Header`** — sticky, scroll shadow, cream background, active nav
+8. ✅ **`MobileNav`** — slide-in drawer, body scroll lock, animations
+9. ✅ **`Footer`** — logo, nav links, copyright
+10. ✅ **`NavLinkItem`** — consistent nav link styling
+11. ✅ **Dev preview** — `/dev/components` (development only)
 
-**Deliverable:** Storybook-style preview page or `/dev/components` route (internal, removed before launch)
+**Deliverable:** Polished design system + dev component preview route
 
 ---
 
@@ -496,6 +490,7 @@ If Option C (Formspree/Web3Forms) is chosen, form access keys will be stored as 
 2. ~~Connect GitHub repository~~ ✅ `https://github.com/kplakosh/AIT.git`
 3. ~~Implement Phase 0 (content lock)~~ ✅ Content manifest + assets ready for sign-off
 4. ~~Phase 1 — Project foundation~~ ✅ Routing, Tailwind, folder structure
-5. Phases 2–5 build out the site (Formspree form in Phase 5)
-6. Review staging build on GitHub Pages URL
-7. Phases 6–9 polish; production cutover to `aitechinc.com` when approved
+5. ~~Phase 2 — Design system~~ ✅ Shared components polished
+6. Phases 3–5 build out the site (Formspree form in Phase 5)
+7. Review staging build on GitHub Pages URL
+8. Phases 6–9 polish; production cutover to `aitechinc.com` when approved

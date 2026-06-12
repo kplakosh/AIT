@@ -6,6 +6,7 @@
   --color-navy-plum: #26274e;
   --color-muted-rose: #7f456d;
   --color-warm-gold: #aa9047;
+  --color-cream: #faf9f7;
 
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'DM Sans', 'Inter', system-ui, sans-serif;
@@ -35,7 +36,7 @@
     min-height: 100svh;
     font-family: var(--font-sans);
     color: var(--color-navy-plum);
-    background-color: #faf9f7;
+    background-color: var(--color-cream);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -65,6 +66,16 @@
   }
 
   .site-header {
-    background-color: #faf9f7;
+    background-color: var(--color-cream);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

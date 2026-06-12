@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { contactContent, pageMeta } from '../content/site'
 import { Container } from '../components/ui/Container'
+import { PageHeader } from '../components/ui/PageHeader'
 import { Section } from '../components/ui/Section'
 
 export function ContactPage() {
@@ -11,18 +12,9 @@ export function ContactPage() {
         <meta name="description" content={pageMeta.contact.description} />
       </Helmet>
 
-      <Section className="bg-linear-to-br from-deep-teal to-navy-plum text-white">
-        <Container>
-          <div className="py-4 md:py-8">
-            <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Contact
-            </h1>
-            <p className="mt-4 max-w-2xl text-white/90">{contactContent.welcome}</p>
-          </div>
-        </Container>
-      </Section>
+      <PageHeader title="Contact" description={contactContent.welcome} />
 
-      <Section>
+      <Section variant="white">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2">
             <address className="not-italic">

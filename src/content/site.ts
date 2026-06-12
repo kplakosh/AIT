@@ -122,6 +122,7 @@ export const contactContent = {
 export const assets = {
   logo: {
     src: '/images/logo.png',
+    srcOnDark: '/images/logo-on-dark.png',
     alt: 'Advanced Instrument Technologies',
   },
   niBadge: homeContent.niBadge,
