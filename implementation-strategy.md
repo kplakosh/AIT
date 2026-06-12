@@ -163,34 +163,16 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 3 — Home Page (1 day)
+### Phase 3 — Home Page (1 day) ✅
 
 **Goal:** Modern presentation of existing Home content only.
 
-**Layout (same content, better structure):**
+1. ✅ Hero with gradient + subtle pattern overlay and Contact CTA
+2. ✅ Two-column location block (text + decorative map pin graphic)
+3. ✅ Credential band with NI badge prominently displayed
+4. ✅ Scroll-triggered fade-in on each block (respects reduced motion)
 
-```
-┌─────────────────────────────────────────┐
-│  HERO                                   │
-│  H1: Advanced Instrument Technologies   │
-│  Intro paragraph (existing copy)        │
-│  [Contact Us →]  (links to /contact)    │
-├─────────────────────────────────────────┤
-│  ABOUT / LOCATION                       │
-│  Paragraph 2 — Cumming GA + global      │
-├─────────────────────────────────────────┤
-│  CREDENTIALS                            │
-│  Paragraph 3 — NI Alliance Partner      │
-│  [NI Certified Alliance Partner badge]  │
-└─────────────────────────────────────────┘
-```
-
-1. Hero with gradient/pattern background and primary CTA to Contact
-2. Two-column "location" block on desktop (text + subtle map pin graphic or Georgia outline — decorative only, not new content)
-3. Credential band with NI badge prominently displayed
-4. Scroll-triggered fade-in on each block
-
-**No additions:** No stats, no client logos, no service previews.
+**No additions:** No stats, no client logos, no service previews, no new copy.
 
 **Deliverable:** Completed Home page, responsive
 
@@ -491,6 +473,7 @@ If Option C (Formspree/Web3Forms) is chosen, form access keys will be stored as 
 3. ~~Implement Phase 0 (content lock)~~ ✅ Content manifest + assets ready for sign-off
 4. ~~Phase 1 — Project foundation~~ ✅ Routing, Tailwind, folder structure
 5. ~~Phase 2 — Design system~~ ✅ Shared components polished
-6. Phases 3–5 build out the site (Formspree form in Phase 5)
-7. Review staging build on GitHub Pages URL
-8. Phases 6–9 polish; production cutover to `aitechinc.com` when approved
+6. ~~Phase 3 — Home page~~ ✅ Hero, location, credentials, animations
+7. Phases 4–5 (Formspree form in Phase 5)
+8. Review staging build on GitHub Pages URL
+9. Phases 6–9 polish; production cutover to `aitechinc.com` when approved
