@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Local agent / session context (not for repo)
+chat-summary.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

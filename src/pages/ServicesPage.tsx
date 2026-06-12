@@ -1,11 +1,13 @@
 import { Helmet } from 'react-helmet-async'
 import { pageMeta, servicesContent } from '../content/site'
-import { ButtonLink } from '../components/ui/Button'
-import { Card } from '../components/ui/Card'
+import { ServiceCard } from '../components/services/ServiceCard'
 import { Container } from '../components/ui/Container'
+import { FadeIn } from '../components/ui/FadeIn'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Section } from '../components/ui/Section'
-import { SectionHeading } from '../components/ui/SectionHeading'
+
+const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSection, letUsHelpSection] =
+  servicesContent.sections
 
 export function ServicesPage() {
   return (
@@ -17,36 +19,36 @@ export function ServicesPage() {
 
       <PageHeader title="Services" />
 
-      <Section variant="muted">
+      <Section variant="white">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
-            {servicesContent.sections.map((section, index) => (
-              <Card
-                key={section.id}
-                variant={section.id === 'total-solutions' ? 'accent' : index % 2 === 0 ? 'elevated' : 'default'}
-                className="h-full"
-              >
-                <SectionHeading title={section.title} showDivider />
-                {'intro' in section && section.intro ? (
-                  <p className="mb-4 text-sm italic text-muted-rose">{section.intro}</p>
-                ) : null}
-                {'bullets' in section && section.bullets ? (
-                  <ul className="list-disc space-y-2 pl-5 text-navy-plum/85">
-                    {section.bullets.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ) : null}
-                {'body' in section && section.body ? (
-                  <p className="leading-relaxed text-navy-plum/85">{section.body}</p>
-                ) : null}
-                {section.id === 'let-us-help-you' ? (
-                  <div className="mt-6">
-                    <ButtonLink to="/contact">Contact Us</ButtonLink>
-                  </div>
-                ) : null}
-              </Card>
-            ))}
+            <FadeIn>
+              <ServiceCard section={labviewSection} variant="elevated" />
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <ServiceCard section={hardwareSection} variant="default" />
+            </FadeIn>
+          </div>
+        </Container>
+      </Section>
+
+      <Section variant="muted">
+        <Container>
+          <FadeIn>
+            <ServiceCard section={totalSolutionsSection} variant="accent" />
+          </FadeIn>
+        </Container>
+      </Section>
+
+      <Section variant="white">
+        <Container>
+          <div className="grid gap-6 md:grid-cols-2">
+            <FadeIn>
+              <ServiceCard section={howCanWeHelpSection} variant="default" />
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <ServiceCard section={letUsHelpSection} variant="elevated" />
+            </FadeIn>
           </div>
         </Container>
       </Section>
