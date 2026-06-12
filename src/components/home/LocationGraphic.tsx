@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react'
 export function LocationGraphic() {
   return (
     <div
-      className="relative mx-auto flex h-48 w-48 items-center justify-center md:mx-0 md:h-56 md:w-56"
+      className="relative mx-auto flex h-48 w-48 items-center justify-center md:h-56 md:w-56"
       aria-hidden="true"
     >
       <div className="absolute inset-0 rounded-full bg-teal/10" />

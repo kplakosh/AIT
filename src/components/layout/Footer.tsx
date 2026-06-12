@@ -20,7 +20,7 @@ export function Footer() {
 
           <nav
             aria-label="Footer navigation"
-            className="flex flex-col justify-center gap-3"
+            className="flex flex-col justify-center gap-3 md:items-end"
           >
             <p className="text-xs font-semibold uppercase tracking-wider text-warm-gold">
               Navigation

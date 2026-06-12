@@ -51,9 +51,9 @@ export const homeContent = {
     'AIT is a National Instruments Certified Alliance Partner, with NI certified developers on staff. Our customers can be confident that AIT will provide the quality and knowledge necessary for their demanding requirements.',
   niBadge: {
     src: '/images/ni-alliance-partner.png',
-    alt: 'NI Certified Alliance Partner',
-    width: 227,
-    height: 72,
+    alt: 'NI Partner System Integration',
+    width: 500,
+    height: 308,
   },
 } as const
 

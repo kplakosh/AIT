@@ -6,6 +6,7 @@ import { Container } from '../components/ui/Container'
 import { FadeIn } from '../components/ui/FadeIn'
 import { Section } from '../components/ui/Section'
 import { homeContent, pageMeta, siteConfig } from '../content/site'
+import { contentPairGrid } from '../lib/layout'
 
 export function HomePage() {
   return (
@@ -60,8 +61,8 @@ export function HomePage() {
       <Section variant="white">
         <Container>
           <FadeIn>
-            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-              <p className="text-base leading-relaxed text-navy-plum/85 md:text-lg">
+            <div className={contentPairGrid}>
+              <p className="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
                 {homeContent.location}
               </p>
               <LocationGraphic />
@@ -73,22 +74,18 @@ export function HomePage() {
       <Section variant="muted">
         <Container>
           <FadeIn delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-deep-teal/10 bg-white shadow-sm">
-              <div className="grid items-center gap-8 p-8 md:grid-cols-[1fr_auto] md:gap-12 md:p-12">
-                <p className="text-base leading-relaxed text-navy-plum/85 md:text-lg">
-                  {homeContent.niAlliance}
-                </p>
-                <div className="flex justify-center md:justify-end">
-                  <div className="rounded-xl border border-deep-teal/10 bg-cream px-8 py-6">
-                    <img
-                      src={homeContent.niBadge.src}
-                      alt={homeContent.niBadge.alt}
-                      width={homeContent.niBadge.width}
-                      height={homeContent.niBadge.height}
-                      className="mx-auto"
-                    />
-                  </div>
-                </div>
+            <div className={contentPairGrid}>
+              <p className="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
+                {homeContent.niAlliance}
+              </p>
+              <div className="mx-auto flex w-[220px] shrink-0 justify-center justify-self-center sm:w-[240px] md:w-[260px]">
+                <img
+                  src={homeContent.niBadge.src}
+                  alt={homeContent.niBadge.alt}
+                  width={homeContent.niBadge.width}
+                  height={homeContent.niBadge.height}
+                  className="h-auto w-full max-w-[220px] md:max-w-[260px]"
+                />
               </div>
             </div>
           </FadeIn>
