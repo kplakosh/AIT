@@ -5,12 +5,14 @@ import { focusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { ScrollToTop } from './ScrollToTop'
 
 export function PageLayout() {
   const { meta, noIndex } = useRouteSeo()
 
   return (
     <>
+      <ScrollToTop />
       <SiteSeo meta={meta} noIndex={noIndex} />
       <a
         href="#main-content"

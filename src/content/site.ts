@@ -19,10 +19,19 @@ export const colors = {
   warmGold: '#aa9047',
 } as const
 
+/** Internal app routes — single source of truth for links and redirects. */
+export const routes = {
+  home: '/',
+  about: '/about',
+  services: '/services',
+  contact: '/contact',
+} as const
+
 export const navLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'Services', path: '/services' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Home', path: routes.home },
+  { label: 'About', path: routes.about },
+  { label: 'Services', path: routes.services },
+  { label: 'Contact', path: routes.contact },
 ] as const
 
 export const pageMeta = {
@@ -31,6 +40,13 @@ export const pageMeta = {
     description:
       'LabVIEW and TestStand test engineering and integration services. Turnkey solutions and development.',
     path: '/',
+    ogImage: '/images/logo.png',
+  },
+  about: {
+    title: 'About Us | Advanced Instrument Technologies',
+    description:
+      'Learn about AIT — test engineering services, company history, Cumming GA location, and NI Alliance Partner credentials.',
+    path: '/about',
     ogImage: '/images/logo.png',
   },
   services: {
@@ -61,6 +77,20 @@ export const homeContent = {
     width: 500,
     height: 308,
   },
+} as const
+
+export const aboutContent = {
+  pageSubtitle:
+    'Engineering services and turnkey test solutions for research, manufacturing, and quality assurance.',
+  whoWeAre: homeContent.intro,
+  howItStarted: {
+    title: 'How It Started',
+    // Draft placeholder — replace with your story when ready.
+    body: 'Our founding story will be shared here soon.',
+  },
+  location: homeContent.location,
+  niAlliance: homeContent.niAlliance,
+  niBadge: homeContent.niBadge,
 } as const
 
 export const servicesContent = {

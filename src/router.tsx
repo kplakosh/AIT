@@ -1,5 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { PageLayout } from './components/layout/PageLayout'
+import { routes } from './content/site'
+import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
 import { DevComponentsPage } from './pages/DevComponentsPage'
 import { HomePage } from './pages/HomePage'
@@ -32,6 +34,11 @@ export const router = createBrowserRouter([
         handle: { seo: { key: 'home' as const } },
       },
       {
+        path: 'about',
+        element: <AboutPage />,
+        handle: { seo: { key: 'about' as const } },
+      },
+      {
         path: 'services',
         element: <ServicesPage />,
         handle: { seo: { key: 'services' as const } },
@@ -44,7 +51,7 @@ export const router = createBrowserRouter([
       ...devRoutes,
       {
         path: '*',
-        element: <Navigate to="/" replace />,
+        element: <Navigate to={routes.home} replace />,
       },
     ],
   },

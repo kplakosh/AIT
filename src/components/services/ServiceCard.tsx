@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import { Code2, Cpu, HelpCircle, Layers, Mail } from 'lucide-react'
-import { servicesContent } from '../../content/site'
+import { servicesContent, routes } from '../../content/site'
 import { cn } from '../../lib/cn'
 import { ButtonLink } from '../ui/Button'
 import { Card } from '../ui/Card'
@@ -48,7 +48,7 @@ export function ServiceCard({ section, variant = 'default', className = '' }: Se
 
       {section.id === 'let-us-help-you' ? (
         <div className="mt-6">
-          <ButtonLink to="/contact">Contact Us</ButtonLink>
+          <ButtonLink to={routes.contact}>Contact Us</ButtonLink>
         </div>
       ) : null}
     </Card>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { navLinks } from '../../content/site'
+import { navLinks, routes } from '../../content/site'
 import { focusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 import { pageGutter } from '../../lib/layout'
@@ -35,7 +35,7 @@ export function Header() {
       >
         <div className={cn(pageGutter, 'flex items-center justify-between gap-4 py-3')}>
           <NavLink
-            to="/"
+            to={routes.home}
             className={cn('shrink-0 rounded-md', focusRing)}
             onClick={() => setMobileOpen(false)}
           >

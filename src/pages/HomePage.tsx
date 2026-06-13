@@ -1,11 +1,9 @@
 import { ArrowRight } from 'lucide-react'
-import { LocationGraphic } from '../components/home/LocationGraphic'
 import { ButtonLink } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { FadeIn } from '../components/ui/FadeIn'
 import { Section } from '../components/ui/Section'
-import { homeContent, siteConfig } from '../content/site'
-import { contentPairGrid } from '../lib/layout'
+import { homeContent, routes, siteConfig } from '../content/site'
 
 export function HomePage() {
   return (
@@ -41,45 +39,22 @@ export function HomePage() {
               <p className="mt-6 text-base leading-relaxed text-white/90 md:text-lg">
                 {homeContent.intro}
               </p>
-              <div className="mt-10">
-                <ButtonLink to="/contact" size="lg" className="gap-2">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <ButtonLink to={routes.about} size="lg" variant="secondary">
+                  About Us
+                </ButtonLink>
+                <ButtonLink
+                  to={routes.services}
+                  size="lg"
+                  variant="ghost"
+                  className="border-white/30 text-white hover:border-white/50 hover:bg-white/10"
+                >
+                  Services
+                </ButtonLink>
+                <ButtonLink to={routes.contact} size="lg" className="gap-2">
                   Contact Us
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </ButtonLink>
-              </div>
-            </div>
-          </FadeIn>
-        </Container>
-      </Section>
-
-      <Section variant="white">
-        <Container>
-          <FadeIn>
-            <div className={contentPairGrid}>
-              <p className="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
-                {homeContent.location}
-              </p>
-              <LocationGraphic />
-            </div>
-          </FadeIn>
-        </Container>
-      </Section>
-
-      <Section variant="muted">
-        <Container>
-          <FadeIn delay={0.1}>
-            <div className={contentPairGrid}>
-              <p className="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
-                {homeContent.niAlliance}
-              </p>
-              <div className="mx-auto flex w-[220px] shrink-0 justify-center justify-self-center sm:w-[240px] md:w-[260px]">
-                <img
-                  src={homeContent.niBadge.src}
-                  alt={homeContent.niBadge.alt}
-                  width={homeContent.niBadge.width}
-                  height={homeContent.niBadge.height}
-                  className="h-auto w-full max-w-[220px] md:max-w-[260px]"
-                />
               </div>
             </div>
           </FadeIn>

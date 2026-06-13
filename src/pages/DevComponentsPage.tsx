@@ -1,3 +1,4 @@
+import { routes } from '../content/site'
 import { Button, ButtonLink, ExternalLink } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Container } from '../components/ui/Container'
@@ -20,7 +21,7 @@ export function DevComponentsPage() {
             <Button>Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="ghost">Ghost</Button>
-            <ButtonLink to="/contact">Button Link</ButtonLink>
+            <ButtonLink to={routes.contact}>Button Link</ButtonLink>
             <ExternalLink href="mailto:info@aitechinc.com">External Link</ExternalLink>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-4">

@@ -6,6 +6,7 @@ type CardVariant = 'default' | 'elevated' | 'accent'
 type CardProps = {
   children: ReactNode
   className?: string
+  id?: string
   variant?: CardVariant
 }
 
@@ -15,9 +16,12 @@ const variantClasses: Record<CardVariant, string> = {
   accent: 'border border-deep-teal/10 border-t-4 border-t-warm-gold bg-white shadow-sm',
 }
 
-export function Card({ children, className = '', variant = 'default' }: CardProps) {
+export function Card({ children, className = '', id, variant = 'default' }: CardProps) {
   return (
-    <div className={cn('rounded-xl p-6 transition-shadow hover:shadow-md', variantClasses[variant], className)}>
+    <div
+      id={id}
+      className={cn('rounded-xl p-6 transition-shadow hover:shadow-md', variantClasses[variant], className)}
+    >
       {children}
     </div>
   )

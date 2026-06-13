@@ -2,9 +2,11 @@
 
 ## Executive Summary
 
-Rebuild [aitechinc.com](http://www.aitechinc.com/) as a modern, responsive website using the existing **Vite + React + TypeScript** project. The new site will preserve the **same three pages and the same content blocks** as the current site — no new pages, no new sections (no blog, careers, case studies, testimonials, etc.).
+Rebuild [aitechinc.com](http://www.aitechinc.com/) as a modern, responsive website using the existing **Vite + React + TypeScript** project. The site preserves the **content blocks from the current site** and adds one **explicitly approved** new page: **About Us** (`/about`).
 
-The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primetest, Cyth, Rovisys, Viewpoint) while staying faithful to AIT's current information architecture.
+The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primetest, Cyth, Rovisys, Viewpoint) while staying faithful to AIT's brand and existing copy.
+
+**Scope change (approved):** The original plan locked the site to three pages (Home, Services, Contact). An **About Us** page is now in scope as the **fourth page**. No other new pages or sections (blog, careers, case studies, etc.) unless approved later.
 
 ---
 
@@ -12,18 +14,30 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ### Global Elements (All Pages)
 
-| Element | Current Content |
-|---|---|
-| **Logo** | Custom AIT logo (uploaded; black letter variant — white text on dark backgrounds as needed) |
-| **Navigation** | Home · Services · Contact |
-| **Footer** | "Copyright 2026 Advanced Instrument Technologies, Inc." |
+
+| Element        | Current Content                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------- |
+| **Logo**       | Custom AIT logo (uploaded; black letter variant — white text on dark backgrounds as needed) |
+| **Navigation** | Home · About · Services · Contact                                                           |
+| **Footer**     | "Copyright 2026 Advanced Instrument Technologies, Inc."                                     |
+
 
 ### Home (`/`)
 
-1. Company intro — engineering services, custom/turnkey test solutions, R&D / manufacturing / QA
-2. Location — Cumming, GA (northern Atlanta suburb); global customer base
-3. NI Alliance Partner — certified developers, quality assurance statement
-4. **NI Certified Alliance Partner badge** — `/images/logos/ni_cert_alliance_part.png`
+1. Company intro — engineering services, custom/turnkey test solutions, R&D / manufacturing / QA *(hero)*
+2. Primary CTAs — link to About, Services, and Contact
+
+> **Home page change (Phase 8):** Location and NI Alliance Partner blocks **move to About Us** to avoid duplicate content. Home keeps the hero intro and navigation CTAs only.
+
+### About Us (`/about`) — **new page (Phase 8)**
+
+Content is **reused verbatim** from blocks currently on Home — no new marketing copy unless you supply it later.
+
+1. **Who we are** — company intro paragraph (same as current Home intro)
+2. **How it started** — company origin story *(draft placeholder — final copy TBD)*
+3. **Location & reach** — Cumming, GA location; global customer base (same as current Home location block)
+4. **NI Alliance Partner** — certified developers statement + NI badge (same as current Home credentials block)
+5. **CTA** — link to Services and Contact
 
 ### Services (`/services`)
 
@@ -36,25 +50,27 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 ### Contact (`/contact`)
 
 1. Welcome paragraph
-2. Company name, address, phone (**770-672-0543**), email (**info@aitechinc.com**)
+2. Company name, address, phone (**770-672-0543**), email (**[info@aitechinc.com](mailto:info@aitechinc.com)**)
 3. Google Maps embed (5845 Steeplechase Blvd, Cumming, GA 30040)
 
-> **Constraint:** Everything above is in scope. Nothing else is added unless explicitly approved later.
+> **Constraint:** All copy from the original site is preserved across the four pages. The About page reorganizes existing Home content — it does not invent new sections. Nothing else is added unless explicitly approved later.
 
 ---
 
 ## Competitor UX Patterns to Adopt (Without Adding Sections)
 
-| Pattern | Seen At | How We Apply It (Within Existing Content) |
-|---|---|---|
-| Bold hero with clear value prop | Averna, Bloomy | Home intro becomes a full-width hero — same text, stronger typography |
-| Sticky header + active nav state | All competitors | Fixed nav with scroll-aware highlight |
-| Service cards with icons | Primetest, Cyth | Services page: 5 existing sections as visual cards |
-| Strong visual hierarchy | Viewpoint, Rovisys | Clear H1/H2 scale, generous whitespace |
-| Trust/credential callout | Bloomy (NI experts) | NI badge as a designed credential panel on Home |
-| Split contact layout | Averna, Bloomy | Contact: info left, map right (same info + map) |
-| Subtle scroll/hover motion | Modern competitors | Fade-in on sections; no distracting animation |
-| Mobile-first responsive nav | All | Hamburger menu below ~768px |
+
+| Pattern                          | Seen At             | How We Apply It (Within Existing Content)                             |
+| -------------------------------- | ------------------- | --------------------------------------------------------------------- |
+| Bold hero with clear value prop  | Averna, Bloomy      | Home intro becomes a full-width hero — same text, stronger typography |
+| Sticky header + active nav state | All competitors     | Fixed nav with scroll-aware highlight                                 |
+| Service cards with icons         | Primetest, Cyth     | Services page: 5 existing sections as visual cards                    |
+| Strong visual hierarchy          | Viewpoint, Rovisys  | Clear H1/H2 scale, generous whitespace                                |
+| Trust/credential callout         | Bloomy (NI experts) | NI badge on About Us page; optional teaser on Home                    |
+| Split contact layout             | Averna, Bloomy      | Contact: info left, map right (same info + map)                       |
+| Subtle scroll/hover motion       | Modern competitors  | Fade-in on sections; no distracting animation                         |
+| Mobile-first responsive nav      | All                 | Hamburger menu below ~768px                                           |
+
 
 **Explicitly out of scope** (competitors have these; current AIT site does not):
 
@@ -70,16 +86,18 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ## Recommended Tech Stack
 
-| Layer | Choice | Rationale |
-|---|---|---|
-| Framework | React 19 + TypeScript | Already in project |
-| Routing | `react-router-dom` | 3-page SPA with clean URLs |
-| Styling | **Tailwind CSS v4** | Fast iteration, responsive utilities, design tokens |
-| Icons | `lucide-react` | Lightweight icons for service cards |
-| Animation | `framer-motion` (light use) | Section reveals, nav transitions |
-| SEO | `react-helmet-async` | Per-page title/description/meta |
-| Maps | Google Maps embed iframe | Matches current site; no API key needed |
-| Build/deploy | Vite → static `dist/` | GitHub Pages (staging URL first) |
+
+| Layer        | Choice                      | Rationale                                           |
+| ------------ | --------------------------- | --------------------------------------------------- |
+| Framework    | React 19 + TypeScript       | Already in project                                  |
+| Routing      | `react-router-dom`          | 4-page SPA with clean URLs                          |
+| Styling      | **Tailwind CSS v4**         | Fast iteration, responsive utilities, design tokens |
+| Icons        | `lucide-react`              | Lightweight icons for service cards                 |
+| Animation    | `framer-motion` (light use) | Section reveals, nav transitions                    |
+| SEO          | `react-helmet-async`        | Per-page title/description/meta                     |
+| Maps         | Google Maps embed iframe    | Matches current site; no API key needed             |
+| Build/deploy | Vite → static `dist/`       | GitHub Pages (staging URL first)                    |
+
 
 ---
 
@@ -89,13 +107,13 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 - **Palette (approved — warm sunset/fall):**
 
-  | Token | Hex | Role |
-  |---|---|---|
-  | Teal | `#49888a` | Primary accent, links, highlights |
-  | Deep teal | `#234958` | Header/footer backgrounds, dark sections |
-  | Navy plum | `#26274e` | Hero backgrounds, headings |
-  | Muted rose | `#7f456d` | Secondary accent, CTA hover states |
-  | Warm gold | `#aa9047` | Accent highlights, dividers, badges |
+  | Token      | Hex       | Role                                     |
+  | ---------- | --------- | ---------------------------------------- |
+  | Teal       | `#49888a` | Primary accent, links, highlights        |
+  | Deep teal  | `#234958` | Header/footer backgrounds, dark sections |
+  | Navy plum  | `#26274e` | Hero backgrounds, headings               |
+  | Muted rose | `#7f456d` | Secondary accent, CTA hover states       |
+  | Warm gold  | `#aa9047` | Accent highlights, dividers, badges      |
 
 - **Typography:** `Inter` or `DM Sans` (headings) + system sans fallback
 - **Tone:** Warm, professional, trustworthy — sunset/fall palette with test engineering credibility
@@ -119,8 +137,8 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 1. ✅ Extract and store all copy in `src/content/site.ts` — verbatim from current site
 2. ✅ Assets in `public/images/`:
-   - `logo.png` — custom AIT logo (uploaded)
-   - `ni-alliance-partner.png` — NI Certified Alliance Partner badge
+  - `logo.png` — custom AIT logo (uploaded)
+  - `ni-alliance-partner.png` — NI Certified Alliance Partner badge
 3. ✅ Copyright year: **2026**
 4. ⏳ Sign-off on content file + design mood
 
@@ -147,16 +165,16 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 **Goal:** Reusable building blocks before page work.
 
-1. ✅ **`Container`** — max-width wrapper with narrow/wide size options
-2. ✅ **`Section`** — vertical spacing + variants (default, muted, white, dark, gradient)
-3. ✅ **`SectionHeading`** — H2 with gold divider, subtitle, alignment options
-4. ✅ **`Card`** — default, elevated, and accent variants
-5. ✅ **`Button`** — primary, secondary, ghost + sm/md/lg sizes
-6. ✅ **`PageHeader`** — reusable gradient page title band
-7. ✅ **`Header`** — sticky, scroll shadow, cream background, active nav
-8. ✅ **`MobileNav`** — slide-in drawer, body scroll lock, animations
-9. ✅ **`Footer`** — logo, nav links, copyright
-10. ✅ **`NavLinkItem`** — consistent nav link styling
+1. ✅ `**Container`** — max-width wrapper with narrow/wide size options
+2. ✅ `**Section**` — vertical spacing + variants (default, muted, white, dark, gradient)
+3. ✅ `**SectionHeading**` — H2 with gold divider, subtitle, alignment options
+4. ✅ `**Card**` — default, elevated, and accent variants
+5. ✅ `**Button**` — primary, secondary, ghost + sm/md/lg sizes
+6. ✅ `**PageHeader**` — reusable gradient page title band
+7. ✅ `**Header**` — sticky, scroll shadow, cream background, active nav
+8. ✅ `**MobileNav**` — slide-in drawer, body scroll lock, animations
+9. ✅ `**Footer**` — logo, nav links, copyright
+10. ✅ `**NavLinkItem**` — consistent nav link styling
 11. ✅ **Dev preview** — `/dev/components` (development only)
 
 **Deliverable:** Polished design system + dev component preview route
@@ -178,7 +196,7 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 4 — Services Page (1 day)
+### Phase 4 — Services Page (1 day) ✅
 
 **Goal:** Transform 5 text sections into scannable, modern layout.
 
@@ -213,7 +231,7 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 5 — Contact Page (½–1 day)
+### Phase 5 — Contact Page (½–1 day) ✅
 
 **Goal:** Professional contact experience with static info + Formspree inquiry form.
 
@@ -245,7 +263,7 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 6 — Responsive, Accessibility & Polish (1 day)
+### Phase 6 — Responsive, Accessibility & Polish (1 day) ✅
 
 1. Test breakpoints: 320, 375, 768, 1024, 1440px
 2. Keyboard navigation through header, mobile menu, all links
@@ -260,38 +278,109 @@ The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primet
 
 ---
 
-### Phase 7 — SEO & Metadata (½ day)
+### Phase 7 — SEO & Metadata (½ day) ✅
 
 Per-page meta (derived from existing site):
 
-| Page | Title | Description |
-|---|---|---|
-| Home | Advanced Instrument Technologies \| Test Engineering Services | LabVIEW and TestStand test engineering and integration services. Turnkey solutions and development. |
-| Services | Services \| Advanced Instrument Technologies | LabVIEW, TestStand, hardware, and turnkey test engineering solutions. |
-| Contact | Contact \| Advanced Instrument Technologies | Contact AIT in Cumming, GA for test engineering needs. |
+
+| Page     | Title                                                        | Description                                                                                            |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| Home     | Advanced Instrument Technologies | Test Engineering Services | LabVIEW and TestStand test engineering and integration services. Turnkey solutions and development.    |
+| About    | About Us | Advanced Instrument Technologies                  | Learn about AIT — test engineering services, Cumming GA location, and NI Alliance Partner credentials. |
+| Services | Services | Advanced Instrument Technologies                  | LabVIEW, TestStand, hardware, and turnkey test engineering solutions.                                  |
+| Contact  | Contact | Advanced Instrument Technologies                   | Contact AIT in Cumming, GA for test engineering needs.                                                 |
+
 
 1. Open Graph tags (og:title, og:description, og:image)
 2. Semantic HTML: `<main>`, `<nav>`, `<footer>`, one `<h1>` per page
-3. `robots.txt` + `sitemap.xml` (3 URLs)
+3. `robots.txt` + `sitemap.xml` (4 URLs after Phase 8)
 4. Favicon from AIT branding
+5. Centralized SEO in `PageLayout` via route handles (`SiteSeo` component)
 
 **Deliverable:** SEO-ready static output
 
 ---
 
-### Phase 8 — QA & Cross-Browser Testing (½ day)
+### Phase 8 — About Us Page (1 day)
+
+**Goal:** Add a dedicated About Us page using **existing site copy** reorganized from Home. Update navigation, routing, and SEO. Slim Home to avoid duplicate content.
+
+**Content source (verbatim from `homeContent` in `site.ts`):**
+
+
+| About section       | Source                                           | Existing copy                  |
+| ------------------- | ------------------------------------------------ | ------------------------------ |
+| Who we are          | `homeContent.intro`                              | Company intro paragraph        |
+| How it started      | `aboutContent.howItStarted`                      | Draft placeholder — TBD        |
+| Location & reach    | `homeContent.location`                           | Cumming, GA + global customers |
+| NI Alliance Partner | `homeContent.niAlliance` + `homeContent.niBadge` | Credentials text + badge image |
+
+
+**Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│  PageHeader: "About Us"                 │
+│  Subtitle: tagline or first intro line   │
+├─────────────────────────────────────────┤
+│  Who we are (full-width text)            │
+├─────────────────────────────────────────┤
+│  How it started (full-width text)        │  ← draft; final copy TBD
+├──────────────────┬──────────────────────┤
+│  Location text   │  LocationGraphic     │  ← reuse Home component
+├──────────────────┴──────────────────────┤
+│  NI credentials text │  NI badge image   │  ← reuse Home grid pattern
+├─────────────────────────────────────────┤
+│  CTA row: "View Services" · "Contact Us" │
+└─────────────────────────────────────────┘
+```
+
+**Implementation checklist:**
+
+1. **Content** — Add `aboutContent` to `src/content/site.ts`; refactor `homeContent` if needed (shared fields vs. page-specific exports)
+2. **Page** — Create `src/pages/AboutPage.tsx` using `PageHeader`, `Section`, `FadeIn`, `Container`, `contentPairGrid`
+3. **Components** — Reuse `LocationGraphic`; no new one-off components unless a thin `AboutSection` wrapper helps readability
+4. **Routing** — Add `/about` route + SEO handle in `src/router.tsx`:
+  ```tsx
+   { path: 'about', element: <AboutPage />, handle: { seo: { key: 'about' } } }
+  ```
+5. **Navigation** — Add `{ label: 'About', path: '/about' }` to `navLinks` in `site.ts` (between Home and Services); Header, Footer, and MobileNav pick it up automatically
+6. **SEO** — Add `pageMeta.about` in `site.ts`; update `public/sitemap.xml` and `scripts/generate-seo-files.mjs` to include `/about`
+7. **Home refactor** — Remove location and NI sections from `HomePage.tsx`; add hero CTAs (`About Us`, `Services`, `Contact`)
+8. **Icons** — Optional lucide icons on About sections (consistent with Services cards pattern): e.g. `Building2`, `MapPin`, `Award`
+9. **Accessibility** — One `<h1>` in `PageHeader`; section content uses `<h2>` via `SectionHeading`; badge keeps existing alt text
+
+**Home page after Phase 8:**
+
+```
+┌─────────────────────────────────────────┐
+│  Hero: company name, tagline, intro      │
+│  CTAs: About Us · Services · Contact     │
+└─────────────────────────────────────────┘
+```
+
+**Deliverable:** Completed About Us page; Home updated; nav and sitemap include `/about`
+
+**Content approval needed before build:**
+
+- Confirm relocating location + NI blocks from Home → About is acceptable
+- Confirm no additional About copy (history, team, mission) unless you provide it
+
+---
+
+### Phase 9 — QA & Cross-Browser Testing (½ day)
 
 1. Chrome, Safari, Firefox, Edge
 2. iOS Safari + Android Chrome
 3. Verify all internal links and external map link
 4. `npm run build` + `npm run preview` smoke test
-5. Content diff: every paragraph from old site present on new site
+5. Content diff: every paragraph from old site present on new site (including About page reorganization)
 
 **Deliverable:** QA sign-off checklist
 
 ---
 
-### Phase 9 — Deployment (½ day)
+### Phase 10 — Deployment (½ day)
 
 1. Connect project to GitHub repository (see **GitHub Setup** below)
 2. Configure **GitHub Pages** for staging URL (e.g. `https://<username>.github.io/advanced-instrument-technologies/`)
@@ -306,32 +395,38 @@ Per-page meta (derived from existing site):
 
 ## Timeline Estimate
 
-| Phase | Duration |
-|---|---|
-| 0 — Content lock | 0.5 day |
-| 1 — Foundation | 1 day |
-| 2 — Design system | 1–1.5 days |
-| 3 — Home | 1 day |
-| 4 — Services | 1 day |
-| 5 — Contact | 0.5–1 day |
-| 6 — A11y/responsive | 1 day |
-| 7 — SEO | 0.5 day |
-| 8 — QA | 0.5 day |
-| 9 — Deploy | 0.5 day |
-| **Total** | **~7–8 working days** |
+
+| Phase               | Duration              | Status |
+| ------------------- | --------------------- | ------ |
+| 0 — Content lock    | 0.5 day               | ✅      |
+| 1 — Foundation      | 1 day                 | ✅      |
+| 2 — Design system   | 1–1.5 days            | ✅      |
+| 3 — Home            | 1 day                 | ✅      |
+| 4 — Services        | 1 day                 | ✅      |
+| 5 — Contact         | 0.5–1 day             | ✅      |
+| 6 — A11y/responsive | 1 day                 | ✅      |
+| 7 — SEO             | 0.5 day               | ✅      |
+| 8 — About Us        | 1 day                 | ⏳      |
+| 9 — QA              | 0.5 day               | ⏳      |
+| 10 — Deploy         | 0.5 day               | ⏳      |
+| **Total**           | **~8–9 working days** |        |
+
 
 ---
 
 ## Approved Decisions
 
-| # | Decision | Status |
-|---|---|---|
-| 1 | **Copyright year** | ✅ Update to **2026** |
-| 2 | **Logo** | ✅ Custom logo uploaded (black letters; white variant on dark backgrounds) |
-| 3 | **Color palette** | ✅ Warm sunset/fall: `#49888a` / `#234958` / `#26274e` / `#7f456d` / `#aa9047` |
-| 4 | **Hosting** | ✅ **GitHub Pages** — `https://github.com/kplakosh/AIT.git` (private) |
-| 5 | **Domain cutover** | ✅ **Staging URL first** — production at `aitechinc.com` when final version is ready |
-| 6 | **Contact form** | ✅ **Option C (Formspree)** — implement in Phase 5 |
+
+| #   | Decision           | Status                                                                              |
+| --- | ------------------ | ----------------------------------------------------------------------------------- |
+| 1   | **Copyright year** | ✅ Update to **2026**                                                                |
+| 2   | **Logo**           | ✅ Custom logo uploaded (black letters; white variant on dark backgrounds)           |
+| 3   | **Color palette**  | ✅ Warm sunset/fall: `#49888a` / `#234958` / `#26274e` / `#7f456d` / `#aa9047`       |
+| 4   | **Hosting**        | ✅ **GitHub Pages** — `https://github.com/kplakosh/AIT.git` (private)                |
+| 5   | **Domain cutover** | ✅ **Staging URL first** — production at `aitechinc.com` when final version is ready |
+| 6   | **Contact form**   | ✅ **Option C (Formspree)** — implement in Phase 5                                   |
+| 7   | **About Us page**  | ✅ Approved — fourth page at `/about`; content reorganized from Home                 |
+
 
 ---
 
@@ -363,12 +458,14 @@ The current site has **static contact info only** (phone, email, address, map). 
 
 Since GitHub Pages has no server, form submissions go through an external service:
 
-| Service | Free tier | How it works |
-|---|---|---|
-| **[Formspree](https://formspree.io)** | 50 submissions/mo | POST form to their endpoint → emails `info@aitechinc.com` |
-| **[Getform](https://getform.io)** | 50 submissions/mo | Same pattern; dashboard for submissions |
-| **[Web3Forms](https://web3forms.com)** | 250 submissions/mo | Access key in form; emails directly |
-| **Google Forms embed** | Free | Embed iframe; responses in Google Sheets |
+
+| Service                                | Free tier          | How it works                                              |
+| -------------------------------------- | ------------------ | --------------------------------------------------------- |
+| **[Formspree](https://formspree.io)**  | 50 submissions/mo  | POST form to their endpoint → emails `info@aitechinc.com` |
+| **[Getform](https://getform.io)**      | 50 submissions/mo  | Same pattern; dashboard for submissions                   |
+| **[Web3Forms](https://web3forms.com)** | 250 submissions/mo | Access key in form; emails directly                       |
+| **Google Forms embed**                 | Free               | Embed iframe; responses in Google Sheets                  |
+
 
 - **Pros:** Real form UX, spam filtering (Formspree), no backend code, works on GitHub Pages
 - **Cons:** Third-party dependency; free tiers have limits; form access key must be stored carefully (env var, not committed)
@@ -403,22 +500,26 @@ Since GitHub Pages has no server, form submissions go through an external servic
 
 ### Repository connection ✅
 
-| Setting | Value |
-|---|---|
-| **Remote URL** | `https://github.com/kplakosh/AIT.git` |
-| **Visibility** | Private |
-| **License** | Proprietary — see `LICENSE` file |
+
+| Setting         | Value                                             |
+| --------------- | ------------------------------------------------- |
+| **Remote URL**  | `https://github.com/kplakosh/AIT.git`             |
+| **Visibility**  | Private                                           |
+| **License**     | Proprietary — see `LICENSE` file                  |
 | **Staging URL** | `https://kplakosh.github.io/AIT/` (after Phase 9) |
+
 
 **Note:** GitHub Pages on a private repo requires a GitHub plan that includes Pages for private repositories (GitHub Pro or org plan). Confirm this is enabled before Phase 9 deployment.
 
 ### License recommendation
 
-| Scenario | Recommended license |
-|---|---|
-| **Private company website (recommended)** | **No open-source license** — add a `LICENSE` file stating proprietary: *"Copyright 2026 Advanced Instrument Technologies, Inc. All rights reserved."* |
-| **Public repo, don't mind code being open** | **MIT License** — permissive, standard for open source |
-| **Public repo, want patent protection** | **Apache 2.0** |
+
+| Scenario                                    | Recommended license                                                                                                                                   |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Private company website (recommended)**   | **No open-source license** — add a `LICENSE` file stating proprietary: *"Copyright 2026 Advanced Instrument Technologies, Inc. All rights reserved."* |
+| **Public repo, don't mind code being open** | **MIT License** — permissive, standard for open source                                                                                                |
+| **Public repo, want patent protection**     | **Apache 2.0**                                                                                                                                        |
+
 
 For a commercial company website, **proprietary (no OSS license)** with a **private repository** is the typical choice. MIT/Apache only apply if you intentionally want the source code to be freely reusable by others.
 
@@ -457,8 +558,8 @@ If Option C (Formspree/Web3Forms) is chosen, form access keys will be stored as 
 
 ## Success Criteria
 
-- All 3 pages live with **100% of existing content** preserved
-- **Zero new sections** beyond what aitechinc.com has today
+- All **4 pages** live with **100% of existing content** preserved (About reuses Home copy)
+- **No unapproved sections** (blog, careers, case studies, etc.)
 - Mobile-responsive, accessible (WCAG AA)
 - Visually competitive with reference sites
 - Lighthouse scores ≥ 90 across Performance, Accessibility, SEO
@@ -474,6 +575,9 @@ If Option C (Formspree/Web3Forms) is chosen, form access keys will be stored as 
 4. ~~Phase 1 — Project foundation~~ ✅ Routing, Tailwind, folder structure
 5. ~~Phase 2 — Design system~~ ✅ Shared components polished
 6. ~~Phase 3 — Home page~~ ✅ Hero, location, credentials, animations
-7. Phases 4–5 (Formspree form in Phase 5)
-8. Review staging build on GitHub Pages URL
-9. Phases 6–9 polish; production cutover to `aitechinc.com` when approved
+7. ~~Phases 4–7~~ ✅ Services, Contact + Formspree, a11y polish, centralized SEO
+8. **Phase 8 — About Us page** *(current)*
+9. Phase 9 — QA on all four pages
+10. Phase 10 — Deploy to GitHub Pages staging URL
+11. Production cutover to `aitechinc.com` when approved
+
