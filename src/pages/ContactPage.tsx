@@ -7,7 +7,6 @@ import { Section } from '../components/ui/Section'
 import { contactContent } from '../content/site'
 import { focusRing } from '../lib/a11y'
 import { cn } from '../lib/cn'
-import { contentPairGrid } from '../lib/layout'
 
 export function ContactPage() {
   return (
@@ -16,13 +15,23 @@ export function ContactPage() {
 
       <Section variant="white">
         <Container>
-          <div className={cn(contentPairGrid, '[&>*]:min-w-0')}>
+          <FadeIn>
+            <div className="mx-auto w-full md:w-2/3">
+              <ContactForm />
+            </div>
+          </FadeIn>
+        </Container>
+      </Section>
+
+      <Section variant="muted">
+        <Container>
+          <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-x-8 lg:gap-x-12 [&>*]:min-w-0">
             <FadeIn>
               <ContactDetails />
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <div className="w-full md:max-w-md md:justify-self-end lg:max-w-lg">
+              <div className="w-full">
                 <iframe
                   title={contactContent.map.title}
                   src={contactContent.map.embedUrl}
@@ -45,14 +54,6 @@ export function ContactPage() {
               </div>
             </FadeIn>
           </div>
-        </Container>
-      </Section>
-
-      <Section variant="muted">
-        <Container>
-          <FadeIn>
-            <ContactForm />
-          </FadeIn>
         </Container>
       </Section>
     </>

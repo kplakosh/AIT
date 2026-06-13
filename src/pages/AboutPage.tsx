@@ -27,10 +27,16 @@ export function AboutPage() {
       <Section variant="muted">
         <Container>
           <FadeIn>
-            <SectionHeading title="Who We Are" showDivider />
-            <p className="max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
-              {aboutContent.whoWeAre}
-            </p>
+            <SectionHeading
+              title="Who We Are"
+              subtitle={aboutContent.whoWeAre.subtitle}
+              showDivider
+            />
+            <div className="max-w-3xl space-y-4 text-base leading-relaxed text-navy-plum/85 md:text-lg">
+              {aboutContent.whoWeAre.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </FadeIn>
         </Container>
       </Section>

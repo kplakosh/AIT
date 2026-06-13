@@ -82,7 +82,15 @@ export const homeContent = {
 export const aboutContent = {
   pageSubtitle:
     'Engineering services and turnkey test solutions for research, manufacturing, and quality assurance.',
-  whoWeAre: homeContent.intro,
+  whoWeAre: {
+    subtitle: 'Engineering Expertise Backed by Real-World Execution',
+    paragraphs: [
+      'For more than two decades, AIT has helped organizations solve complex test and measurement challenges across product development, validation, and manufacturing environments.',
+      'Our team combines software engineering, hardware integration, instrumentation expertise, and systems engineering to deliver solutions that work in the real world\u2014outside the lab.',
+      'As an NI Alliance Partner, we leverage industry-leading technologies while remaining focused on what matters most: creating reliable, maintainable systems that provide accurate data and support long-term business goals.',
+      'We work as an extension of our customers\u2019 engineering teams, bringing technical expertise, practical problem-solving, and a commitment to project success from concept through deployment.',
+    ],
+  },
   howItStarted: {
     title: 'How It Started',
     // Draft placeholder — replace with your story when ready.
