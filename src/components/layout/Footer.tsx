@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { navLinks, siteConfig } from '../../content/site'
+import { focusRingOnDark } from '../../lib/a11y'
+import { cn } from '../../lib/cn'
 import { Container } from '../ui/Container'
 import { Logo } from '../ui/Logo'
 
@@ -31,9 +33,20 @@ export function Footer() {
                   key={path}
                   to={path}
                   end={path === '/'}
-                  className="text-sm text-white/85 transition-colors hover:text-warm-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-gold"
+                  className={({ isActive }) =>
+                    cn(
+                      'text-sm text-white/85 transition-colors hover:text-warm-gold',
+                      focusRingOnDark,
+                      isActive && 'text-warm-gold',
+                    )
+                  }
                 >
-                  {label}
+                  {({ isActive }) => (
+                    <>
+                      {label}
+                      {isActive ? <span className="sr-only"> (current page)</span> : null}
+                    </>
+                  )}
                 </NavLink>
               ))}
             </div>

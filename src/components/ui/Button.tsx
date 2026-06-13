@@ -1,16 +1,15 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 import { Link, type LinkProps } from 'react-router-dom'
+import { focusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-teal text-white hover:bg-deep-teal focus-visible:outline-teal',
-  secondary:
-    'bg-warm-gold text-white hover:bg-muted-rose focus-visible:outline-warm-gold',
-  ghost:
-    'border border-teal/30 bg-transparent text-deep-teal hover:border-teal hover:bg-teal/5 focus-visible:outline-teal',
+  primary: 'bg-teal text-white hover:bg-deep-teal',
+  secondary: 'bg-warm-gold text-white hover:bg-muted-rose',
+  ghost: 'border border-teal/30 bg-transparent text-deep-teal hover:border-teal hover:bg-teal/5',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -19,8 +18,10 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: 'px-6 py-3 text-base',
 }
 
-const baseClasses =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50'
+const baseClasses = cn(
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
+  focusRing,
+)
 
 type SharedProps = {
   variant?: ButtonVariant

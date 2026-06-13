@@ -1,5 +1,6 @@
 import { useForm, ValidationError } from '@formspree/react'
 import { contactContent } from '../../content/site'
+import { inputFocusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 import { Button } from '../ui/Button'
 import { Card } from '../ui/Card'
@@ -8,8 +9,10 @@ import { SectionHeading } from '../ui/SectionHeading'
 const formId = import.meta.env.VITE_FORMSPREE_FORM_ID || 'xpqeovky'
 const isConfigured = Boolean(formId && formId !== 'your_form_id_here')
 
-const inputClasses =
-  'w-full rounded-lg border border-deep-teal/15 bg-white px-4 py-2.5 text-navy-plum placeholder:text-navy-plum/40 transition-colors focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20 disabled:cursor-not-allowed disabled:opacity-60'
+const inputClasses = cn(
+  'w-full rounded-lg border border-deep-teal/15 bg-white px-4 py-2.5 text-navy-plum placeholder:text-navy-plum/40 transition-colors disabled:cursor-not-allowed disabled:opacity-60',
+  inputFocusRing,
+)
 
 const fieldErrorClasses = 'mt-1.5 text-sm text-muted-rose'
 

@@ -1,6 +1,7 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import { navLinks } from '../../content/site'
+import { focusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 import { pageGutter } from '../../lib/layout'
 import { Logo } from '../ui/Logo'
@@ -10,12 +11,18 @@ import { MobileNav, MobileNavToggle } from './MobileNav'
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const closeMobileNav = useCallback(() => {
+    setMobileOpen(false)
+    menuToggleRef.current?.focus()
   }, [])
 
   return (
@@ -26,15 +33,10 @@ export function Header() {
           scrolled ? 'shadow-md' : 'shadow-sm',
         )}
       >
-        <div
-          className={cn(
-            pageGutter,
-            'flex items-center justify-between gap-4 py-3',
-          )}
-        >
+        <div className={cn(pageGutter, 'flex items-center justify-between gap-4 py-3')}>
           <NavLink
             to="/"
-            className="shrink-0 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            className={cn('shrink-0 rounded-md', focusRing)}
             onClick={() => setMobileOpen(false)}
           >
             <Logo />
@@ -49,13 +51,14 @@ export function Header() {
           </nav>
 
           <MobileNavToggle
+            ref={menuToggleRef}
             open={mobileOpen}
             onToggle={() => setMobileOpen((current) => !current)}
           />
         </div>
       </header>
 
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileNav open={mobileOpen} onClose={closeMobileNav} />
     </>
   )
 }

@@ -1,5 +1,9 @@
 import { Building2, Mail, MapPin, Phone } from 'lucide-react'
 import { contactContent } from '../../content/site'
+import { focusRing } from '../../lib/a11y'
+import { cn } from '../../lib/cn'
+
+const linkClasses = cn('text-teal underline-offset-4 hover:underline', focusRing, 'rounded-sm')
 
 const detailItems = [
   {
@@ -24,10 +28,7 @@ const detailItems = [
     icon: Phone,
     label: 'Phone',
     content: (
-      <a
-        href={`tel:${contactContent.phone}`}
-        className="text-teal underline-offset-4 hover:underline"
-      >
+      <a href={`tel:${contactContent.phone}`} className={linkClasses}>
         {contactContent.phone}
       </a>
     ),
@@ -36,10 +37,7 @@ const detailItems = [
     icon: Mail,
     label: 'Email',
     content: (
-      <a
-        href={`mailto:${contactContent.email}`}
-        className="text-teal underline-offset-4 hover:underline"
-      >
+      <a href={`mailto:${contactContent.email}`} className={linkClasses}>
         {contactContent.email}
       </a>
     ),

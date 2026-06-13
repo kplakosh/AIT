@@ -6,6 +6,8 @@ import { FadeIn } from '../components/ui/FadeIn'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Section } from '../components/ui/Section'
 import { contactContent, pageMeta } from '../content/site'
+import { focusRing } from '../lib/a11y'
+import { cn } from '../lib/cn'
 import { contentPairGrid } from '../lib/layout'
 
 export function ContactPage() {
@@ -20,7 +22,7 @@ export function ContactPage() {
 
       <Section variant="white">
         <Container>
-          <div className={contentPairGrid}>
+          <div className={cn(contentPairGrid, '[&>*]:min-w-0')}>
             <FadeIn>
               <ContactDetails />
             </FadeIn>
@@ -41,7 +43,7 @@ export function ContactPage() {
                     href={contactContent.map.viewLargerUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-teal underline-offset-4 hover:underline"
+                    className={cn('text-teal underline-offset-4 hover:underline', focusRing, 'rounded-sm')}
                   >
                     View Larger Map
                   </a>
