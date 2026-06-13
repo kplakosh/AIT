@@ -1,11 +1,10 @@
-import { Helmet } from 'react-helmet-async'
 import { ContactDetails } from '../components/contact/ContactDetails'
 import { ContactForm } from '../components/contact/ContactForm'
 import { Container } from '../components/ui/Container'
 import { FadeIn } from '../components/ui/FadeIn'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Section } from '../components/ui/Section'
-import { contactContent, pageMeta } from '../content/site'
+import { contactContent } from '../content/site'
 import { focusRing } from '../lib/a11y'
 import { cn } from '../lib/cn'
 import { contentPairGrid } from '../lib/layout'
@@ -13,11 +12,6 @@ import { contentPairGrid } from '../lib/layout'
 export function ContactPage() {
   return (
     <>
-      <Helmet>
-        <title>{pageMeta.contact.title}</title>
-        <meta name="description" content={pageMeta.contact.description} />
-      </Helmet>
-
       <PageHeader title="Contact" description={contactContent.welcome} />
 
       <Section variant="white">

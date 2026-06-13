@@ -30,15 +30,21 @@ export const pageMeta = {
     title: 'Advanced Instrument Technologies | Test Engineering Services',
     description:
       'LabVIEW and TestStand test engineering and integration services. Turnkey solutions and development.',
+    path: '/',
+    ogImage: '/images/logo.png',
   },
   services: {
     title: 'Services | Advanced Instrument Technologies',
     description:
       'LabVIEW, TestStand, hardware, and turnkey test engineering solutions.',
+    path: '/services',
+    ogImage: '/images/logo.png',
   },
   contact: {
     title: 'Contact | Advanced Instrument Technologies',
     description: 'Contact AIT in Cumming, GA for test engineering needs.',
+    path: '/contact',
+    ogImage: '/images/logo.png',
   },
 } as const
 

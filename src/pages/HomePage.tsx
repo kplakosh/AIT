@@ -1,21 +1,15 @@
-import { Helmet } from 'react-helmet-async'
 import { ArrowRight } from 'lucide-react'
 import { LocationGraphic } from '../components/home/LocationGraphic'
 import { ButtonLink } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { FadeIn } from '../components/ui/FadeIn'
 import { Section } from '../components/ui/Section'
-import { homeContent, pageMeta, siteConfig } from '../content/site'
+import { homeContent, siteConfig } from '../content/site'
 import { contentPairGrid } from '../lib/layout'
 
 export function HomePage() {
   return (
     <>
-      <Helmet>
-        <title>{pageMeta.home.title}</title>
-        <meta name="description" content={pageMeta.home.description} />
-      </Helmet>
-
       <Section variant="gradient" className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 opacity-20"

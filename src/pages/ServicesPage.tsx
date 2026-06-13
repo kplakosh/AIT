@@ -1,5 +1,4 @@
-import { Helmet } from 'react-helmet-async'
-import { pageMeta, servicesContent } from '../content/site'
+import { servicesContent } from '../content/site'
 import { ServiceCard } from '../components/services/ServiceCard'
 import { Container } from '../components/ui/Container'
 import { FadeIn } from '../components/ui/FadeIn'
@@ -12,11 +11,6 @@ const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSecti
 export function ServicesPage() {
   return (
     <>
-      <Helmet>
-        <title>{pageMeta.services.title}</title>
-        <meta name="description" content={pageMeta.services.description} />
-      </Helmet>
-
       <PageHeader title="Services" />
 
       <Section variant="white">

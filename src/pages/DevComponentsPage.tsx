@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async'
 import { Button, ButtonLink, ExternalLink } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Container } from '../components/ui/Container'
@@ -9,10 +8,6 @@ import { SectionHeading } from '../components/ui/SectionHeading'
 export function DevComponentsPage() {
   return (
     <>
-      <Helmet>
-        <title>Component Preview | AIT Dev</title>
-      </Helmet>
-
       <PageHeader
         title="Design System Preview"
         description="Internal component showcase for Phase 2. This route is development-only."

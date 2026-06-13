@@ -1,12 +1,17 @@
 import { Outlet } from 'react-router-dom'
+import { SiteSeo } from '../seo/SiteSeo'
+import { useRouteSeo } from '../../hooks/useRouteSeo'
 import { focusRing } from '../../lib/a11y'
 import { cn } from '../../lib/cn'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
 export function PageLayout() {
+  const { meta, noIndex } = useRouteSeo()
+
   return (
     <>
+      <SiteSeo meta={meta} noIndex={noIndex} />
       <a
         href="#main-content"
         className={cn(
