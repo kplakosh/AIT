@@ -1,32 +1,50 @@
-# Logs
-logs
+# Sensitive data — env files with API keys, passwords, credentials
+.env
+.env.*
+!.env.example
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Build artifacts & compiled output
+dist/
+dist-ssr/
+build/
+out/
+*.class
+*.exe
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor & IDE settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs & cache
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.npm/
+__pycache__/
+*.py[cod]
+.cache/
 
-node_modules
-dist
-dist-ssr
+# Vite / local dev
 *.local
-
-# Environment & secrets
-.env
-.env.*
-!.env.example
 
 # Local agent / session context (not for repo)
 chat-summary.md
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
