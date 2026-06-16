@@ -59,7 +59,7 @@ const { section, variant = 'default', class: className = '' } = Astro.props
   {'bullets' in section && section.bullets ? <ServiceBulletList items={section.bullets} /> : null}
 
   {'body' in section && section.body ? (
-    <p class="leading-relaxed text-navy-plum/85">{section.body}</p>
+    <p class="body-text">{section.body}</p>
   ) : null}
 
   {section.id === 'let-us-help-you' ? (

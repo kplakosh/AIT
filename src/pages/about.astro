@@ -1,12 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import LocationGraphic from '../shared/components/home/LocationGraphic.astro'
-import ButtonLink from '../shared/components/ui/ButtonLink.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
 import Container from '../shared/components/ui/Container.astro'
 import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Prose from '../shared/components/ui/Prose.astro'
 import Section from '../shared/components/ui/Section.astro'
 import SectionHeading from '../shared/components/ui/SectionHeading.astro'
-import { aboutContent, routes } from '../shared/content/site'
+import StatementCard from '../shared/components/ui/StatementCard.astro'
+import ValueCard from '../shared/components/ui/ValueCard.astro'
+import { aboutContent } from '../shared/content/site'
+import { contentPairGrid, contentPairGridMediaFirst } from '../shared/lib/layout'
+
+const foundationStatements = [
+  aboutContent.vision,
+  aboutContent.mission,
+  aboutContent.purpose,
+]
 ---
 
 <BaseLayout seoKey="about">
@@ -16,9 +26,7 @@ import { aboutContent, routes } from '../shared/content/site'
     <Container>
       <div class="fade-in">
         <SectionHeading title={aboutContent.howItStarted.title} showDivider />
-        <p class="max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
-          {aboutContent.howItStarted.body}
-        </p>
+        <Prose>{aboutContent.howItStarted.body}</Prose>
       </div>
     </Container>
   </Section>
@@ -31,8 +39,8 @@ import { aboutContent, routes } from '../shared/content/site'
           subtitle={aboutContent.whoWeAre.subtitle}
           showDivider
         />
-        <div class="max-w-3xl space-y-4 text-base leading-relaxed text-navy-plum/85 md:text-lg">
-          {aboutContent.whoWeAre.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="grid gap-6 md:grid-cols-2 md:gap-x-10 md:gap-y-8 lg:gap-x-16">
+          {aboutContent.whoWeAre.paragraphs.map((paragraph) => <Prose>{paragraph}</Prose>)}
         </div>
       </div>
     </Container>
@@ -41,12 +49,17 @@ import { aboutContent, routes } from '../shared/content/site'
   <Section variant="white">
     <Container>
       <div class="fade-in">
-        <SectionHeading title="Location & Reach" showDivider />
-        <div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-12 lg:gap-x-16 xl:gap-x-24">
-          <p class="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
-            {aboutContent.location}
-          </p>
-          <LocationGraphic />
+        <SectionHeading
+          title={aboutContent.guidesHeading}
+          subtitle={aboutContent.guidesSubtitle}
+          showDivider
+        />
+        <div class="grid gap-6 md:grid-cols-3 md:gap-8">
+          {
+            foundationStatements.map((statement) => (
+              <StatementCard title={statement.title} body={statement.body} />
+            ))
+          }
         </div>
       </div>
     </Container>
@@ -55,12 +68,24 @@ import { aboutContent, routes } from '../shared/content/site'
   <Section variant="muted">
     <Container>
       <div class="fade-in">
+        <SectionHeading title={aboutContent.valuesHeading} showDivider />
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            aboutContent.values.map((value) => (
+              <ValueCard title={value.title} description={value.description} />
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
         <SectionHeading title="NI Alliance Partner" showDivider />
-        <div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-12 lg:gap-x-16 xl:gap-x-24">
-          <p class="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
-            {aboutContent.niAlliance}
-          </p>
-          <div class="mx-auto flex w-[220px] shrink-0 justify-center justify-self-center sm:w-[240px] md:w-[260px]">
+        <div class={contentPairGridMediaFirst}>
+          <div class="flex w-[220px] shrink-0 justify-center sm:w-[240px] md:w-[260px] md:justify-self-start">
             <img
               src={aboutContent.niBadge.src}
               alt={aboutContent.niBadge.alt}
@@ -69,22 +94,26 @@ import { aboutContent, routes } from '../shared/content/site'
               class="h-auto w-full max-w-[220px] md:max-w-[260px]"
             />
           </div>
+          <Prose class="min-w-0">{aboutContent.niAlliance}</Prose>
         </div>
       </div>
     </Container>
   </Section>
 
-  <Section variant="white">
+  <Section variant="muted">
     <Container>
-      <div class="fade-in flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <ButtonLink href={routes.services} size="lg" class="gap-2">
-          View Services
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-          </svg>
-        </ButtonLink>
-        <ButtonLink href={routes.contact} size="lg" variant="secondary">Contact Us</ButtonLink>
+      <div class="fade-in">
+        <SectionHeading title={aboutContent.reachHeading} showDivider />
+        <div class={contentPairGrid}>
+          <Prose class="min-w-0">{aboutContent.location}</Prose>
+          <LocationGraphic />
+        </div>
       </div>
     </Container>
   </Section>
+
+  <ClosingCta
+    headline={aboutContent.closingCta.headline}
+    subline={aboutContent.closingCta.subline}
+  />
 </BaseLayout>

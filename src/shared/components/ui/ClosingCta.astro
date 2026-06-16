@@ -1,0 +1,41 @@
+---
+import { routes } from '../../content/site'
+import ButtonLink from './ButtonLink.astro'
+import Container from './Container.astro'
+import Section from './Section.astro'
+
+type Props = {
+  headline: string
+  subline?: string
+}
+
+const { headline, subline } = Astro.props
+---
+
+<Section variant="dark">
+  <Container>
+    <div class="fade-in mx-auto max-w-3xl text-center">
+      <h2 class="font-heading text-2xl font-semibold tracking-tight text-white md:text-3xl">
+        {headline}
+      </h2>
+      {
+        subline ? (
+          <p class="body-text-inverse mt-4">{subline}</p>
+        ) : null
+      }
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <ButtonLink href={routes.contact} size="lg" variant="secondary">
+          Contact Us
+        </ButtonLink>
+        <ButtonLink
+          href={routes.services}
+          size="lg"
+          variant="ghost"
+          class="border-white/30 text-white hover:border-white/50 hover:bg-white/10"
+        >
+          View Services
+        </ButtonLink>
+      </div>
+    </div>
+  </Container>
+</Section>

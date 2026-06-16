@@ -47,7 +47,7 @@ export const pageMeta = {
   about: {
     title: 'About Us | Advanced Instrument Technologies',
     description:
-      'Learn about AIT — test engineering services, company history, Cumming GA location, and NI Alliance Partner credentials.',
+      'AIT vision, mission, and values — test engineering partner in Cumming, GA. NI Alliance Partner serving customers globally.',
     path: '/about',
     ogImage: '/images/logo.png',
   },
@@ -91,6 +91,53 @@ export const homeContent = {
 export const aboutContent = {
   pageSubtitle:
     'Engineering services and turnkey test solutions for research, manufacturing, and quality assurance.',
+  vision: {
+    title: 'Vision',
+    body: 'To help every customer bring reliable products to market through test and measurement systems that perform with confidence in the real world.',
+  },
+  mission: {
+    title: 'Mission',
+    body: 'To be our customers\u2019 trusted test engineering partner \u2014 delivering LabVIEW, TestStand, hardware integration, and turnkey solutions from concept through deployment, with the quality and support their programs demand.',
+  },
+  purpose: {
+    title: 'Purpose',
+    body: 'We exist to turn complex test requirements into systems that deliver accurate data, reduce risk, and support long-term manufacturing and quality goals.',
+  },
+  guidesHeading: 'What Guides Us',
+  guidesSubtitle:
+    'Our vision, mission, and purpose shape how we partner with customers on every test engineering challenge.',
+  valuesHeading: 'Our Values',
+  values: [
+    {
+      title: 'Integrity',
+      description:
+        'Honest communication, accountable delivery, and engineering practices our customers can trust.',
+    },
+    {
+      title: 'Customer Commitment',
+      description:
+        'We measure success by our customers\u2019 program outcomes \u2014 from requirements through deployment and support.',
+    },
+    {
+      title: 'Technical Ingenuity',
+      description:
+        'Practical problem-solving with LabVIEW, TestStand, and integrated hardware \u2014 turning complex requirements into maintainable systems.',
+    },
+    {
+      title: 'Quality & Reliability',
+      description:
+        'Systems built for accurate data, repeatable results, and long-term operation in real production environments.',
+    },
+    {
+      title: 'Partnership',
+      description:
+        'We work as an extension of our customers\u2019 teams, collaborating openly from concept through validation.',
+    },
+  ],
+  howItStarted: {
+    title: 'How It Started',
+    body: 'Advanced Instrument Technologies was founded to meet a practical need: organizations required test and measurement systems that worked reliably beyond the lab \u2014 in manufacturing, quality assurance, and production environments. From our base in Cumming, Georgia, AIT grew by partnering closely with engineering teams, combining LabVIEW and TestStand expertise with hardware integration and turnkey delivery. After more than two decades of project work across industries, we continue to build on that same foundation \u2014 solving real-world test challenges for customers around the world.',
+  },
   whoWeAre: {
     subtitle: 'Engineering Expertise Backed by Real-World Execution',
     paragraphs: [
@@ -100,11 +147,12 @@ export const aboutContent = {
       'We work as an extension of our customers\u2019 engineering teams, bringing technical expertise, practical problem-solving, and a commitment to project success from concept through deployment.',
     ],
   },
-  howItStarted: {
-    title: 'How It Started',
-    // Draft placeholder — replace with your story when ready.
-    body: 'Our founding story will be shared here soon.',
+  closingCta: {
+    headline: 'Your Vision is our Mission',
+    subline:
+      'Partner with AIT for LabVIEW, TestStand, hardware integration, and turnkey test solutions from concept through deployment.',
   },
+  reachHeading: 'Reach',
   location: homeContent.location,
   niAlliance: homeContent.niAlliance,
   niBadge: homeContent.niBadge,

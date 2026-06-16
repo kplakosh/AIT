@@ -1,29 +1,28 @@
 ---
+import { cn } from '../../lib/cn'
 import Container from './Container.astro'
 import Section from './Section.astro'
+import { bodyTextInverse } from '../../lib/layout'
 
 type Props = {
   title: string
   description?: string
+  align?: 'left' | 'center'
 }
 
-const { title, description } = Astro.props
+const { title, description, align = 'left' } = Astro.props
 ---
 
 <Section variant="gradient" class="py-10 md:py-14">
   <Container>
-    <div class="max-w-3xl">
+    <div class={cn(align === 'center' && 'mx-auto max-w-4xl text-center')}>
       <p class="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-warm-gold">
         Advanced Instrument Technologies
       </p>
-      <h1 class="font-heading text-3xl font-semibold tracking-tight text-white md:text-4xl">
+      <h1 class="font-heading text-3xl font-semibold tracking-tight text-white md:text-4xl lg:text-5xl">
         {title}
       </h1>
-      {
-        description ? (
-          <p class="mt-4 text-base leading-relaxed text-white/90 md:text-lg">{description}</p>
-        ) : null
-      }
+      {description ? <p class={cn(bodyTextInverse, 'mt-4')}>{description}</p> : null}
       <slot />
     </div>
   </Container>

@@ -1,5 +1,6 @@
 import { useForm, ValidationError } from '@formspree/react'
 import { contactContent } from '../shared/content/site'
+import { bodyText } from '../shared/lib/layout'
 import { inputFocusRing } from '../shared/lib/a11y'
 import { cn } from '../shared/lib/cn'
 import { Button } from './ui/Button'
@@ -52,7 +53,7 @@ function ConfiguredContactForm({ formId }: ConfiguredContactFormProps) {
     return (
       <Card variant="elevated" className="h-full">
         <SectionHeading title="Send us a message" showDivider />
-        <p className="text-base leading-relaxed text-navy-plum/85" role="status">
+        <p className={bodyText} role="status">
           Thank you for your message. We will get back to you soon.
         </p>
       </Card>

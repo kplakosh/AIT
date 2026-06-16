@@ -1,0 +1,15 @@
+---
+import Card from './Card.astro'
+
+type Props = {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<Card variant="default" class="h-full">
+  <h3 class="font-heading text-lg font-semibold text-deep-teal">{title}</h3>
+  <p class="body-text mt-3">{description}</p>
+</Card>

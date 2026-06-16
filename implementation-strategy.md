@@ -37,7 +37,7 @@ Detailed page specs and copy requirements live in `additional_features.md` (loca
 | Route | Nav | Status | Notes |
 |-------|-----|--------|-------|
 | `/` | Home | **Done** | Hero, intro, CTAs (About, Services, Contact) |
-| `/about` | About | **Partial** | Who We Are, How It Started *(placeholder)*, Location, NI Alliance |
+| `/about` | About | **Done** | Vision, Mission, Purpose, Values, How It Started, Who We Are, Location, NI Alliance |
 | `/services` | Services | **Done** | Five service sections as icon cards |
 | `/careers` | Careers | **Done** | Culture copy, Test Engineer opening, modal apply (Formspree `xrevdqop`) |
 | `/contact` | Contact | **Done** | Formspree form, details, map |
@@ -258,7 +258,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 10 — About Foundation *(next)*
+### Phase 10 — About Foundation ✅
 
 **Goal:** Complete company narrative on `/about` (maps to **Phase A** in `additional_features.md`).
 
@@ -277,7 +277,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 11 — Trust & Culture Pages
+### Phase 11 — Trust & Culture Pages *(next)*
 
 **Goal:** Sustainability and Our People pages (maps to **Phase B**).
 
@@ -389,8 +389,8 @@ The site header must **remain visible at the top of the viewport while the user 
 | 0–7 Foundation | ~6 days | ✅ |
 | 8 About (initial) | 1 day | ✅ |
 | 9 Careers | 1 day | ✅ |
-| 10 About foundation | 1–1.5 days | ⏳ **Next** |
-| 11 Sustainability + People | 2–3 days | ⏳ |
+| 10 About foundation | 1–1.5 days | ✅ |
+| 11 Sustainability + People | 2–3 days | ⏳ **Next** |
 | 12 Industries + Expertise | 2–3 days | ⏳ |
 | 13 Home polish | 1 day | ⏳ |
 | 14 QA | 0.5 day | ⏳ |
@@ -410,8 +410,8 @@ The site header must **remain visible at the top of the viewport while the user 
 | `Modal` | Done | 9 |
 | `ContactForm` (Formspree) | Done | 5 |
 | `JobApplicationForm` (Formspree) | Done | 9 |
-| `ValueCard` | Not started | 10 |
-| `ClosingCta` | Not started | 10 |
+| `ValueCard` | Done | 10 |
+| `ClosingCta` | Done | 10 |
 | `IndustryCard` | Not started | 12 |
 | `ExpertiseCard` | Not started | 12 |
 | `TrustStrip` | Not started | 13 |
@@ -491,7 +491,7 @@ Store keys in `.env` locally and as **GitHub Actions secrets** for production bu
 1. ~~Phases 0–7 — Foundation~~ ✅  
 2. ~~Phase 8 — About (initial)~~ ✅  
 3. ~~Phase 9 — Careers~~ ✅  
-4. **Phase 10 — Approve About copy** (Vision, Mission, Purpose, Values, How It Started) → implement  
+4. ~~Phase 10 — Approve About copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
 5. **Phase 11 — Approve Sustainability + People copy** → implement  
 6. **Phase 12 — Approve Industries + Expertise card copy** → implement  
 7. Phase 13 — Home polish  

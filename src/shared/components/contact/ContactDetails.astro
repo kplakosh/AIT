@@ -22,7 +22,7 @@ const linkClasses = cn('text-teal underline-offset-4 hover:underline', focusRing
       </div>
       <div>
         <p class="text-sm font-medium text-deep-teal">Company</p>
-        <p class="mt-1 leading-relaxed text-navy-plum/85">{contactContent.company}</p>
+        <p class="body-text mt-1">{contactContent.company}</p>
       </div>
     </li>
 
@@ -38,7 +38,7 @@ const linkClasses = cn('text-teal underline-offset-4 hover:underline', focusRing
       </div>
       <div>
         <p class="text-sm font-medium text-deep-teal">Address</p>
-        <p class="mt-1 leading-relaxed text-navy-plum/85">
+        <p class="body-text mt-1">
           {contactContent.address.street}<br />
           {contactContent.address.suite}<br />
           {contactContent.address.city}
@@ -59,7 +59,7 @@ const linkClasses = cn('text-teal underline-offset-4 hover:underline', focusRing
       </div>
       <div>
         <p class="text-sm font-medium text-deep-teal">Phone</p>
-        <p class="mt-1 leading-relaxed text-navy-plum/85">
+        <p class="body-text mt-1">
           <a href={`tel:${contactContent.phone}`} class={linkClasses}>{contactContent.phone}</a>
         </p>
       </div>
@@ -77,7 +77,7 @@ const linkClasses = cn('text-teal underline-offset-4 hover:underline', focusRing
       </div>
       <div>
         <p class="text-sm font-medium text-deep-teal">Email</p>
-        <p class="mt-1 leading-relaxed text-navy-plum/85">
+        <p class="body-text mt-1">
           <a href={`mailto:${contactContent.email}`} class={linkClasses}>{contactContent.email}</a>
         </p>
       </div>

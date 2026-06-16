@@ -116,4 +116,33 @@
       animation: none;
     }
   }
+
+  /* Body copy — full container width; do not cap with max-w-* on paragraphs */
+  .body-text {
+    width: 100%;
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-navy-plum) 85%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .body-text {
+      font-size: 1.125rem;
+    }
+  }
+
+  .body-text-inverse {
+    width: 100%;
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, white 90%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .body-text-inverse {
+      font-size: 1.125rem;
+    }
+  }
 }

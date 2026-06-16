@@ -1,0 +1,14 @@
+---
+import { cn } from '../../lib/cn'
+import { bodyText } from '../../lib/layout'
+
+type Props = {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
+---
+
+<p class={cn(bodyText, className)}>
+  <slot />
+</p>

@@ -65,7 +65,18 @@ When adding a new page:
 3. Extract static sections into `src/sections/{page}/` if the page grows
 4. Add an island only if the section needs client state (forms, toggles, modals)
 
-## Islands
+## Typography
+
+Body paragraphs use the **`.body-text`** utility (`global.css`) or the **`Prose.astro`** component. They span the full `Container` width — do not add `max-w-*` on section copy.
+
+| Token / component | Use for |
+|-------------------|---------|
+| `.body-text` / `Prose.astro` | Section paragraphs, card body copy, subtitles |
+| `.body-text-inverse` | Paragraphs on dark / gradient backgrounds |
+| `PageHeader` | Page title + description (uses inverse body text) |
+| `SectionHeading` | Section titles + subtitles (subtitle uses `.body-text`) |
+| `Container size="narrow"` | Only deliberate narrow columns (e.g. centered forms) |
+
 
 | Island | Page(s) | Hydration | Why it needs JS |
 |--------|---------|-----------|-----------------|

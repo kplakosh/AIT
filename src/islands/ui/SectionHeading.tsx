@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { cn } from '../../shared/lib/cn'
+import { bodyText } from '../../shared/lib/layout'
 
 type SectionHeadingProps = {
   title: string
@@ -37,13 +38,7 @@ export function SectionHeading({
         {title}
       </h2>
       {subtitle ? (
-        <p
-          className={cn(
-            'mt-3 max-w-3xl text-base leading-relaxed',
-            align === 'center' && 'mx-auto',
-            inverted ? 'text-white/85' : 'text-navy-plum/80',
-          )}
-        >
+        <p className={cn('mt-3', inverted ? 'body-text-inverse' : bodyText)}>
           {subtitle}
         </p>
       ) : null}

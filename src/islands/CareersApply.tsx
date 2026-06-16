@@ -8,6 +8,7 @@ import {
 } from '../shared/content/site'
 import { inputFocusRing } from '../shared/lib/a11y'
 import { cn } from '../shared/lib/cn'
+import { bodyText } from '../shared/lib/layout'
 import { Button, ExternalLink } from './ui/Button'
 import { Card } from './ui/Card'
 import { Modal } from './ui/Modal'
@@ -37,7 +38,7 @@ function JobDetailList({ title, items }: JobDetailListProps) {
   return (
     <div>
       <h3 className="mb-3 text-lg font-semibold text-deep-teal">{title}</h3>
-      <ul className="list-disc space-y-2 pl-5 text-base leading-relaxed text-navy-plum/85">
+      <ul className={cn('list-disc space-y-2 pl-5', bodyText)}>
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
@@ -73,7 +74,7 @@ function JobOpeningCard({ opening, onApply }: JobOpeningCardProps) {
         </span>
       </div>
 
-      <p className="mt-6 max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
+      <p className={cn('mt-6', bodyText)}>
         {opening.summary}
       </p>
 
@@ -133,7 +134,7 @@ function JobApplicationForm({ formId, opening }: JobApplicationFormProps) {
 
   if (state.succeeded) {
     return (
-      <p className="text-base leading-relaxed text-navy-plum/85" role="status">
+      <p className={bodyText} role="status">
         {careersContent.applySuccessMessage}
       </p>
     )
@@ -296,7 +297,7 @@ export default function CareersApply() {
           ))}
         </div>
       ) : (
-        <p className="max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
+        <p className={bodyText}>
           {careersContent.noOpeningsMessage}
         </p>
       )}

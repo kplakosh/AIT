@@ -39,13 +39,7 @@ const {
   </h2>
   {
     subtitle ? (
-      <p
-        class={cn(
-          'mt-3 max-w-3xl text-base leading-relaxed',
-          align === 'center' && 'mx-auto',
-          inverted ? 'text-white/85' : 'text-navy-plum/80',
-        )}
-      >
+      <p class={cn('mt-3', inverted ? 'body-text-inverse' : 'body-text')}>
         {subtitle}
       </p>
     ) : null

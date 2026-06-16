@@ -13,6 +13,7 @@ const { class: className = '', size = 'default' } = Astro.props
 
 const sizeClasses: Record<ContainerSize, string> = {
   default: '',
+  /** Intentional narrow column only — e.g. centered form stacks. Not for section body copy. */
   narrow: 'max-w-3xl',
   wide: 'max-w-7xl',
 }
