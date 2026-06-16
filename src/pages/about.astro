@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import LocationGraphic from '../shared/components/home/LocationGraphic.astro'
+import ButtonLink from '../shared/components/ui/ButtonLink.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Section from '../shared/components/ui/Section.astro'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import { aboutContent, routes } from '../shared/content/site'
+---
+
+<BaseLayout seoKey="about">
+  <PageHeader title="About Us" description={aboutContent.pageSubtitle} />
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={aboutContent.howItStarted.title} showDivider />
+        <p class="max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
+          {aboutContent.howItStarted.body}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading
+          title="Who We Are"
+          subtitle={aboutContent.whoWeAre.subtitle}
+          showDivider
+        />
+        <div class="max-w-3xl space-y-4 text-base leading-relaxed text-navy-plum/85 md:text-lg">
+          {aboutContent.whoWeAre.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title="Location & Reach" showDivider />
+        <div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-12 lg:gap-x-16 xl:gap-x-24">
+          <p class="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
+            {aboutContent.location}
+          </p>
+          <LocationGraphic />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title="NI Alliance Partner" showDivider />
+        <div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-12 lg:gap-x-16 xl:gap-x-24">
+          <p class="min-w-0 text-base leading-relaxed text-navy-plum/85 md:text-lg">
+            {aboutContent.niAlliance}
+          </p>
+          <div class="mx-auto flex w-[220px] shrink-0 justify-center justify-self-center sm:w-[240px] md:w-[260px]">
+            <img
+              src={aboutContent.niBadge.src}
+              alt={aboutContent.niBadge.alt}
+              width={aboutContent.niBadge.width}
+              height={aboutContent.niBadge.height}
+              class="h-auto w-full max-w-[220px] md:max-w-[260px]"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <ButtonLink href={routes.services} size="lg" class="gap-2">
+          View Services
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </ButtonLink>
+        <ButtonLink href={routes.contact} size="lg" variant="secondary">Contact Us</ButtonLink>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

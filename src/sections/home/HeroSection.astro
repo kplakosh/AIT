@@ -1,0 +1,52 @@
+---
+import Container from '../../shared/components/ui/Container.astro'
+import Section from '../../shared/components/ui/Section.astro'
+import ButtonLink from '../../shared/components/ui/ButtonLink.astro'
+import { homeContent, routes, siteConfig } from '../../shared/content/site'
+---
+
+<Section variant="gradient" class="relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-20"
+    aria-hidden="true"
+    style="background-image: radial-gradient(circle at 20% 20%, #aa9047 0%, transparent 40%), radial-gradient(circle at 80% 80%, #49888a 0%, transparent 35%);"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.07]"
+    aria-hidden="true"
+    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+  >
+  </div>
+
+  <Container class="relative">
+    <div class="fade-in mx-auto max-w-3xl py-10 text-center md:py-16">
+      <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-warm-gold">
+        {siteConfig.tagline}
+      </p>
+      <h1 class="font-heading text-3xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+        {siteConfig.name}
+      </h1>
+      <p class="mt-6 text-base leading-relaxed text-white/90 md:text-lg">
+        {homeContent.intro}
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <ButtonLink href={routes.about} size="lg" variant="secondary">About Us</ButtonLink>
+        <ButtonLink
+          href={routes.services}
+          size="lg"
+          variant="ghost"
+          class="border-white/30 text-white hover:border-white/50 hover:bg-white/10"
+        >
+          Services
+        </ButtonLink>
+        <ButtonLink href={routes.contact} size="lg" class="gap-2">
+          Contact Us
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </ButtonLink>
+      </div>
+    </div>
+  </Container>
+</Section>

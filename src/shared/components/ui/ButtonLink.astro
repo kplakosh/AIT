@@ -1,0 +1,51 @@
+---
+import { focusRing } from '../../lib/a11y'
+import { cn } from '../../lib/cn'
+
+type ButtonVariant = 'primary' | 'secondary' | 'ghost'
+type ButtonSize = 'sm' | 'md' | 'lg'
+
+type Props = {
+  href: string
+  variant?: ButtonVariant
+  size?: ButtonSize
+  class?: string
+  external?: boolean
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  external = false,
+} = Astro.props
+
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: 'bg-teal text-white hover:bg-deep-teal',
+  secondary: 'bg-warm-gold text-white hover:bg-muted-rose',
+  ghost: 'border border-teal/30 bg-transparent text-deep-teal hover:border-teal hover:bg-teal/5',
+}
+
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: 'px-4 py-2 text-xs',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
+}
+
+const classes = cn(
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors',
+  focusRing,
+  variantClasses[variant],
+  sizeClasses[size],
+  className,
+)
+
+const externalProps = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {}
+---
+
+<a href={href} class={classes} {...externalProps}>
+  <slot />
+</a>

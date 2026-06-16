@@ -1,0 +1,23 @@
+---
+import { cn } from '../../lib/cn'
+import { pageGutter } from '../../lib/layout'
+
+type ContainerSize = 'default' | 'narrow' | 'wide'
+
+type Props = {
+  class?: string
+  size?: ContainerSize
+}
+
+const { class: className = '', size = 'default' } = Astro.props
+
+const sizeClasses: Record<ContainerSize, string> = {
+  default: '',
+  narrow: 'max-w-3xl',
+  wide: 'max-w-7xl',
+}
+---
+
+<div class={cn(pageGutter, size !== 'default' && sizeClasses[size], className)}>
+  <slot />
+</div>

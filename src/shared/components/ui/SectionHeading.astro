@@ -1,0 +1,54 @@
+---
+import { cn } from '../../lib/cn'
+
+type Props = {
+  title: string
+  subtitle?: string
+  class?: string
+  align?: 'left' | 'center'
+  showDivider?: boolean
+  inverted?: boolean
+}
+
+const {
+  title,
+  subtitle,
+  class: className = '',
+  align = 'left',
+  showDivider = true,
+  inverted = false,
+} = Astro.props
+---
+
+<div class={cn('mb-6 md:mb-8', align === 'center' && 'text-center', className)}>
+  {
+    showDivider ? (
+      <div
+        class={cn('mb-4 h-1 w-12 rounded-full bg-warm-gold', align === 'center' && 'mx-auto')}
+        aria-hidden="true"
+      />
+    ) : null
+  }
+  <h2
+    class={cn(
+      'font-heading text-2xl font-semibold tracking-tight md:text-3xl',
+      inverted ? 'text-white' : 'text-deep-teal',
+    )}
+  >
+    {title}
+  </h2>
+  {
+    subtitle ? (
+      <p
+        class={cn(
+          'mt-3 max-w-3xl text-base leading-relaxed',
+          align === 'center' && 'mx-auto',
+          inverted ? 'text-white/85' : 'text-navy-plum/80',
+        )}
+      >
+        {subtitle}
+      </p>
+    ) : null
+  }
+  <slot />
+</div>

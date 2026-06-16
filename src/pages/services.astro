@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ServiceCard from '../shared/components/services/ServiceCard.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Section from '../shared/components/ui/Section.astro'
+import { servicesContent } from '../shared/content/site'
+
+const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSection, letUsHelpSection] =
+  servicesContent.sections
+---
+
+<BaseLayout seoKey="services">
+  <PageHeader title="Services" />
+
+  <Section variant="white">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="fade-in">
+          <ServiceCard section={labviewSection} variant="elevated" />
+        </div>
+        <div class="fade-in">
+          <ServiceCard section={hardwareSection} variant="default" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <ServiceCard section={totalSolutionsSection} variant="accent" />
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="fade-in">
+          <ServiceCard section={howCanWeHelpSection} variant="default" />
+        </div>
+        <div class="fade-in">
+          <ServiceCard section={letUsHelpSection} variant="elevated" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

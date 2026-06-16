@@ -46,6 +46,9 @@ __pycache__/
 # Vite / local dev
 *.local
 
+# Astro generated types and cache
+.astro/
+
 # Local agent / session context (not for repo)
 chat-summary.md
 additional_features.md

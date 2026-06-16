@@ -1,0 +1,25 @@
+---
+import { cn } from '../../lib/cn'
+
+type SectionVariant = 'default' | 'muted' | 'white' | 'dark' | 'gradient'
+
+type Props = {
+  class?: string
+  id?: string
+  variant?: SectionVariant
+}
+
+const { class: className = '', id, variant = 'default' } = Astro.props
+
+const variantClasses: Record<SectionVariant, string> = {
+  default: '',
+  muted: 'bg-cream',
+  white: 'bg-white',
+  dark: 'bg-deep-teal text-white',
+  gradient: 'bg-linear-to-br from-navy-plum via-deep-teal to-teal text-white',
+}
+---
+
+<section id={id} class={cn('py-12 md:py-20', variantClasses[variant], className)}>
+  <slot />
+</section>

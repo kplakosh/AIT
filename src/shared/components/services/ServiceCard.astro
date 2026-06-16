@@ -1,0 +1,70 @@
+---
+import { servicesContent, routes } from '../../content/site'
+import { cn } from '../../lib/cn'
+import ButtonLink from '../ui/ButtonLink.astro'
+import Card from '../ui/Card.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import ServiceBulletList from './ServiceBulletList.astro'
+
+type ServiceSection = (typeof servicesContent.sections)[number]
+type CardVariant = 'default' | 'elevated' | 'accent'
+
+type Props = {
+  section: ServiceSection
+  variant?: CardVariant
+  class?: string
+}
+
+const { section, variant = 'default', class: className = '' } = Astro.props
+---
+
+<Card variant={variant} class={cn('h-full', className)}>
+  <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-teal/10 text-teal">
+    {
+      section.id === 'labview-teststand' ? (
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /><path d="m14.5 4-5 16" />
+        </svg>
+      ) : section.id === 'hardware' ? (
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect width="16" height="16" x="4" y="4" rx="2" />
+          <rect width="6" height="6" x="9" y="9" rx="1" />
+        </svg>
+      ) : section.id === 'total-solutions' ? (
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+          <path d="m2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+        </svg>
+      ) : section.id === 'how-can-we-help' ? (
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+          <path d="M12 17h.01" />
+        </svg>
+      ) : (
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+        </svg>
+      )
+    }
+  </div>
+
+  <SectionHeading title={section.title} showDivider />
+
+  {'intro' in section && section.intro ? (
+    <p class="mb-4 text-sm italic text-muted-rose">{section.intro}</p>
+  ) : null}
+
+  {'bullets' in section && section.bullets ? <ServiceBulletList items={section.bullets} /> : null}
+
+  {'body' in section && section.body ? (
+    <p class="leading-relaxed text-navy-plum/85">{section.body}</p>
+  ) : null}
+
+  {section.id === 'let-us-help-you' ? (
+    <div class="mt-6">
+      <ButtonLink href={routes.contact}>Contact Us</ButtonLink>
+    </div>
+  ) : null}
+</Card>

@@ -1,0 +1,74 @@
+---
+import type { PageSeoKey } from '../shared/lib/seo'
+import { pageMeta } from '../shared/content/site'
+import { absoluteUrl, seoDefaults, getSiteUrl } from '../shared/lib/seo'
+import { focusRing } from '../shared/lib/a11y'
+import { cn } from '../shared/lib/cn'
+import Footer from '../shared/components/layout/Footer.astro'
+import SiteHeader from '../islands/SiteHeader'
+import '../shared/styles/global.css'
+
+type Props = {
+  seoKey: PageSeoKey
+  noIndex?: boolean
+}
+
+const { seoKey, noIndex = false } = Astro.props
+const meta = pageMeta[seoKey]
+const canonicalUrl = absoluteUrl(meta.path)
+const ogImage = absoluteUrl(meta.ogImage ?? seoDefaults.ogImage)
+const currentPath = Astro.url.pathname
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noIndex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content={seoDefaults.ogType} />
+    <meta property="og:locale" content={seoDefaults.locale} />
+    <meta property="og:site_name" content={getSiteUrl()} />
+    <meta name="twitter:card" content={seoDefaults.twitterCard} />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content={seoDefaults.themeColor} />
+  </head>
+  <body>
+    <div class="page-shell">
+      <a
+        href="#main-content"
+        class={cn(
+          'sr-only focus:not-sr-only focus:fixed focus:left-4 focus:z-50 focus:rounded-lg focus:bg-teal focus:px-4 focus:py-2 focus:text-white',
+          'focus:top-[calc(var(--spacing-site-header)+0.5rem)]',
+          focusRing,
+        )}
+      >
+        Skip to content
+      </a>
+
+      <SiteHeader client:load currentPath={currentPath} />
+
+      <main id="main-content" class="main-offset-header flex-1">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

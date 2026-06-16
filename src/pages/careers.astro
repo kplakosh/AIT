@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import CareersApply from '../islands/CareersApply'
+import ButtonLink from '../shared/components/ui/ButtonLink.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Section from '../shared/components/ui/Section.astro'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import { careersContent, routes } from '../shared/content/site'
+---
+
+<BaseLayout seoKey="careers">
+  <PageHeader title="Careers" description={careersContent.pageSubtitle} />
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={careersContent.cultureHeading} showDivider />
+        <p class="max-w-3xl text-base leading-relaxed text-navy-plum/85 md:text-lg">
+          {careersContent.cultureBody}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={careersContent.openingsHeading} showDivider />
+        <CareersApply client:visible />
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <ButtonLink href={routes.about} size="lg" variant="secondary">About AIT</ButtonLink>
+        <ButtonLink href={routes.contact} size="lg">Contact Us</ButtonLink>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
