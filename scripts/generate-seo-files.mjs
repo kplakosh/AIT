@@ -4,7 +4,7 @@ import { loadEnv } from 'vite'
 
 const env = loadEnv('production', process.cwd(), '')
 const siteUrl = (env.VITE_SITE_URL || 'https://www.aitechinc.com').replace(/\/$/, '')
-const paths = ['/', '/about', '/services', '/contact']
+const paths = ['/', '/about', '/services', '/careers', '/contact']
 
 const urlEntries = paths
   .map((path) => {

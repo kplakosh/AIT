@@ -48,3 +48,4 @@ __pycache__/
 
 # Local agent / session context (not for repo)
 chat-summary.md
+additional_features.md

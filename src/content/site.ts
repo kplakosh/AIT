@@ -24,6 +24,7 @@ export const routes = {
   home: '/',
   about: '/about',
   services: '/services',
+  careers: '/careers',
   contact: '/contact',
 } as const
 
@@ -31,6 +32,7 @@ export const navLinks = [
   { label: 'Home', path: routes.home },
   { label: 'About', path: routes.about },
   { label: 'Services', path: routes.services },
+  { label: 'Careers', path: routes.careers },
   { label: 'Contact', path: routes.contact },
 ] as const
 
@@ -60,6 +62,13 @@ export const pageMeta = {
     title: 'Contact | Advanced Instrument Technologies',
     description: 'Contact AIT in Cumming, GA for test engineering needs.',
     path: '/contact',
+    ogImage: '/images/logo.png',
+  },
+  careers: {
+    title: 'Careers | Advanced Instrument Technologies',
+    description:
+      'Join AIT in Cumming, GA. View open positions in test engineering, LabVIEW, and TestStand development.',
+    path: '/careers',
     ogImage: '/images/logo.png',
   },
 } as const
@@ -161,6 +170,64 @@ export const contactContent = {
       'https://maps.google.com/maps?f=q&source=embed&hl=en&geocode=&q=5845+Steeplechase+Boulevard,+Cumming,+GA&aq=0&oq=5845+Steeplechase+Blvd.,+Cumming&sll=37.0625,-95.677068&sspn=67.42243,93.251953&t=m&ie=UTF8&hq=&hnear=5845+Steeplechase+Blvd,+Cumming,+Georgia+30040&z=14&iwloc=A&ll=34.169683,-84.182364',
     title: 'Advanced Instrument Technologies office location in Cumming, GA',
   },
+} as const
+
+export type JobOpening = {
+  id: string
+  title: string
+  location: string
+  employmentType: string
+  status: 'open' | 'closed'
+  summary: string
+  responsibilities: readonly string[]
+  qualifications: readonly string[]
+  preferred?: readonly string[]
+}
+
+export const careersContent = {
+  pageSubtitle:
+    'Build test and measurement systems that work in the real world — from R&D through production.',
+  cultureHeading: 'Why work at AIT',
+  cultureBody:
+    'At AIT, we believe great careers are built through challenging work, continuous learning, and opportunities to make a real impact. Our team members are encouraged to expand their skills, take on new responsibilities, and grow alongside experienced professionals. We foster a collaborative environment where innovation is valued, achievements are recognized, and professional development is part of everyday work.',
+  openingsHeading: 'Open positions',
+  noOpeningsMessage: 'There are no open positions at this time. Check back soon or contact us to express your interest.',
+  applyHeading: 'Apply for this position',
+  applySuccessMessage:
+    'Thank you for your application. We have received your submission and will be in touch if your qualifications are a match for this role.',
+  applyEmailSubject: 'Job Application',
+  openings: [
+    {
+      id: 'test-engineer-labview-teststand',
+      title: 'Test Engineer — LabVIEW & TestStand',
+      location: 'Cumming, GA (on-site)',
+      employmentType: 'Full-time',
+      status: 'open',
+      summary:
+        'AIT is seeking a test engineer to develop and maintain LabVIEW and TestStand applications for customer test systems — from requirements through deployment and production support.',
+      responsibilities: [
+        'Develop, debug, and maintain LabVIEW and TestStand test sequences and operator interfaces',
+        'Integrate instrumentation, motion, and custom hardware into automated test stations',
+        'Support migration of test code from R&D environments to production-ready systems',
+        'Participate in requirements review, verification, and validation activities',
+        'Document test architectures, configurations, and deployment procedures for customers',
+        'Collaborate with AIT engineers and customer teams on site and remotely as needed',
+      ],
+      qualifications: [
+        'Bachelor\u2019s degree in engineering, computer science, or equivalent practical experience',
+        'Hands-on experience with LabVIEW; TestStand experience strongly preferred',
+        'Understanding of automated test concepts, data acquisition, and instrument control',
+        'Ability to troubleshoot hardware/software integration issues in lab or production settings',
+        'Strong communication skills and attention to detail',
+        'Eligible to work in the United States',
+      ],
+      preferred: [
+        'NI Certified LabVIEW Developer (CLD) or Certified TestStand Developer (CTD)',
+        'Experience with PXI, SCPI instruments, or custom fixture design',
+        'Familiarity with regulated or high-volume manufacturing test environments',
+      ],
+    },
+  ] satisfies readonly JobOpening[],
 } as const
 
 export const assets = {
