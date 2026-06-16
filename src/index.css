@@ -12,6 +12,8 @@
   --font-heading: 'DM Sans', 'Inter', system-ui, sans-serif;
 
   --width-content: 75rem;
+
+  --spacing-site-header: 5rem;
 }
 
 @layer base {
@@ -29,6 +31,12 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --spacing-site-header: 5.5rem;
     }
   }
 
@@ -69,6 +77,10 @@
 
   .site-header {
     background-color: var(--color-cream);
+  }
+
+  .main-offset-header {
+    padding-top: var(--spacing-site-header);
   }
 
   @media (prefers-reduced-motion: reduce) {

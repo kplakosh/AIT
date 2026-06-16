@@ -29,7 +29,7 @@ export function Header() {
     <>
       <header
         className={cn(
-          'site-header sticky top-0 z-40 border-b border-deep-teal/10 transition-shadow duration-200',
+          'site-header fixed inset-x-0 top-0 z-40 w-full border-b border-deep-teal/10 transition-shadow duration-200',
           scrolled ? 'shadow-md' : 'shadow-sm',
         )}
       >

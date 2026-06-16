@@ -2,102 +2,159 @@
 
 ## Executive Summary
 
-Rebuild [aitechinc.com](http://www.aitechinc.com/) as a modern, responsive website using the existing **Vite + React + TypeScript** project. The site preserves the **content blocks from the current site** and adds one **explicitly approved** new page: **About Us** (`/about`).
+Rebuild [aitechinc.com](http://www.aitechinc.com/) as a modern, responsive website using the existing **Vite + React + TypeScript** project. The site preserves original AIT content and expands with **approved new pages and sections** informed by [Benchmark](https://www.bench.com/) structure (adapted — not copied).
 
-The goal is to deliver competitor-level **UI/UX polish** (Averna, Bloomy, Primetest, Cyth, Rovisys, Viewpoint) while staying faithful to AIT's brand and existing copy.
+**Current state:** Five pages live — Home, About *(partial)*, Services, Careers, Contact — with Formspree on Contact and Careers, centralized SEO, and a reusable Modal component.
 
-**Scope change (approved):** The original plan locked the site to three pages (Home, Services, Contact). An **About Us** page is now in scope as the **fourth page**. No other new pages or sections (blog, careers, case studies, etc.) unless approved later.
+**Remaining work:** Complete About narrative (Vision, Mission, Purpose, Values), add Sustainability, Our People, Industries, and Expertise pages, enhance Home and Services, then QA and GitHub Pages deploy.
+
+Detailed page specs and copy requirements live in `additional_features.md` (local, gitignored). This document is the **committed execution roadmap**.
 
 ---
 
-## Current Site Inventory (Source of Truth)
+## Scope Evolution
 
-### Global Elements (All Pages)
+| Milestone | Scope |
+|-----------|-------|
+| Original plan | 3 pages: Home, Services, Contact |
+| Phase 8 (approved) | + About Us (`/about`) |
+| Phase 9 (approved + shipped) | + Careers (`/careers`) with job listing and Formspree apply modal |
+| Phases 10–13 (approved direction) | About completion, Sustainability, Our People, Industries, Expertise, Home polish |
+| Deferred | Blog, case studies, Investors/IR, per-vertical microsites, full ATS, Leadership *(unless assets provided)* |
 
+**Principles**
+- All public copy in `src/content/site.ts` — leadership approval before publish.
+- Industry verticals reflect **real AIT customers** (six consolidated verticals — not Benchmark’s seven markets).
+- No hash URLs for in-page navigation.
+- Do not copy Benchmark text verbatim.
 
-| Element        | Current Content                                                                             |
-| -------------- | ------------------------------------------------------------------------------------------- |
-| **Logo**       | Custom AIT logo (uploaded; black letter variant — white text on dark backgrounds as needed) |
-| **Navigation** | Home · About · Services · Contact                                                           |
-| **Footer**     | "Copyright 2026 Advanced Instrument Technologies, Inc."                                     |
+---
 
+## Site Map — Current vs Target
+
+### Live today
+
+| Route | Nav | Status | Notes |
+|-------|-----|--------|-------|
+| `/` | Home | **Done** | Hero, intro, CTAs (About, Services, Contact) |
+| `/about` | About | **Partial** | Who We Are, How It Started *(placeholder)*, Location, NI Alliance |
+| `/services` | Services | **Done** | Five service sections as icon cards |
+| `/careers` | Careers | **Done** | Culture copy, Test Engineer opening, modal apply (Formspree `xrevdqop`) |
+| `/contact` | Contact | **Done** | Formspree form, details, map |
+
+### Planned (Phases 10–13)
+
+| Route | Nav (proposed) | Phase | Purpose |
+|-------|----------------|-------|---------|
+| `/sustainability` | Sustainability | 11 | People, community, environment, governance |
+| `/people` | Our People | 11 | Culture narrative, employee spotlights |
+| `/industries` | Industries | 12 | Six customer-derived industry verticals |
+| `/expertise` | Expertise | 12 | Technical specialty cards |
+| `/leadership` | Leadership | Optional | Bios + photos — Phase E / deferred |
+
+### Target navigation (after Phases 11–12)
+
+```
+Home · About · Our People · Services · Industries · Expertise · Careers · Sustainability · Contact
+```
+
+Add nav items **incrementally** as each page ships — do not expose links to unbuilt routes.
+
+---
+
+## Current Site Inventory
+
+### Global Elements
+
+| Element | Content |
+|---------|---------|
+| **Logo** | Custom AIT logo (`logo.png`, `logo-on-dark.png`) |
+| **Navigation** | Home · About · Services · Careers · Contact |
+| **Footer** | Logo, nav links, Copyright 2026 Advanced Instrument Technologies, Inc. |
 
 ### Home (`/`)
 
-1. Company intro — engineering services, custom/turnkey test solutions, R&D / manufacturing / QA *(hero)*
-2. Primary CTAs — link to About, Services, and Contact
+1. Hero — company intro, tagline, CTAs (About, Services, Contact)
 
-> **Home page change (Phase 8):** Location and NI Alliance Partner blocks **move to About Us** to avoid duplicate content. Home keeps the hero intro and navigation CTAs only.
+> Location and NI Alliance blocks moved to About (Phase 8).
 
-### About Us (`/about`) — **new page (Phase 8)**
+### About (`/about`) — partial
 
-Content is **reused verbatim** from blocks currently on Home — no new marketing copy unless you supply it later.
+1. **How It Started** — placeholder *(final copy TBD — Phase 10)*
+2. **Who We Are** — four paragraphs (engineering expertise, NI Alliance, customer partnership)
+3. **Location & Reach** — Cumming, GA; global customers
+4. **NI Alliance Partner** — credentials + badge
+5. **CTAs** — Services, Contact
 
-1. **Who we are** — company intro paragraph (same as current Home intro)
-2. **How it started** — company origin story *(draft placeholder — final copy TBD)*
-3. **Location & reach** — Cumming, GA location; global customer base (same as current Home location block)
-4. **NI Alliance Partner** — certified developers statement + NI badge (same as current Home credentials block)
-5. **CTA** — link to Services and Contact
+**Planned (Phase 10):** Vision, Mission, Purpose, Values, section reorder, “Your Vision is our Mission” closing CTA band.
 
 ### Services (`/services`)
 
-1. **LabVIEW and TestStand** — 5 bullet points
-2. **Hardware** — 3 bullet points
-3. **Total Solutions** — turnkey paragraph
-4. **How can we help?** — industries/examples paragraph
-5. **Let us help you** — contact CTA paragraph
+1. LabVIEW and TestStand — 5 bullets
+2. Hardware — 3 bullets
+3. Total Solutions — turnkey paragraph
+4. How can we help? — industries/examples paragraph
+5. Let us help you — contact CTA
+
+**Planned (Phase 12):** Lifecycle intro (Concept → Build → Deploy → Support); link to Industries.
+
+### Careers (`/careers`) — new
+
+1. **Why work at AIT** — culture paragraph
+2. **Open positions** — job listing card(s) from `careersContent.openings`
+3. **Apply** — modal form (Formspree): name, email, phone, cover letter, resume; hidden `position`, `job_id`
+
+Manage openings in `site.ts`; set `status: 'closed'` to hide a role.
 
 ### Contact (`/contact`)
 
 1. Welcome paragraph
-2. Company name, address, phone (**770-672-0543**), email (**[info@aitechinc.com](mailto:info@aitechinc.com)**)
-3. Google Maps embed (5845 Steeplechase Blvd, Cumming, GA 30040)
-
-> **Constraint:** All copy from the original site is preserved across the four pages. The About page reorganizes existing Home content — it does not invent new sections. Nothing else is added unless explicitly approved later.
+2. Formspree form (name, email, message)
+3. Company name, address, phone (**770-672-0543**), email (**info@aitechinc.com**)
+4. Google Maps embed (5845 Steeplechase Blvd, Cumming, GA 30040)
 
 ---
 
-## Competitor UX Patterns to Adopt (Without Adding Sections)
+## Competitor UX Patterns to Adopt
 
+| Pattern | How we apply it |
+|---------|-----------------|
+| Bold hero with clear value prop | Home hero; stronger hook in Phase 13 |
+| Sticky header — always visible on scroll | Phase 13 — verify & harden (see below) |
+| Service / capability cards with icons | Services page |
+| Trust/credential callout | NI badge on About; trust strip planned (Phase 13) |
+| Industry vertical cards | `/industries` — Phase 12 |
+| Sustainability / culture trust pages | `/sustainability`, `/people` — Phase 11 |
+| Split contact layout | Form first; details + map grid |
+| Modal forms | Careers application modal |
+| Subtle scroll motion | FadeIn sections; respects reduced motion |
+| Mobile-first nav | Hamburger below ~768px |
 
-| Pattern                          | Seen At             | How We Apply It (Within Existing Content)                             |
-| -------------------------------- | ------------------- | --------------------------------------------------------------------- |
-| Bold hero with clear value prop  | Averna, Bloomy      | Home intro becomes a full-width hero — same text, stronger typography |
-| Sticky header + active nav state | All competitors     | Fixed nav with scroll-aware highlight                                 |
-| Service cards with icons         | Primetest, Cyth     | Services page: 5 existing sections as visual cards                    |
-| Strong visual hierarchy          | Viewpoint, Rovisys  | Clear H1/H2 scale, generous whitespace                                |
-| Trust/credential callout         | Bloomy (NI experts) | NI badge on About Us page; optional teaser on Home                    |
-| Split contact layout             | Averna, Bloomy      | Contact: info left, map right (same info + map)                       |
-| Subtle scroll/hover motion       | Modern competitors  | Fade-in on sections; no distracting animation                         |
-| Mobile-first responsive nav      | All                 | Hamburger menu below ~768px                                           |
-
-
-**Explicitly out of scope** (competitors have these; current AIT site does not):
-
-- Blog / newsletter signup
-- Case studies / portfolio
-- Careers
-- Product catalogs
-- Client logo carousels
-- Live chat / contact forms (current site is static contact info only)
-- Industry vertical landing pages
+**Out of scope:** Blog, case study subsite, Investors/IR, client logo carousels, live chat, seven separate market microsites, full careers ATS.
 
 ---
 
 ## Recommended Tech Stack
 
+| Layer | Choice | Rationale |
+|-------|--------|-----------|
+| Framework | React 19 + TypeScript | In project |
+| Routing | `react-router-dom` (`createBrowserRouter`) | SPA with SEO route handles |
+| Styling | Tailwind CSS v4 | Design tokens, responsive utilities |
+| Icons | `lucide-react` | Service cards, job metadata |
+| Animation | `framer-motion` (light) | Section reveals, modal, mobile nav |
+| SEO | `react-helmet-async` via `PageLayout` / `SiteSeo` | Per-page meta, OG tags |
+| Forms | Formspree (`@formspree/react`) | Contact + Careers (GitHub Pages compatible) |
+| Maps | Google Maps iframe | No API key |
+| Build/deploy | Vite → `dist/` | GitHub Pages |
 
-| Layer        | Choice                      | Rationale                                           |
-| ------------ | --------------------------- | --------------------------------------------------- |
-| Framework    | React 19 + TypeScript       | Already in project                                  |
-| Routing      | `react-router-dom`          | 4-page SPA with clean URLs                          |
-| Styling      | **Tailwind CSS v4**         | Fast iteration, responsive utilities, design tokens |
-| Icons        | `lucide-react`              | Lightweight icons for service cards                 |
-| Animation    | `framer-motion` (light use) | Section reveals, nav transitions                    |
-| SEO          | `react-helmet-async`        | Per-page title/description/meta                     |
-| Maps         | Google Maps embed iframe    | Matches current site; no API key needed             |
-| Build/deploy | Vite → static `dist/`       | GitHub Pages (staging URL first)                    |
+**Environment variables** (`.env` — never commit):
 
+| Variable | Purpose |
+|----------|---------|
+| `VITE_FORMSPREE_FORM_ID` | Contact form |
+| `VITE_FORMSPREE_CAREERS_FORM_ID` | Careers apply modal (`xrevdqop`) |
+| `VITE_SITE_URL` | Canonical URLs, sitemap |
 
 ---
 
@@ -105,479 +162,341 @@ Content is **reused verbatim** from blocks currently on Home — no new marketin
 
 ### Visual Identity
 
-- **Palette (approved — warm sunset/fall):**
+| Token | Hex | Role |
+|-------|-----|------|
+| Teal | `#49888a` | Primary accent, links |
+| Deep teal | `#234958` | Header/footer, dark sections |
+| Navy plum | `#26274e` | Hero backgrounds, headings |
+| Muted rose | `#7f456d` | Secondary accent, errors |
+| Warm gold | `#aa9047` | Dividers, accents |
 
-  | Token      | Hex       | Role                                     |
-  | ---------- | --------- | ---------------------------------------- |
-  | Teal       | `#49888a` | Primary accent, links, highlights        |
-  | Deep teal  | `#234958` | Header/footer backgrounds, dark sections |
-  | Navy plum  | `#26274e` | Hero backgrounds, headings               |
-  | Muted rose | `#7f456d` | Secondary accent, CTA hover states       |
-  | Warm gold  | `#aa9047` | Accent highlights, dividers, badges      |
+- **Typography:** Inter / system sans
+- **Logo:** Black on light; white variant on dark backgrounds
+- **Layout:** Max width ~1200px; WCAG 2.1 AA contrast; focus states on all interactives
 
-- **Typography:** `Inter` or `DM Sans` (headings) + system sans fallback
-- **Tone:** Warm, professional, trustworthy — sunset/fall palette with test engineering credibility
-- **Logo:** Uploaded AIT logo with black letters; invert to white on dark backgrounds (`#234958`, `#26274e`)
-- **Imagery:** Subtle warm gradients and abstract patterns; reuse AIT logo + NI badge; no stock-photo hero unless assets are supplied
+### Page layout standard
 
-### Layout Principles
+All pages use `Container` from `src/components/ui/Container.tsx` with documented sizes in `src/lib/layout.ts`:
 
-- Max content width ~1200px, 16–24px base spacing scale
-- Section padding: 80–120px desktop, 48–64px mobile
-- WCAG 2.1 AA contrast on all text
-- Focus states on all interactive elements
+| Container size | Max width | Use for |
+|----------------|-----------|---------|
+| `default` | 75rem (`max-w-content`) | Grids, cards, job listings, map rows (Services, Careers openings) |
+| `narrow` | 48rem (`max-w-3xl`) | Page headers (`PageHeader`) and prose sections (About, Careers culture) |
+| `wide` | 64rem (`max-w-5xl`) | Forms and featured single blocks (Contact form) |
+
+**Rules**
+- Every section: `Section` → `Container` → content. Never apply `max-w-*` on inner elements without centering the parent column.
+- Prose body copy: use `proseBody` from `src/lib/layout.ts`.
+- Text + graphic pairs: use `contentPairGrid` inside `Container` (default).
+- Header/footer align to `pageGutter` (same width as default `Container`).
+
+### Persistent sticky header
+
+The site header must **remain visible at the top of the viewport while the user scrolls**. It must **not** auto-hide on scroll down or collapse away (no scroll-direction hide/show pattern).
+
+| Requirement | Detail |
+|-------------|--------|
+| **Behavior** | Header stays pinned during vertical scroll on all pages and breakpoints |
+| **No auto-hide** | Do not hide the header when scrolling down or reveal only on scroll up |
+| **Scroll feedback** | Optional: stronger shadow or background when scrolled (visual polish only — visibility unchanged) |
+| **Stacking** | Header above page content (`z-40`); below modals and mobile nav overlay (`z-50`) |
+| **Mobile** | Sticky behavior when mobile menu is closed; opening the menu does not affect header pin position |
+| **Accessibility** | Skip-to-content link remains usable; focus order unchanged |
+
+**Current state:** `Header.tsx` uses `fixed inset-x-0 top-0` (not `sticky` — `overflow-x: hidden` on `html`/`body` breaks sticky in many browsers). Main content uses `main-offset-header` padding so nothing hides under the bar. Scroll only toggles shadow — no hide-on-scroll.
+
+**Implementation:** `src/components/layout/Header.tsx`, `PageLayout.tsx`, `--spacing-site-header` in `src/index.css`.
+
+**QA (Phase 14):** Scroll long pages on desktop and mobile; confirm header never leaves the viewport; confirm modals and mobile nav still layer correctly.
 
 ---
 
 ## Implementation Plan — Step by Step
 
-### Phase 0 — Content & Asset Lock (½ day) ✅
+### Phases 0–7 — Foundation ✅
 
-**Goal:** Freeze scope before any code is written.
+| Phase | Goal | Status |
+|-------|------|--------|
+| **0** | Content & asset lock (`site.ts`, images) | ✅ |
+| **1** | Project foundation — routing, Tailwind, folder structure | ✅ |
+| **2** | Design system — Container, Section, Card, Button, Header, Footer, MobileNav | ✅ |
+| **3** | Home page — hero, CTAs | ✅ |
+| **4** | Services page — five sections as icon cards | ✅ |
+| **5** | Contact page — Formspree + map | ✅ |
+| **6** | Accessibility & responsive polish | ✅ |
+| **7** | SEO — route handles, `SiteSeo`, sitemap script | ✅ |
 
-1. ✅ Extract and store all copy in `src/content/site.ts` — verbatim from current site
-2. ✅ Assets in `public/images/`:
-  - `logo.png` — custom AIT logo (uploaded)
-  - `ni-alliance-partner.png` — NI Certified Alliance Partner badge
-3. ✅ Copyright year: **2026**
-4. ⏳ Sign-off on content file + design mood
-
-**Deliverable:** Approved content manifest + assets in `public/`
-
----
-
-### Phase 1 — Project Foundation (1 day) ✅
-
-**Goal:** Replace Vite starter with production-ready structure.
-
-1. ✅ Remove Vite demo code (`App.tsx` counter, demo assets, etc.)
-2. ✅ Install dependencies: `react-router-dom`, Tailwind, `lucide-react`, `framer-motion`, `react-helmet-async`
-3. ✅ Configure Tailwind with design tokens (colors, fonts, spacing)
-4. ✅ Set up folder structure (see below)
-5. ✅ Configure routes: `/`, `/services`, `/contact`
-6. ✅ 404 redirect to Home
-
-**Deliverable:** Routed shell with placeholder pages using locked content
+**Shared components added post–Phase 7:** `ScrollToTop`, `Modal` (focus trap, Escape, backdrop).
 
 ---
 
-### Phase 2 — Design System & Shared Components (1–1½ days) ✅
+### Phase 8 — About Us Page (initial) ✅
 
-**Goal:** Reusable building blocks before page work.
+**Goal:** Dedicated `/about` using reorganized Home content; slim Home to avoid duplication.
 
-1. ✅ `**Container`** — max-width wrapper with narrow/wide size options
-2. ✅ `**Section**` — vertical spacing + variants (default, muted, white, dark, gradient)
-3. ✅ `**SectionHeading**` — H2 with gold divider, subtitle, alignment options
-4. ✅ `**Card**` — default, elevated, and accent variants
-5. ✅ `**Button**` — primary, secondary, ghost + sm/md/lg sizes
-6. ✅ `**PageHeader**` — reusable gradient page title band
-7. ✅ `**Header**` — sticky, scroll shadow, cream background, active nav
-8. ✅ `**MobileNav**` — slide-in drawer, body scroll lock, animations
-9. ✅ `**Footer**` — logo, nav links, copyright
-10. ✅ `**NavLinkItem**` — consistent nav link styling
-11. ✅ **Dev preview** — `/dev/components` (development only)
+**Shipped:**
+- `AboutPage.tsx` with How It Started, Who We Are, Location & Reach, NI Alliance
+- `/about` route, nav link, `pageMeta.about`, sitemap entry
+- Home refactored — location/NI moved to About; CTAs include About
 
-**Deliverable:** Polished design system + dev component preview route
+**Remaining → Phase 10**
 
 ---
 
-### Phase 3 — Home Page (1 day) ✅
+### Phase 9 — Careers Page ✅
 
-**Goal:** Modern presentation of existing Home content only.
+**Goal:** Careers hub with open position(s) and application flow.
 
-1. ✅ Hero with gradient + subtle pattern overlay and Contact CTA
-2. ✅ Two-column location block (text + decorative map pin graphic)
-3. ✅ Credential band with NI badge prominently displayed
-4. ✅ Scroll-triggered fade-in on each block (respects reduced motion)
+**Shipped:**
+- `/careers` route, nav link, SEO, sitemap
+- `careersContent` in `site.ts` — culture copy, Test Engineer — LabVIEW & TestStand opening
+- `JobOpening`, `JobApplicationModal`, `JobApplicationForm` components
+- Formspree careers form (`VITE_FORMSPREE_CAREERS_FORM_ID=xrevdqop`)
+- Apply opens in **modal** (not inline section)
 
-**No additions:** No stats, no client logos, no service previews, no new copy.
-
-**Deliverable:** Completed Home page, responsive
-
----
-
-### Phase 4 — Services Page (1 day) ✅
-
-**Goal:** Transform 5 text sections into scannable, modern layout.
-
-**Layout:**
-
-```
-┌─────────────────────────────────────────┐
-│  Page header: "Services"                │
-│  Brief intro (optional: first line from  │
-│  "How can we help?" — or page-only H1)  │
-├─────────────────────────────────────────┤
-│  ┌──────────┐  ┌──────────┐            │
-│  │ LabVIEW  │  │ Hardware │   Row 1    │
-│  │ TestStand│  │          │            │
-│  └──────────┘  └──────────┘            │
-│  ┌──────────────────────────────┐    │
-│  │     Total Solutions (full)     │    │
-│  └──────────────────────────────┘    │
-│  ┌──────────┐  ┌──────────┐            │
-│  │ How can  │  │ Let us   │   Row 2    │
-│  │ we help? │  │ help you │            │
-│  └──────────┘  └──────────┘            │
-└─────────────────────────────────────────┘
-```
-
-1. Each of the 5 existing H2 sections → `Card` with icon
-2. Bullet lists styled with custom markers
-3. "Let us help you" card includes inline link/button to `/contact`
-4. Alternating section backgrounds for visual rhythm
-
-**Deliverable:** Completed Services page
+**Key files:** `CareersPage.tsx`, `src/components/careers/*`, `src/components/ui/Modal.tsx`
 
 ---
 
-### Phase 5 — Contact Page (½–1 day) ✅
+### Phase 10 — About Foundation *(next)*
 
-**Goal:** Professional contact experience with static info + Formspree inquiry form.
+**Goal:** Complete company narrative on `/about` (maps to **Phase A** in `additional_features.md`).
 
-**Layout:**
+| # | Task | Deliverable |
+|---|------|-------------|
+| 10.1 | Vision, Mission, Purpose copy in `aboutContent` | Leadership-approved text |
+| 10.2 | Values grid (4–5 values) | `ValueCard` component + `aboutContent.values` |
+| 10.3 | How It Started — replace placeholder | Founding story |
+| 10.4 | Reorder About sections | Vision → Mission → Purpose → Values → How It Started → Who We Are → Location → NI |
+| 10.5 | `ClosingCta` — “Your Vision is our Mission” | Reusable band → Contact / Services |
+| 10.6 | Update `pageMeta.about` | SEO description |
 
-```
-┌─────────────────────────────────────────┐
-│  Page header + welcome paragraph        │
-├──────────────────┬──────────────────────┤
-│  Contact details │  Google Maps embed   │
-│  • Company name  │  (same iframe src)   │
-│  • Address       │                      │
-│  • Phone (tel:)  │                      │
-│  • Email (mailto)│                      │
-├──────────────────┴──────────────────────┤
-│  Contact form (Formspree — Option C)    │
-│  Name · Email · Message · Submit        │
-└─────────────────────────────────────────┘
-```
+**Copy framework (draft — needs approval):** see `additional_features.md` Appendix C.
 
-1. Clickable `tel:` and `mailto:` links
-2. Responsive: stacked on mobile, side-by-side on desktop
-3. Map iframe — lazy-loaded, accessible title
-4. "View larger map" link preserved
-5. **Formspree form** — name, email, message fields; submissions email `info@aitechinc.com`
-6. Form endpoint ID from `VITE_FORMSPREE_FORM_ID` env var (see `.env.example`)
-
-**Deliverable:** Completed Contact page with Formspree integration
+**Deliverable:** Complete About page narrative flow.
 
 ---
 
-### Phase 6 — Responsive, Accessibility & Polish (1 day) ✅
+### Phase 11 — Trust & Culture Pages
 
-1. Test breakpoints: 320, 375, 768, 1024, 1440px
-2. Keyboard navigation through header, mobile menu, all links
-3. Skip-to-content link
-4. `aria-current="page"` on active nav item
-5. Reduced-motion media query — disable animations
-6. Image alt text on logo and NI badge
-7. Focus-visible styles on all interactives
-8. Lighthouse targets: Performance ≥ 90, Accessibility ≥ 95, SEO ≥ 90
+**Goal:** Sustainability and Our People pages (maps to **Phase B**).
 
-**Deliverable:** Accessibility checklist passed
+| # | Task | Route |
+|---|------|-------|
+| 11.1 | Sustainability page | `/sustainability` |
+| 11.2 | Our People & Culture page | `/people` |
+| 11.3 | Cross-links About ↔ People ↔ Sustainability ↔ Careers | In-page + nav |
+| 11.4 | Routes, `pageMeta`, sitemap entries | Infrastructure |
 
----
+**Sustainability sections:** Commitment statement · Environment · Our People · Community · Governance · Quality/NI alignment.
 
-### Phase 7 — SEO & Metadata (½ day) ✅
+**Our People sections:** Culture headline · How we work · Values in practice · Employee spotlights *(needs photos/quotes)* · CTA → Careers.
 
-Per-page meta (derived from existing site):
-
-
-| Page     | Title                                                        | Description                                                                                            |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| Home     | Advanced Instrument Technologies | Test Engineering Services | LabVIEW and TestStand test engineering and integration services. Turnkey solutions and development.    |
-| About    | About Us | Advanced Instrument Technologies                  | Learn about AIT — test engineering services, Cumming GA location, and NI Alliance Partner credentials. |
-| Services | Services | Advanced Instrument Technologies                  | LabVIEW, TestStand, hardware, and turnkey test engineering solutions.                                  |
-| Contact  | Contact | Advanced Instrument Technologies                   | Contact AIT in Cumming, GA for test engineering needs.                                                 |
-
-
-1. Open Graph tags (og:title, og:description, og:image)
-2. Semantic HTML: `<main>`, `<nav>`, `<footer>`, one `<h1>` per page
-3. `robots.txt` + `sitemap.xml` (4 URLs after Phase 8)
-4. Favicon from AIT branding
-5. Centralized SEO in `PageLayout` via route handles (`SiteSeo` component)
-
-**Deliverable:** SEO-ready static output
+**Deliverable:** Two new pages; nav grows by two items.
 
 ---
 
-### Phase 8 — About Us Page (1 day)
+### Phase 12 — Industries & Expertise
 
-**Goal:** Add a dedicated About Us page using **existing site copy** reorganized from Home. Update navigation, routing, and SEO. Slim Home to avoid duplicate content.
+**Goal:** Show who AIT serves and technical specialization (maps to **Phase C**).
 
-**Content source (verbatim from `homeContent` in `site.ts`):**
+| # | Task | Route |
+|---|------|-------|
+| 12.1 | Industries We Serve — six vertical cards | `/industries` |
+| 12.2 | Technical Expertise — 6–8 specialty cards | `/expertise` |
+| 12.3 | Services lifecycle framing | `/services` enhance |
+| 12.4 | Routes, SEO, sitemap | Infrastructure |
 
+**Six industry verticals** *(customer-derived — no public customer names without approval):*
 
-| About section       | Source                                           | Existing copy                  |
-| ------------------- | ------------------------------------------------ | ------------------------------ |
-| Who we are          | `homeContent.intro`                              | Company intro paragraph        |
-| How it started      | `aboutContent.howItStarted`                      | Draft placeholder — TBD        |
-| Location & reach    | `homeContent.location`                           | Cumming, GA + global customers |
-| NI Alliance Partner | `homeContent.niAlliance` + `homeContent.niBadge` | Credentials text + badge image |
+1. Semiconductor Equipment & Electronics Manufacturing  
+2. Automotive & Transportation Systems  
+3. Aerospace & Defense  
+4. Industrial Manufacturing & Equipment  
+5. Materials, Chemicals & Process Industries  
+6. Infrastructure, Energy & Critical Systems  
 
+**Expertise cards (suggested):** LabVIEW & TestStand · Production Test & QA · Hardware Integration · Requirements & V&V · NI Alliance · R&D to Production migration.
 
-**Layout:**
-
-```
-┌─────────────────────────────────────────┐
-│  PageHeader: "About Us"                 │
-│  Subtitle: tagline or first intro line   │
-├─────────────────────────────────────────┤
-│  Who we are (full-width text)            │
-├─────────────────────────────────────────┤
-│  How it started (full-width text)        │  ← draft; final copy TBD
-├──────────────────┬──────────────────────┤
-│  Location text   │  LocationGraphic     │  ← reuse Home component
-├──────────────────┴──────────────────────┤
-│  NI credentials text │  NI badge image   │  ← reuse Home grid pattern
-├─────────────────────────────────────────┤
-│  CTA row: "View Services" · "Contact Us" │
-└─────────────────────────────────────────┘
-```
-
-**Implementation checklist:**
-
-1. **Content** — Add `aboutContent` to `src/content/site.ts`; refactor `homeContent` if needed (shared fields vs. page-specific exports)
-2. **Page** — Create `src/pages/AboutPage.tsx` using `PageHeader`, `Section`, `FadeIn`, `Container`, `contentPairGrid`
-3. **Components** — Reuse `LocationGraphic`; no new one-off components unless a thin `AboutSection` wrapper helps readability
-4. **Routing** — Add `/about` route + SEO handle in `src/router.tsx`:
-  ```tsx
-   { path: 'about', element: <AboutPage />, handle: { seo: { key: 'about' } } }
-  ```
-5. **Navigation** — Add `{ label: 'About', path: '/about' }` to `navLinks` in `site.ts` (between Home and Services); Header, Footer, and MobileNav pick it up automatically
-6. **SEO** — Add `pageMeta.about` in `site.ts`; update `public/sitemap.xml` and `scripts/generate-seo-files.mjs` to include `/about`
-7. **Home refactor** — Remove location and NI sections from `HomePage.tsx`; add hero CTAs (`About Us`, `Services`, `Contact`)
-8. **Icons** — Optional lucide icons on About sections (consistent with Services cards pattern): e.g. `Building2`, `MapPin`, `Award`
-9. **Accessibility** — One `<h1>` in `PageHeader`; section content uses `<h2>` via `SectionHeading`; badge keeps existing alt text
-
-**Home page after Phase 8:**
-
-```
-┌─────────────────────────────────────────┐
-│  Hero: company name, tagline, intro      │
-│  CTAs: About Us · Services · Contact     │
-└─────────────────────────────────────────┘
-```
-
-**Deliverable:** Completed About Us page; Home updated; nav and sitemap include `/about`
-
-**Content approval needed before build:**
-
-- Confirm relocating location + NI blocks from Home → About is acceptable
-- Confirm no additional About copy (history, team, mission) unless you provide it
+**Deliverable:** Two new pages; Services enhanced; nav grows by two items.
 
 ---
 
-### Phase 9 — QA & Cross-Browser Testing (½ day)
+### Phase 13 — Homepage & Site-Wide Polish
 
-1. Chrome, Safari, Firefox, Edge
-2. iOS Safari + Android Chrome
-3. Verify all internal links and external map link
-4. `npm run build` + `npm run preview` smoke test
-5. Content diff: every paragraph from old site present on new site (including About page reorganization)
+**Goal:** Tie new content into Home and final UX polish (maps to **Phase D**).
 
-**Deliverable:** QA sign-off checklist
+| # | Task |
+|---|------|
+| 13.0 | **Persistent fixed header** — ✅ `fixed` positioning + main offset (`--spacing-site-header`) |
+| 13.1 | Home hero — Vision or Purpose one-liner |
+| 13.2 | Industries teaser grid → `/industries` |
+| 13.3 | Services/capabilities teaser (3 cards) |
+| 13.4 | Sustainability teaser → `/sustainability` |
+| 13.5 | Trust strip — NI badge, location, link to About |
+| 13.6 | Services intro tied to Mission *(after Phase 10)* |
+| 13.7 | Optional Contact form subheading |
+
+**Deliverable:** Home reflects full site IA; conversion paths to new pages.
 
 ---
 
-### Phase 10 — Deployment (½ day)
+### Phase 14 — QA & Cross-Browser Testing
 
-1. Connect project to GitHub repository (see **GitHub Setup** below)
-2. Configure **GitHub Pages** for staging URL (e.g. `https://<username>.github.io/advanced-instrument-technologies/`)
-3. Add GitHub Actions workflow: build on push → deploy `dist/` to Pages
-4. SPA redirect rules (`404.html` fallback for client-side routing)
-5. **Production cutover deferred** — `aitechinc.com` DNS update only when final version is approved
-6. Post-launch: submit sitemap to Google Search Console
+1. Chrome, Safari, Firefox, Edge — desktop + mobile
+2. All routes, forms (Contact + Careers modal), map link
+3. **Sticky header** — remains visible on scroll; no auto-hide on any page
+4. Expanded nav on mobile (9 items after Phases 11–12)
+5. `npm run build` + `npm run preview`
+6. Lighthouse: Performance ≥ 90, Accessibility ≥ 95, SEO ≥ 90
+7. Content review against approved copy
 
-**Deliverable:** Live staging site on GitHub Pages
+**Deliverable:** QA sign-off checklist.
+
+---
+
+### Phase 15 — Deployment
+
+1. GitHub Actions: build on push → deploy `dist/` to GitHub Pages
+2. Repository secrets: `VITE_FORMSPREE_FORM_ID`, `VITE_FORMSPREE_CAREERS_FORM_ID`, `VITE_SITE_URL`
+3. SPA `404.html` fallback for client-side routing
+4. Staging: `https://kplakosh.github.io/AIT/`
+5. Production cutover to `aitechinc.com` when approved
+6. Submit sitemap to Google Search Console
+
+**Deliverable:** Live staging site; production cutover when ready.
+
+---
+
+### Phase E — Optional / Future *(needs assets)*
+
+| Item | Notes |
+|------|-------|
+| Leadership (`/leadership`) | Names, titles, photos |
+| Company timeline | Milestone dates from leadership |
+| Customer logos / testimonials | Legal approval |
+| Facility / team photography | About & People |
+| Per-industry / per-expertise landing pages | High maintenance |
+| Case studies | Customer approval |
+| Blog / CMS | Deferred |
 
 ---
 
 ## Timeline Estimate
 
+| Phase | Duration | Status |
+|-------|----------|--------|
+| 0–7 Foundation | ~6 days | ✅ |
+| 8 About (initial) | 1 day | ✅ |
+| 9 Careers | 1 day | ✅ |
+| 10 About foundation | 1–1.5 days | ⏳ **Next** |
+| 11 Sustainability + People | 2–3 days | ⏳ |
+| 12 Industries + Expertise | 2–3 days | ⏳ |
+| 13 Home polish | 1 day | ⏳ |
+| 14 QA | 0.5 day | ⏳ |
+| 15 Deploy | 0.5 day | ⏳ |
+| **Remaining** | **~7–9 working days** | |
 
-| Phase               | Duration              | Status |
-| ------------------- | --------------------- | ------ |
-| 0 — Content lock    | 0.5 day               | ✅      |
-| 1 — Foundation      | 1 day                 | ✅      |
-| 2 — Design system   | 1–1.5 days            | ✅      |
-| 3 — Home            | 1 day                 | ✅      |
-| 4 — Services        | 1 day                 | ✅      |
-| 5 — Contact         | 0.5–1 day             | ✅      |
-| 6 — A11y/responsive | 1 day                 | ✅      |
-| 7 — SEO             | 0.5 day               | ✅      |
-| 8 — About Us        | 1 day                 | ⏳      |
-| 9 — QA              | 0.5 day               | ⏳      |
-| 10 — Deploy         | 0.5 day               | ⏳      |
-| **Total**           | **~8–9 working days** |        |
+*Durations assume copy is approved before each phase starts.*
 
+---
+
+## Shared Components Tracker
+
+| Component | Status | Phase |
+|-----------|--------|-------|
+| `PageLayout`, `SiteSeo`, `ScrollToTop` | Done | 7 |
+| `Header` — persistent fixed (no scroll hide) | Done | 13 |
+| `Modal` | Done | 9 |
+| `ContactForm` (Formspree) | Done | 5 |
+| `JobApplicationForm` (Formspree) | Done | 9 |
+| `ValueCard` | Not started | 10 |
+| `ClosingCta` | Not started | 10 |
+| `IndustryCard` | Not started | 12 |
+| `ExpertiseCard` | Not started | 12 |
+| `TrustStrip` | Not started | 13 |
+| Employee spotlight card | Not started | 11 |
 
 ---
 
 ## Approved Decisions
 
-
-| #   | Decision           | Status                                                                              |
-| --- | ------------------ | ----------------------------------------------------------------------------------- |
-| 1   | **Copyright year** | ✅ Update to **2026**                                                                |
-| 2   | **Logo**           | ✅ Custom logo uploaded (black letters; white variant on dark backgrounds)           |
-| 3   | **Color palette**  | ✅ Warm sunset/fall: `#49888a` / `#234958` / `#26274e` / `#7f456d` / `#aa9047`       |
-| 4   | **Hosting**        | ✅ **GitHub Pages** — `https://github.com/kplakosh/AIT.git` (private)                |
-| 5   | **Domain cutover** | ✅ **Staging URL first** — production at `aitechinc.com` when final version is ready |
-| 6   | **Contact form**   | ✅ **Option C (Formspree)** — implement in Phase 5                                   |
-| 7   | **About Us page**  | ✅ Approved — fourth page at `/about`; content reorganized from Home                 |
-
-
----
-
-## Contact Form Options
-
-The current site has **static contact info only** (phone, email, address, map). A contact form is not a separate page section — it would live within the existing Contact page. Options for a static GitHub Pages site:
-
-### Option A — Static contact info only *(current site behavior)*
-
-- Phone (`tel:`), email (`mailto:`), address, map embed
-- **Pros:** Zero cost, zero maintenance, no spam, no backend, matches current site exactly
-- **Cons:** Users must use their own email client; no structured inquiry capture
-
-**Best for:** Keeping scope minimal; matching current site exactly.
+| # | Decision | Status |
+|---|----------|--------|
+| 1 | Copyright year **2026** | ✅ |
+| 2 | Custom logo (light/dark variants) | ✅ |
+| 3 | Warm sunset/fall palette | ✅ |
+| 4 | GitHub Pages hosting — `https://github.com/kplakosh/AIT.git` | ✅ |
+| 5 | Staging first; `aitechinc.com` when ready | ✅ |
+| 6 | Contact form — **Formspree** | ✅ |
+| 7 | About Us page at `/about` | ✅ |
+| 8 | Careers page at `/careers` with Formspree apply modal | ✅ |
+| 9 | Benchmark-inspired IA — adapt, don’t copy | ✅ |
+| 10 | Six industry verticals from customer list | ✅ Approved direction |
+| 11 | Sustainability replaces Investors | ✅ Approved direction |
+| 12 | New copy requires leadership approval | ✅ |
+| 13 | Persistent sticky header (always visible, no scroll hide) | ✅ Approved direction |
 
 ---
 
-### Option B — Enhanced static with `mailto:` CTA button
+## Contact & Careers Forms
 
-- Same as Option A, plus a prominent "Email Us" button that opens the user's mail client with a pre-filled subject line
-- **Pros:** Slightly better UX with no backend
-- **Cons:** Still depends on the user having email configured; unreliable on some mobile devices
+Both use **Formspree** (Option C — approved for static GitHub Pages hosting).
 
-**Best for:** Small improvement with zero infrastructure.
+| Form | Env var | Endpoint |
+|------|---------|----------|
+| Contact | `VITE_FORMSPREE_FORM_ID` | Configured in `.env.example` |
+| Careers apply | `VITE_FORMSPREE_CAREERS_FORM_ID` | `xrevdqop` |
 
----
-
-### Option C — Third-party form service *(recommended if you want a form)*
-
-Since GitHub Pages has no server, form submissions go through an external service:
-
-
-| Service                                | Free tier          | How it works                                              |
-| -------------------------------------- | ------------------ | --------------------------------------------------------- |
-| **[Formspree](https://formspree.io)**  | 50 submissions/mo  | POST form to their endpoint → emails `info@aitechinc.com` |
-| **[Getform](https://getform.io)**      | 50 submissions/mo  | Same pattern; dashboard for submissions                   |
-| **[Web3Forms](https://web3forms.com)** | 250 submissions/mo | Access key in form; emails directly                       |
-| **Google Forms embed**                 | Free               | Embed iframe; responses in Google Sheets                  |
-
-
-- **Pros:** Real form UX, spam filtering (Formspree), no backend code, works on GitHub Pages
-- **Cons:** Third-party dependency; free tiers have limits; form access key must be stored carefully (env var, not committed)
-
-**Best for:** Professional contact experience without managing a server.
-
----
-
-### Option D — EmailJS (client-side email)
-
-- JavaScript sends email directly from the browser via EmailJS API
-- **Pros:** Custom form UI, no iframe
-- **Cons:** API keys exposed in client bundle (mitigated with domain restrictions); less reliable than server-side
-
-**Best for:** Custom-branded form when Formspree styling isn't enough.
-
----
-
-### Recommendation
-
-**Approved:** **Option C — Formspree** (implement in Phase 5).
-
-- Static contact info (phone, email, address, map) ships first
-- Formspree form added during Phase 5 Contact page work
-- Form endpoint access key stored in `.env` locally and as a **GitHub Actions repository secret** for production builds — never committed
-
-> A contact form does **not** add a new site section — it enhances the existing Contact page.
+Store keys in `.env` locally and as **GitHub Actions secrets** for production builds — never commit `.env`.
 
 ---
 
 ## GitHub Setup
 
-### Repository connection ✅
+| Setting | Value |
+|---------|-------|
+| **Remote** | `https://github.com/kplakosh/AIT.git` |
+| **Visibility** | Private |
+| **License** | Proprietary — Copyright 2026 AIT, Inc. |
+| **Staging URL** | `https://kplakosh.github.io/AIT/` (after Phase 15) |
 
-
-| Setting         | Value                                             |
-| --------------- | ------------------------------------------------- |
-| **Remote URL**  | `https://github.com/kplakosh/AIT.git`             |
-| **Visibility**  | Private                                           |
-| **License**     | Proprietary — see `LICENSE` file                  |
-| **Staging URL** | `https://kplakosh.github.io/AIT/` (after Phase 9) |
-
-
-**Note:** GitHub Pages on a private repo requires a GitHub plan that includes Pages for private repositories (GitHub Pro or org plan). Confirm this is enabled before Phase 9 deployment.
-
-### License recommendation
-
-
-| Scenario                                    | Recommended license                                                                                                                                   |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Private company website (recommended)**   | **No open-source license** — add a `LICENSE` file stating proprietary: *"Copyright 2026 Advanced Instrument Technologies, Inc. All rights reserved."* |
-| **Public repo, don't mind code being open** | **MIT License** — permissive, standard for open source                                                                                                |
-| **Public repo, want patent protection**     | **Apache 2.0**                                                                                                                                        |
-
-
-For a commercial company website, **proprietary (no OSS license)** with a **private repository** is the typical choice. MIT/Apache only apply if you intentionally want the source code to be freely reusable by others.
-
-### `.gitignore` requirements
-
-A project `.gitignore` will exclude:
-
-```
-# Dependencies
-node_modules/
-
-# Build output
-dist/
-
-# Environment & secrets
-.env
-.env.*
-!.env.example
-
-# Editor / OS
-.DS_Store
-.vscode/
-*.local
-
-# Logs
-*.log
-npm-debug.log*
-
-# Form service keys (if using Formspree/Web3Forms)
-# Never commit access keys — use GitHub Actions secrets instead
-```
-
-If Option C (Formspree/Web3Forms) is chosen, form access keys will be stored as **GitHub Actions repository secrets**, never committed to the repo.
+**`.gitignore` includes:** `node_modules/`, `dist/`, `.env`, `additional_features.md`, `chat-summary.md`, cache/logs.
 
 ---
 
 ## Success Criteria
 
-- All **4 pages** live with **100% of existing content** preserved (About reuses Home copy)
-- **No unapproved sections** (blog, careers, case studies, etc.)
-- Mobile-responsive, accessible (WCAG AA)
-- Visually competitive with reference sites
-- Lighthouse scores ≥ 90 across Performance, Accessibility, SEO
-- Static deploy from existing Vite project
+### Shipped (Phases 0–9)
+
+- Five pages live with responsive layout and WCAG AA targets
+- Formspree on Contact and Careers
+- Centralized SEO and sitemap generation
+- Original site copy preserved; About and Careers add approved content
+
+### Remaining (Phases 10–15)
+
+- About narrative complete (Vision, Mission, Purpose, Values)
+- Sustainability, Our People, Industries, Expertise pages live
+- Home reflects expanded IA with teasers to new pages
+- All new copy leadership-approved before publish
+- Header remains visible at top of viewport on scroll (no auto-hide)
+- Lighthouse ≥ 90 (Performance, Accessibility, SEO)
+- Staging deploy on GitHub Pages; production cutover when approved
 
 ---
 
 ## Suggested Approval Flow
 
-1. ~~Review plan and answer the 6 decisions~~ ✅ All 6 decisions approved
-2. ~~Connect GitHub repository~~ ✅ `https://github.com/kplakosh/AIT.git`
-3. ~~Implement Phase 0 (content lock)~~ ✅ Content manifest + assets ready for sign-off
-4. ~~Phase 1 — Project foundation~~ ✅ Routing, Tailwind, folder structure
-5. ~~Phase 2 — Design system~~ ✅ Shared components polished
-6. ~~Phase 3 — Home page~~ ✅ Hero, location, credentials, animations
-7. ~~Phases 4–7~~ ✅ Services, Contact + Formspree, a11y polish, centralized SEO
-8. **Phase 8 — About Us page** *(current)*
-9. Phase 9 — QA on all four pages
-10. Phase 10 — Deploy to GitHub Pages staging URL
-11. Production cutover to `aitechinc.com` when approved
+1. ~~Phases 0–7 — Foundation~~ ✅  
+2. ~~Phase 8 — About (initial)~~ ✅  
+3. ~~Phase 9 — Careers~~ ✅  
+4. **Phase 10 — Approve About copy** (Vision, Mission, Purpose, Values, How It Started) → implement  
+5. **Phase 11 — Approve Sustainability + People copy** → implement  
+6. **Phase 12 — Approve Industries + Expertise card copy** → implement  
+7. Phase 13 — Home polish  
+8. Phase 14 — QA  
+9. Phase 15 — Deploy staging  
+10. Production cutover to `aitechinc.com`
 
+**Related doc:** `additional_features.md` — detailed page specs, customer vertical analysis, copy framework (local only).
