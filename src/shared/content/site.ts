@@ -1,5 +1,5 @@
 /**
- * Site content — locked verbatim from http://www.aitechinc.com/
+ * Site content - locked verbatim from http://www.aitechinc.com/
  * Phase 0 content manifest. Do not add sections beyond the current site.
  */
 
@@ -19,20 +19,24 @@ export const colors = {
   warmGold: '#aa9047',
 } as const
 
-/** Internal app routes — single source of truth for links and redirects. */
+/** Internal app routes - single source of truth for links and redirects. */
 export const routes = {
   home: '/',
   about: '/about',
+  people: '/people',
   services: '/services',
   careers: '/careers',
+  sustainability: '/sustainability',
   contact: '/contact',
 } as const
 
 export const navLinks = [
   { label: 'Home', path: routes.home },
   { label: 'About', path: routes.about },
+  { label: 'Our People', path: routes.people },
   { label: 'Services', path: routes.services },
   { label: 'Careers', path: routes.careers },
+  { label: 'Sustainability', path: routes.sustainability },
   { label: 'Contact', path: routes.contact },
 ] as const
 
@@ -47,7 +51,7 @@ export const pageMeta = {
   about: {
     title: 'About Us | Advanced Instrument Technologies',
     description:
-      'AIT vision, mission, and values — test engineering partner in Cumming, GA. NI Alliance Partner serving customers globally.',
+      'AIT vision, mission, and values. Test engineering partner in Cumming, GA. NI Alliance Partner serving customers globally.',
     path: '/about',
     ogImage: '/images/logo.png',
   },
@@ -69,6 +73,20 @@ export const pageMeta = {
     description:
       'Join AIT in Cumming, GA. View open positions in test engineering, LabVIEW, and TestStand development.',
     path: '/careers',
+    ogImage: '/images/logo.png',
+  },
+  people: {
+    title: 'Our People | Advanced Instrument Technologies',
+    description:
+      'Meet the culture behind AIT: collaborative test engineering teams, professional growth, and values in practice.',
+    path: '/people',
+    ogImage: '/images/logo.png',
+  },
+  sustainability: {
+    title: 'Sustainability | Advanced Instrument Technologies',
+    description:
+      'AIT commitment to responsible engineering: environment, people, community, and governance in test and measurement.',
+    path: '/sustainability',
     ogImage: '/images/logo.png',
   },
 } as const
@@ -97,7 +115,7 @@ export const aboutContent = {
   },
   mission: {
     title: 'Mission',
-    body: 'To be our customers\u2019 trusted test engineering partner \u2014 delivering LabVIEW, TestStand, hardware integration, and turnkey solutions from concept through deployment, with the quality and support their programs demand.',
+    body: 'To be our customers\u2019 trusted test engineering partner, delivering LabVIEW, TestStand, hardware integration, and turnkey solutions from concept through deployment, with the quality and support their programs demand.',
   },
   purpose: {
     title: 'Purpose',
@@ -116,12 +134,12 @@ export const aboutContent = {
     {
       title: 'Customer Commitment',
       description:
-        'We measure success by our customers\u2019 program outcomes \u2014 from requirements through deployment and support.',
+        'We measure success by our customers\u2019 program outcomes, from requirements through deployment and support.',
     },
     {
       title: 'Technical Ingenuity',
       description:
-        'Practical problem-solving with LabVIEW, TestStand, and integrated hardware \u2014 turning complex requirements into maintainable systems.',
+        'Practical problem-solving with LabVIEW, TestStand, and integrated hardware, turning complex requirements into maintainable systems.',
     },
     {
       title: 'Quality & Reliability',
@@ -136,13 +154,13 @@ export const aboutContent = {
   ],
   howItStarted: {
     title: 'How It Started',
-    body: 'Advanced Instrument Technologies was founded to meet a practical need: organizations required test and measurement systems that worked reliably beyond the lab \u2014 in manufacturing, quality assurance, and production environments. From our base in Cumming, Georgia, AIT grew by partnering closely with engineering teams, combining LabVIEW and TestStand expertise with hardware integration and turnkey delivery. After more than two decades of project work across industries, we continue to build on that same foundation \u2014 solving real-world test challenges for customers around the world.',
+    body: 'Advanced Instrument Technologies was founded to meet a practical need: organizations required test and measurement systems that worked reliably beyond the lab, in manufacturing, quality assurance, and production environments. From our base in Cumming, Georgia, AIT grew by partnering closely with engineering teams, combining LabVIEW and TestStand expertise with hardware integration and turnkey delivery. After more than two decades of project work across industries, we continue to build on that same foundation, solving real-world test challenges for customers around the world.',
   },
   whoWeAre: {
     subtitle: 'Engineering Expertise Backed by Real-World Execution',
     paragraphs: [
       'For more than two decades, AIT has helped organizations solve complex test and measurement challenges across product development, validation, and manufacturing environments.',
-      'Our team combines software engineering, hardware integration, instrumentation expertise, and systems engineering to deliver solutions that work in the real world\u2014outside the lab.',
+      'Our team combines software engineering, hardware integration, instrumentation expertise, and systems engineering to deliver solutions that work in the real world, outside the lab.',
       'As an NI Alliance Partner, we leverage industry-leading technologies while remaining focused on what matters most: creating reliable, maintainable systems that provide accurate data and support long-term business goals.',
       'We work as an extension of our customers\u2019 engineering teams, bringing technical expertise, practical problem-solving, and a commitment to project success from concept through deployment.',
     ],
@@ -234,7 +252,7 @@ export type JobOpening = {
 
 export const careersContent = {
   pageSubtitle:
-    'Build test and measurement systems that work in the real world — from R&D through production.',
+    'Build test and measurement systems that work in the real world, from R&D through production.',
   cultureHeading: 'Why work at AIT',
   cultureBody:
     'At AIT, we believe great careers are built through challenging work, continuous learning, and opportunities to make a real impact. Our team members are encouraged to expand their skills, take on new responsibilities, and grow alongside experienced professionals. We foster a collaborative environment where innovation is valued, achievements are recognized, and professional development is part of everyday work.',
@@ -247,12 +265,12 @@ export const careersContent = {
   openings: [
     {
       id: 'test-engineer-labview-teststand',
-      title: 'Test Engineer — LabVIEW & TestStand',
+      title: 'Test Engineer, LabVIEW & TestStand',
       location: 'Cumming, GA (on-site)',
       employmentType: 'Full-time',
       status: 'open',
       summary:
-        'AIT is seeking a test engineer to develop and maintain LabVIEW and TestStand applications for customer test systems — from requirements through deployment and production support.',
+        'AIT is seeking a test engineer to develop and maintain LabVIEW and TestStand applications for customer test systems, from requirements through deployment and production support.',
       responsibilities: [
         'Develop, debug, and maintain LabVIEW and TestStand test sequences and operator interfaces',
         'Integrate instrumentation, motion, and custom hardware into automated test stations',
@@ -276,6 +294,117 @@ export const careersContent = {
       ],
     },
   ] satisfies readonly JobOpening[],
+  closingCta: {
+    headline: 'Explore Life at AIT',
+    subline: 'Meet the people behind our work and learn what guides our engineering partnerships.',
+  },
+} as const
+
+export const sustainabilityContent = {
+  pageSubtitle:
+    'Responsible engineering practices that support our people, communities, and the environments where we work.',
+  commitmentHeading: 'Our Commitment',
+  commitmentBody:
+    'Advanced Instrument Technologies is committed to conducting business with integrity and accountability. We recognize that sustainable practices extend beyond environmental stewardship to include how we support our employees, engage with our communities, and deliver reliable engineering outcomes for our customers.',
+  pillarsHeading: 'Four Pillars',
+  pillars: [
+    {
+      title: 'Environment',
+      description:
+        'We reduce waste in our engineering processes, design durable test systems built for long service life, and use resources responsibly in our facilities and project work.',
+    },
+    {
+      title: 'Our People',
+      description:
+        'We invest in a safe, respectful workplace where engineers can grow their skills, pursue NI certifications, and build meaningful careers in test and measurement.',
+    },
+    {
+      title: 'Community',
+      description:
+        'We support the communities where we live and work through local engagement, STEM outreach, and partnerships that strengthen the engineering workforce.',
+    },
+    {
+      title: 'Governance',
+      description:
+        'We operate with transparency, ethical business practices, and a commitment to quality that earns the trust of customers and partners.',
+    },
+  ],
+  qualityHeading: 'Quality & Engineering Integrity',
+  qualityBody:
+    'As a National Instruments Alliance Partner, AIT aligns sustainable engineering with rigorous quality practices. Reliable test systems reduce rework, support efficient manufacturing, and help customers bring products to market with confidence. Outcomes that benefit both business performance and responsible operations.',
+  closingCta: {
+    headline: 'Engineering with Purpose',
+    subline: 'Learn how our people and culture drive the quality behind every AIT solution.',
+  },
+} as const
+
+export type EmployeeSpotlight = {
+  id: string
+  name: string
+  role: string
+  quote: string
+}
+
+export const peopleContent = {
+  pageSubtitle:
+    'The engineers, problem-solvers, and collaborators who bring AIT\u2019s test solutions to life.',
+  cultureHeading: 'Our Culture',
+  cultureBody:
+    'AIT is built on technical excellence and genuine partnership with customers and with each other. Our team thrives on challenging engineering problems, hands-on learning, and the satisfaction of seeing test systems perform reliably in real production environments.',
+  howWeWorkHeading: 'How We Work',
+  howWeWorkBody:
+    'We collaborate closely across software, hardware, and systems engineering disciplines. Projects range from targeted engineering support to full turnkey test stations, and team members regularly work alongside customer engineers on site and remotely. Clear communication, practical problem-solving, and respect for every contributor are central to how we operate.',
+  valuesInPracticeHeading: 'Values in Practice',
+  valuesInPractice: [
+    {
+      title: 'Collaboration',
+      description:
+        'We share knowledge openly, support each other on complex integrations, and celebrate team wins alongside individual growth.',
+    },
+    {
+      title: 'Continuous Learning',
+      description:
+        'NI certification paths, mentorship, and exposure to diverse industries keep our engineers at the forefront of test technology.',
+    },
+    {
+      title: 'Accountability',
+      description:
+        'We take ownership of requirements, documentation, and delivery, because our customers depend on systems that work beyond the lab.',
+    },
+  ],
+  growthHeading: 'Growth & Development',
+  growthBody:
+    'AIT encourages professional development through NI Alliance training, project diversity across industries, and opportunities to lead customer engagements from concept through deployment. Whether you are deepening LabVIEW expertise or expanding into hardware integration, we support career paths that match your ambitions.',
+  spotlightsHeading: 'Team Voices',
+  spotlightsNote:
+    'Spotlight profiles and photography will be added as our team grows. The voices below reflect the culture our engineers experience every day.',
+  spotlights: [
+    {
+      id: 'spotlight-engineering',
+      name: 'Senior Test Engineer',
+      role: 'LabVIEW & TestStand Development',
+      quote:
+        'What I value most is the variety: one month I\u2019m in the lab prototyping, the next I\u2019m on a production floor making sure a system runs flawlessly for the customer.',
+    },
+    {
+      id: 'spotlight-integration',
+      name: 'Hardware Integration Lead',
+      role: 'Systems & Instrumentation',
+      quote:
+        'AIT gives you room to solve real problems. You are not just writing code. You are building something the customer will rely on for years.',
+    },
+    {
+      id: 'spotlight-project',
+      name: 'Project Engineer',
+      role: 'Customer Programs',
+      quote:
+        'The team culture here is collaborative. When a customer has a tough deadline, everyone pitches in with the expertise they bring.',
+    },
+  ] satisfies readonly EmployeeSpotlight[],
+  closingCta: {
+    headline: 'Join Our Team',
+    subline: 'Explore open positions and bring your test engineering skills to AIT.',
+  },
 } as const
 
 export const assets = {

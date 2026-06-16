@@ -41,6 +41,8 @@ Detailed page specs and copy requirements live in `additional_features.md` (loca
 | `/services` | Services | **Done** | Five service sections as icon cards |
 | `/careers` | Careers | **Done** | Culture copy, Test Engineer opening, modal apply (Formspree `xrevdqop`) |
 | `/contact` | Contact | **Done** | Formspree form, details, map |
+| `/people` | Our People | **Done** | Culture, how we work, values, growth, team spotlights |
+| `/sustainability` | Sustainability | **Done** | Commitment, four pillars, quality & integrity |
 
 ### Planned (Phases 10–13)
 
@@ -277,7 +279,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 11 — Trust & Culture Pages *(next)*
+### Phase 11 — Trust & Culture Pages ✅
 
 **Goal:** Sustainability and Our People pages (maps to **Phase B**).
 
@@ -285,7 +287,7 @@ The site header must **remain visible at the top of the viewport while the user 
 |---|------|-------|
 | 11.1 | Sustainability page | `/sustainability` |
 | 11.2 | Our People & Culture page | `/people` |
-| 11.3 | Cross-links About ↔ People ↔ Sustainability ↔ Careers | In-page + nav |
+| 11.3 | Nav links to new pages | Global header/footer navigation |
 | 11.4 | Routes, `pageMeta`, sitemap entries | Infrastructure |
 
 **Sustainability sections:** Commitment statement · Environment · Our People · Community · Governance · Quality/NI alignment.
@@ -296,7 +298,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 12 — Industries & Expertise
+### Phase 12 — Industries & Expertise *(next)*
 
 **Goal:** Show who AIT serves and technical specialization (maps to **Phase C**).
 
@@ -390,8 +392,8 @@ The site header must **remain visible at the top of the viewport while the user 
 | 8 About (initial) | 1 day | ✅ |
 | 9 Careers | 1 day | ✅ |
 | 10 About foundation | 1–1.5 days | ✅ |
-| 11 Sustainability + People | 2–3 days | ⏳ **Next** |
-| 12 Industries + Expertise | 2–3 days | ⏳ |
+| 11 Sustainability + People | 2–3 days | ✅ |
+| 12 Industries + Expertise | 2–3 days | ⏳ **Next** |
 | 13 Home polish | 1 day | ⏳ |
 | 14 QA | 0.5 day | ⏳ |
 | 15 Deploy | 0.5 day | ⏳ |
@@ -415,7 +417,7 @@ The site header must **remain visible at the top of the viewport while the user 
 | `IndustryCard` | Not started | 12 |
 | `ExpertiseCard` | Not started | 12 |
 | `TrustStrip` | Not started | 13 |
-| Employee spotlight card | Not started | 11 |
+| Employee spotlight card | Done | 11 |
 
 ---
 
@@ -492,7 +494,7 @@ Store keys in `.env` locally and as **GitHub Actions secrets** for production bu
 2. ~~Phase 8 — About (initial)~~ ✅  
 3. ~~Phase 9 — Careers~~ ✅  
 4. ~~Phase 10 — Approve About copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
-5. **Phase 11 — Approve Sustainability + People copy** → implement  
+5. ~~Phase 11 — Approve Sustainability + People copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
 6. **Phase 12 — Approve Industries + Expertise card copy** → implement  
 7. Phase 13 — Home polish  
 8. Phase 14 — QA  

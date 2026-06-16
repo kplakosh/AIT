@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import CareersApply from '../islands/CareersApply'
-import ButtonLink from '../shared/components/ui/ButtonLink.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
 import Container from '../shared/components/ui/Container.astro'
 import PageHeader from '../shared/components/ui/PageHeader.astro'
 import Section from '../shared/components/ui/Section.astro'
@@ -31,12 +31,15 @@ import Prose from '../shared/components/ui/Prose.astro'
     </Container>
   </Section>
 
-  <Section variant="white">
-    <Container>
-      <div class="fade-in flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <ButtonLink href={routes.about} size="lg" variant="secondary">About AIT</ButtonLink>
-        <ButtonLink href={routes.contact} size="lg">Contact Us</ButtonLink>
-      </div>
-    </Container>
-  </Section>
+  <ClosingCta
+    headline={careersContent.closingCta.headline}
+    subline={careersContent.closingCta.subline}
+    primaryLink={{ href: routes.people, label: 'Our People', variant: 'secondary' }}
+    secondaryLink={{
+      href: routes.about,
+      label: 'About AIT',
+      variant: 'ghost',
+      class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+    }}
+  />
 </BaseLayout>

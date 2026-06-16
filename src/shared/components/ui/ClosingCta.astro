@@ -4,12 +4,34 @@ import ButtonLink from './ButtonLink.astro'
 import Container from './Container.astro'
 import Section from './Section.astro'
 
+type CtaLink = {
+  href: string
+  label: string
+  variant?: 'primary' | 'secondary' | 'ghost'
+  class?: string
+}
+
 type Props = {
   headline: string
   subline?: string
+  primaryLink?: CtaLink
+  secondaryLink?: CtaLink
 }
 
-const { headline, subline } = Astro.props
+const { headline, subline, primaryLink, secondaryLink } = Astro.props
+
+const primary = primaryLink ?? {
+  href: routes.contact,
+  label: 'Contact Us',
+  variant: 'secondary' as const,
+}
+
+const secondary = secondaryLink ?? {
+  href: routes.services,
+  label: 'View Services',
+  variant: 'ghost' as const,
+  class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+}
 ---
 
 <Section variant="dark">
@@ -24,16 +46,16 @@ const { headline, subline } = Astro.props
         ) : null
       }
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <ButtonLink href={routes.contact} size="lg" variant="secondary">
-          Contact Us
+        <ButtonLink href={primary.href} size="lg" variant={primary.variant ?? 'secondary'}>
+          {primary.label}
         </ButtonLink>
         <ButtonLink
-          href={routes.services}
+          href={secondary.href}
           size="lg"
-          variant="ghost"
-          class="border-white/30 text-white hover:border-white/50 hover:bg-white/10"
+          variant={secondary.variant ?? 'ghost'}
+          class={secondary.class}
         >
-          View Services
+          {secondary.label}
         </ButtonLink>
       </div>
     </div>

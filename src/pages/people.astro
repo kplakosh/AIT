@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Prose from '../shared/components/ui/Prose.astro'
+import Section from '../shared/components/ui/Section.astro'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import SpotlightCard from '../shared/components/ui/SpotlightCard.astro'
+import ValueCard from '../shared/components/ui/ValueCard.astro'
+import { peopleContent, routes } from '../shared/content/site'
+---
+
+<BaseLayout seoKey="people">
+  <PageHeader title="Our People" description={peopleContent.pageSubtitle} />
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={peopleContent.cultureHeading} showDivider />
+        <Prose>{peopleContent.cultureBody}</Prose>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={peopleContent.howWeWorkHeading} showDivider />
+        <Prose>{peopleContent.howWeWorkBody}</Prose>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={peopleContent.valuesInPracticeHeading} showDivider />
+        <div class="grid gap-6 md:grid-cols-3">
+          {
+            peopleContent.valuesInPractice.map((item) => (
+              <ValueCard title={item.title} description={item.description} />
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={peopleContent.growthHeading} showDivider />
+        <Prose>{peopleContent.growthBody}</Prose>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading
+          title={peopleContent.spotlightsHeading}
+          subtitle={peopleContent.spotlightsNote}
+          showDivider
+        />
+        <div class="grid gap-6 md:grid-cols-3">
+          {
+            peopleContent.spotlights.map((spotlight) => (
+              <SpotlightCard
+                name={spotlight.name}
+                role={spotlight.role}
+                quote={spotlight.quote}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <ClosingCta
+    headline={peopleContent.closingCta.headline}
+    subline={peopleContent.closingCta.subline}
+    primaryLink={{ href: routes.careers, label: 'View Open Positions', variant: 'secondary' }}
+    secondaryLink={{
+      href: routes.contact,
+      label: 'Contact Us',
+      variant: 'ghost',
+      class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+    }}
+  />
+</BaseLayout>

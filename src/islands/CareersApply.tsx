@@ -119,7 +119,7 @@ function FieldLabel({ htmlFor, children, required = false }: FieldLabelProps) {
 }
 
 function buildApplyMailto(opening: JobOpening): string {
-  const subject = encodeURIComponent(`${careersContent.applyEmailSubject} — ${opening.title}`)
+  const subject = encodeURIComponent(`${careersContent.applyEmailSubject}: ${opening.title}`)
   return `mailto:${contactContent.email}?subject=${subject}`
 }
 

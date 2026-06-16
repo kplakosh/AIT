@@ -1,0 +1,28 @@
+---
+description: Site copy punctuation - no en or em dashes
+globs: src/shared/content/**,src/pages/**/*.astro,src/sections/**,src/islands/**
+alwaysApply: false
+---
+
+# Site content punctuation
+
+Do not use en dashes (`–`, U+2013) or em dashes (`—`, U+2014) in user-facing copy, SEO text, or content in `site.ts`.
+
+Use instead:
+
+- **Commas** for continuing clauses: "systems that work in the real world, from R&D through production"
+- **Colons** to introduce a list or explanation: "Meet the culture behind AIT: collaborative teams"
+- **Periods** to split related sentences: "You are not just writing code. You are building something durable."
+- **Regular hyphens** (`-`, ASCII) only for compound words and numeric ranges where appropriate (e.g. `on-site`, `770-672-0543`)
+
+```typescript
+// Bad
+title: 'Test Engineer — LabVIEW & TestStand'
+body: 'partner \u2014 delivering solutions'
+
+// Good
+title: 'Test Engineer, LabVIEW & TestStand'
+body: 'partner, delivering solutions'
+```
+
+When editing `src/shared/content/site.ts`, keep all public strings free of `\u2013` and `\u2014` escapes.

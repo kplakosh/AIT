@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Prose from '../shared/components/ui/Prose.astro'
+import Section from '../shared/components/ui/Section.astro'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import ValueCard from '../shared/components/ui/ValueCard.astro'
+import { routes, sustainabilityContent } from '../shared/content/site'
+---
+
+<BaseLayout seoKey="sustainability">
+  <PageHeader title="Sustainability" description={sustainabilityContent.pageSubtitle} />
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={sustainabilityContent.commitmentHeading} showDivider />
+        <Prose>{sustainabilityContent.commitmentBody}</Prose>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={sustainabilityContent.pillarsHeading} showDivider />
+        <div class="grid gap-6 sm:grid-cols-2">
+          {
+            sustainabilityContent.pillars.map((pillar) => (
+              <ValueCard title={pillar.title} description={pillar.description} />
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={sustainabilityContent.qualityHeading} showDivider />
+        <Prose>{sustainabilityContent.qualityBody}</Prose>
+      </div>
+    </Container>
+  </Section>
+
+  <ClosingCta
+    headline={sustainabilityContent.closingCta.headline}
+    subline={sustainabilityContent.closingCta.subline}
+    primaryLink={{ href: routes.people, label: 'Our People', variant: 'secondary' }}
+    secondaryLink={{
+      href: routes.about,
+      label: 'About AIT',
+      variant: 'ghost',
+      class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+    }}
+  />
+</BaseLayout>

@@ -8,7 +8,7 @@ const siteUrl = (
   env.VITE_SITE_URL ||
   'https://www.aitechinc.com'
 ).replace(/\/$/, '')
-const paths = ['/', '/about', '/services', '/careers', '/contact']
+const paths = ['/', '/about', '/people', '/services', '/careers', '/sustainability', '/contact']
 
 const urlEntries = paths
   .map((path) => {

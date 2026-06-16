@@ -1,0 +1,19 @@
+---
+import Card from './Card.astro'
+
+type Props = {
+  name: string
+  role: string
+  quote: string
+}
+
+const { name, role, quote } = Astro.props
+---
+
+<Card variant="elevated" class="h-full">
+  <p class="text-sm font-medium text-teal">{role}</p>
+  <h3 class="mt-1 font-heading text-lg font-semibold text-deep-teal">{name}</h3>
+  <blockquote class="body-text mt-4 border-l-2 border-warm-gold pl-4 italic text-navy-plum/80">
+    &ldquo;{quote}&rdquo;
+  </blockquote>
+</Card>
