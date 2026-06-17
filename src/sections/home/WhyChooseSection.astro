@@ -1,0 +1,24 @@
+---
+import ValueCard from '../../shared/components/ui/ValueCard.astro'
+import Container from '../../shared/components/ui/Container.astro'
+import Section from '../../shared/components/ui/Section.astro'
+import SectionHeading from '../../shared/components/ui/SectionHeading.astro'
+import { homeContent } from '../../shared/content/site'
+
+const { whyChooseAit } = homeContent
+---
+
+<Section variant="muted">
+  <Container>
+    <div class="fade-in">
+      <SectionHeading title={whyChooseAit.heading} showDivider />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          whyChooseAit.pillars.map((pillar) => (
+            <ValueCard title={pillar.title} description={pillar.description} />
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Section>

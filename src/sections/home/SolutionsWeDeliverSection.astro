@@ -1,0 +1,42 @@
+---
+import SolutionDeliverableItem from '../../shared/components/home/SolutionDeliverableItem.astro'
+import Card from '../../shared/components/ui/Card.astro'
+import Container from '../../shared/components/ui/Container.astro'
+import Prose from '../../shared/components/ui/Prose.astro'
+import Section from '../../shared/components/ui/Section.astro'
+import SectionHeading from '../../shared/components/ui/SectionHeading.astro'
+import { homeContent } from '../../shared/content/site'
+
+const { solutionsWeDeliver } = homeContent
+---
+
+<Section variant="white">
+  <Container>
+    <div class="fade-in">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16">
+        <div class="flex flex-col gap-8">
+          <SectionHeading title={solutionsWeDeliver.heading} showDivider class="mb-0" />
+          <Prose>{solutionsWeDeliver.intro}</Prose>
+          <blockquote
+            class="border-l-2 border-warm-gold bg-cream/70 py-4 pl-5 pr-4 md:pl-6"
+          >
+            <p class="body-text text-navy-plum/90">{solutionsWeDeliver.closing}</p>
+          </blockquote>
+        </div>
+
+        <Card variant="elevated" class="p-6 md:p-8 lg:self-start">
+          <p class="mb-5 text-sm font-semibold uppercase tracking-wider text-teal">
+            {solutionsWeDeliver.solutionsListHeading}
+          </p>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {
+              solutionsWeDeliver.solutions.map((solution) => (
+                <SolutionDeliverableItem label={solution} />
+              ))
+            }
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </Container>
+</Section>

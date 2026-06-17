@@ -47,7 +47,6 @@ export type NavItemGroup = {
 export type NavItem = NavItemLink | NavItemGroup
 
 export const navItems: readonly NavItem[] = [
-  { type: 'link', label: 'Home', path: routes.home },
   {
     type: 'group',
     label: 'About',
@@ -69,11 +68,6 @@ export const navItems: readonly NavItem[] = [
   { type: 'link', label: 'Careers', path: routes.careers },
   { type: 'link', label: 'Contact', path: routes.contact },
 ]
-
-/** Flat link list for footer and other surfaces that list every page. */
-export const navLinks = navItems.flatMap((item) =>
-  item.type === 'link' ? [{ label: item.label, path: item.path }] : [...item.items],
-)
 
 export const pageMeta = {
   home: {
@@ -143,6 +137,106 @@ export const pageMeta = {
 export const homeContent = {
   intro:
     'Advanced Instrument Technologies, Inc. (AIT) is an engineering services company providing custom and turnkey solutions to meet customers\u2019 test engineering challenges. AIT provides customers with services ranging from engineering support to complete solutions. AIT serves customers in numerous industries, covering research and development, manufacturing, and quality assurance testing.',
+  trustedPartner: {
+    eyebrow: 'Trusted Engineering Partner',
+    title: 'Engineering Expertise. Practical Solutions.',
+    body: 'For more than two decades, AIT has partnered with engineering teams to deliver LabVIEW, TestStand, and integrated hardware solutions that perform in real production environments. As a National Instruments Alliance Partner, we combine certified platform expertise with a practical, hands-on approach from requirements through deployment and support.',
+    highlights: [
+      { label: '20+ Years of Experience' },
+      { label: 'NI Alliance Partner' },
+      { label: 'Custom Test & Automation Solutions' },
+      { label: 'From Concept to Deployment' },
+    ],
+  },
+  coreServices: {
+    heading: 'Core Services',
+    services: [
+      {
+        id: 'automated-test-systems',
+        title: 'Automated Test Systems',
+        description: 'Custom test platforms for validation and production',
+      },
+      {
+        id: 'labview-development',
+        title: 'LabVIEW Development',
+        description: 'Custom software for measurement and automation',
+      },
+      {
+        id: 'teststand-solutions',
+        title: 'TestStand Solutions',
+        description: 'Scalable production test architectures',
+      },
+      {
+        id: 'hardware-integration',
+        title: 'Hardware Integration',
+        description: 'Instruments, DAQ, controls, and custom electronics',
+      },
+      {
+        id: 'engineering-consulting',
+        title: 'Engineering Consulting',
+        description: 'Technical expertise for complex projects',
+      },
+    ],
+    ctaLabel: 'View All Services',
+  },
+  industriesWeServe: {
+    eyebrow: 'Industries We Serve',
+    title: 'Supporting Diverse Engineering Challenges',
+    body: 'AIT brings test engineering experience across sectors where validation, quality, and reliability matter. Whatever your industry, we partner with teams solving problems similar to yours.',
+    industries: [
+      { id: 'aerospace-defense', label: 'Aerospace & Defense' },
+      { id: 'medical-devices', label: 'Medical Devices' },
+      { id: 'manufacturing', label: 'Manufacturing' },
+      { id: 'industrial-automation', label: 'Industrial Automation' },
+      { id: 'research-development', label: 'Research & Development' },
+      { id: 'telecommunications', label: 'Telecommunications' },
+    ],
+    ctaLabel: 'Explore Industries We Serve',
+  },
+  whyChooseAit: {
+    heading: 'Why Engineering Teams Choose AIT',
+    pillars: [
+      {
+        title: 'Technical Depth',
+        description: 'Experienced engineers specializing in test and measurement.',
+      },
+      {
+        title: 'Turnkey Delivery',
+        description: 'From requirements to deployment.',
+      },
+      {
+        title: 'Scalable Solutions',
+        description: 'Built for growth and long-term maintainability.',
+      },
+      {
+        title: 'Dedicated Support',
+        description: 'Partnership beyond project completion.',
+      },
+    ],
+  },
+  solutionsWeDeliver: {
+    heading: 'Solutions We Deliver',
+    intro:
+      'AIT develops custom solutions that help engineering and manufacturing teams improve testing efficiency, measurement accuracy, and product quality.',
+    solutions: [
+      'Automated Test Systems',
+      'Production Test Stations',
+      'Data Acquisition Systems',
+      'Measurement & Validation Platforms',
+      'Instrument Control Applications',
+      'Manufacturing Test Solutions',
+      'Custom Hardware & Software Integration',
+    ],
+    closing:
+      'Every solution is designed around the unique technical and operational requirements of the customer.',
+    solutionsListHeading: 'Solution capabilities',
+  },
+  finalCta: {
+    headline: 'Ready to Solve Your Next Test Engineering Challenge?',
+    body: 'Whether you need a custom test application, hardware integration, or a complete turnkey system, our engineering team is ready to help.',
+    primaryLabel: 'Schedule a Consultation',
+    secondaryLabel: 'Contact Us',
+  },
   location:
     'AIT is located in Cumming, GA, a northern suburb of Atlanta. But, AIT\u2019s customers can be found around the globe. AIT has served customers in numerous industries, covering research and development, manufacturing, and quality assurance testing.',
   niAlliance:

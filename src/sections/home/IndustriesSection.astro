@@ -1,0 +1,35 @@
+---
+import IndustryTeaserCard from '../../shared/components/home/IndustryTeaserCard.astro'
+import ButtonLink from '../../shared/components/ui/ButtonLink.astro'
+import Container from '../../shared/components/ui/Container.astro'
+import Prose from '../../shared/components/ui/Prose.astro'
+import Section from '../../shared/components/ui/Section.astro'
+import SectionHeading from '../../shared/components/ui/SectionHeading.astro'
+import { homeContent, routes } from '../../shared/content/site'
+
+const { industriesWeServe } = homeContent
+---
+
+<Section variant="white">
+  <Container>
+    <div class="fade-in">
+      <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-teal">
+        {industriesWeServe.eyebrow}
+      </p>
+      <SectionHeading title={industriesWeServe.title} showDivider />
+      <Prose class="mb-10">{industriesWeServe.body}</Prose>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          industriesWeServe.industries.map((industry) => (
+            <IndustryTeaserCard id={industry.id} label={industry.label} />
+          ))
+        }
+      </div>
+      <div class="mt-10 flex justify-center">
+        <ButtonLink href={routes.industries} size="lg" variant="secondary">
+          {industriesWeServe.ctaLabel}
+        </ButtonLink>
+      </div>
+    </div>
+  </Container>
+</Section>

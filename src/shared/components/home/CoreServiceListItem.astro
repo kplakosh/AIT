@@ -1,0 +1,13 @@
+---
+type Props = {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<li class="border-l-2 border-warm-gold pl-4 md:pl-5">
+  <h3 class="font-heading text-lg font-semibold text-deep-teal">{title}</h3>
+  <p class="body-text mt-2 text-navy-plum/85">{description}</p>
+</li>

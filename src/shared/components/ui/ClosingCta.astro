@@ -1,5 +1,6 @@
 ---
 import { routes } from '../../content/site'
+import { cn } from '../../lib/cn'
 import ButtonLink from './ButtonLink.astro'
 import Container from './Container.astro'
 import Section from './Section.astro'
@@ -16,9 +17,12 @@ type Props = {
   subline?: string
   primaryLink?: CtaLink
   secondaryLink?: CtaLink
+  sectionVariant?: 'dark' | 'gradient'
+  large?: boolean
 }
 
-const { headline, subline, primaryLink, secondaryLink } = Astro.props
+const { headline, subline, primaryLink, secondaryLink, sectionVariant = 'dark', large = false } =
+  Astro.props
 
 const primary = primaryLink ?? {
   href: routes.contact,
@@ -34,7 +38,7 @@ const secondary = secondaryLink ?? {
 }
 ---
 
-<Section variant="dark">
+<Section variant={sectionVariant} class={cn(large && 'py-16 md:py-28')}>
   <Container>
     <div class="fade-in mx-auto max-w-3xl text-center">
       <h2 class="font-heading text-2xl font-semibold tracking-tight text-white md:text-3xl">

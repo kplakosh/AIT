@@ -1,0 +1,30 @@
+---
+import CoreServiceListItem from '../../shared/components/home/CoreServiceListItem.astro'
+import ButtonLink from '../../shared/components/ui/ButtonLink.astro'
+import Container from '../../shared/components/ui/Container.astro'
+import Section from '../../shared/components/ui/Section.astro'
+import SectionHeading from '../../shared/components/ui/SectionHeading.astro'
+import { homeContent, routes } from '../../shared/content/site'
+
+const { coreServices } = homeContent
+---
+
+<Section variant="muted">
+  <Container>
+    <div class="fade-in">
+      <SectionHeading title={coreServices.heading} showDivider />
+      <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-10 md:gap-y-8">
+        {
+          coreServices.services.map((service) => (
+            <CoreServiceListItem title={service.title} description={service.description} />
+          ))
+        }
+      </ul>
+      <div class="mt-10 flex justify-center">
+        <ButtonLink href={routes.services} size="lg" variant="secondary">
+          {coreServices.ctaLabel}
+        </ButtonLink>
+      </div>
+    </div>
+  </Container>
+</Section>
