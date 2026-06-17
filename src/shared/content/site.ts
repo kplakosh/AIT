@@ -25,20 +25,55 @@ export const routes = {
   about: '/about',
   people: '/people',
   services: '/services',
+  industries: '/industries',
+  expertise: '/expertise',
   careers: '/careers',
   sustainability: '/sustainability',
   contact: '/contact',
 } as const
 
-export const navLinks = [
-  { label: 'Home', path: routes.home },
-  { label: 'About', path: routes.about },
-  { label: 'Our People', path: routes.people },
-  { label: 'Services', path: routes.services },
-  { label: 'Careers', path: routes.careers },
-  { label: 'Sustainability', path: routes.sustainability },
-  { label: 'Contact', path: routes.contact },
-] as const
+export type NavItemLink = {
+  type: 'link'
+  label: string
+  path: string
+}
+
+export type NavItemGroup = {
+  type: 'group'
+  label: string
+  items: readonly { label: string; path: string }[]
+}
+
+export type NavItem = NavItemLink | NavItemGroup
+
+export const navItems: readonly NavItem[] = [
+  { type: 'link', label: 'Home', path: routes.home },
+  {
+    type: 'group',
+    label: 'About',
+    items: [
+      { label: 'About', path: routes.about },
+      { label: 'Our People', path: routes.people },
+      { label: 'Sustainability', path: routes.sustainability },
+    ],
+  },
+  {
+    type: 'group',
+    label: 'Services',
+    items: [
+      { label: 'Services', path: routes.services },
+      { label: 'Industries', path: routes.industries },
+      { label: 'Expertise', path: routes.expertise },
+    ],
+  },
+  { type: 'link', label: 'Careers', path: routes.careers },
+  { type: 'link', label: 'Contact', path: routes.contact },
+]
+
+/** Flat link list for footer and other surfaces that list every page. */
+export const navLinks = navItems.flatMap((item) =>
+  item.type === 'link' ? [{ label: item.label, path: item.path }] : [...item.items],
+)
 
 export const pageMeta = {
   home: {
@@ -58,8 +93,22 @@ export const pageMeta = {
   services: {
     title: 'Services | Advanced Instrument Technologies',
     description:
-      'LabVIEW, TestStand, hardware, and turnkey test engineering solutions.',
+      'LabVIEW, TestStand, hardware, and turnkey test engineering from concept through deployment and support.',
     path: '/services',
+    ogImage: '/images/logo.png',
+  },
+  industries: {
+    title: 'Industries We Serve | Advanced Instrument Technologies',
+    description:
+      'Test engineering for semiconductor, automotive, aerospace, industrial, materials, and energy sectors.',
+    path: '/industries',
+    ogImage: '/images/logo.png',
+  },
+  expertise: {
+    title: 'Technical Expertise | Advanced Instrument Technologies',
+    description:
+      'LabVIEW, TestStand, production test, hardware integration, V&V, and NI Alliance engineering specialization.',
+    path: '/expertise',
     ogImage: '/images/logo.png',
   },
   contact: {
@@ -177,6 +226,32 @@ export const aboutContent = {
 } as const
 
 export const servicesContent = {
+  pageSubtitle:
+    'Your trusted test engineering partner from concept through deployment, with the quality and support your programs demand.',
+  lifecycleHeading: 'Partner at Every Phase',
+  lifecycleIntro:
+    'AIT supports test programs across the full engineering lifecycle. Whether you need targeted expertise or a turnkey solution, we meet you where your program is today.',
+  lifecyclePhases: [
+    {
+      title: 'Concept',
+      body: 'Define requirements, test strategy, and feasibility for LabVIEW, TestStand, and integrated hardware architectures.',
+    },
+    {
+      title: 'Build',
+      body: 'Develop applications, design fixtures, integrate instrumentation, and verify systems in lab environments.',
+    },
+    {
+      title: 'Deploy',
+      body: 'Deliver onsite installation, operator interfaces, validation, and handoff to production and quality teams.',
+    },
+    {
+      title: 'Support',
+      body: 'Provide continued engineering support, updates, and optimization as products evolve and volumes grow.',
+    },
+  ],
+  industriesTeaser:
+    'AIT serves customers across semiconductor, automotive, aerospace, industrial, materials, and energy sectors.',
+  industriesLinkLabel: 'Explore industries we serve',
   sections: [
     {
       id: 'labview-teststand',
@@ -404,6 +479,198 @@ export const peopleContent = {
   closingCta: {
     headline: 'Join Our Team',
     subline: 'Explore open positions and bring your test engineering skills to AIT.',
+  },
+} as const
+
+export type IndustryVertical = {
+  id: string
+  title: string
+  description: string
+  challenges: readonly string[]
+  image: {
+    src?: string
+    alt: string
+  }
+}
+
+export const industriesContent = {
+  pageSubtitle:
+    'For more than two decades, AIT has supported engineering teams in demanding production and R&D environments. We describe our experience by industry vertical, using generic language only and without customer names on this site.',
+  verticalsHeading: 'Industries We Serve',
+  verticals: [
+    {
+      id: 'semiconductor-electronics',
+      title: 'Semiconductor Equipment & Electronics Manufacturing',
+      description:
+        'Test and validation for capital equipment, EMS production lines, specialty gases, and RF/electronic subsystems, from R&D through manufacturing support.',
+      challenges: [
+        'High-throughput production test with repeatable yields',
+        'Capital equipment validation and subsystem integration',
+        'Migrating test sequences from development to factory floors',
+      ],
+      image: {
+        alt: 'Semiconductor equipment and electronics manufacturing test engineering',
+      },
+    },
+    {
+      id: 'automotive-transportation',
+      title: 'Automotive & Transportation Systems',
+      description:
+        'Production and QA test for automotive subsystems, mobility products, thermal management, and power components.',
+      challenges: [
+        'End-of-line and functional test for complex assemblies',
+        'Environmental and durability validation workflows',
+        'Traceable data collection for quality programs',
+      ],
+      image: {
+        alt: 'Automotive and transportation systems test engineering',
+      },
+    },
+    {
+      id: 'aerospace-defense',
+      title: 'Aerospace & Defense',
+      description:
+        'Rugged, traceable test systems for defense integrators, aerospace suppliers, lasers, and RF/microwave components.',
+      challenges: [
+        'Documented V&V processes and configuration control',
+        'RF, microwave, and precision measurement integration',
+        'Systems built for long service life in demanding environments',
+      ],
+      image: {
+        alt: 'Aerospace and defense test engineering',
+      },
+    },
+    {
+      id: 'industrial-manufacturing',
+      title: 'Industrial Manufacturing & Equipment',
+      description:
+        'Turnkey and production test for industrial machinery, HVAC, pumps, building products, and commercial equipment.',
+      challenges: [
+        'Custom fixture design for large or complex products',
+        'Operator-friendly interfaces for production staff',
+        'Scaling test stations as product lines expand',
+      ],
+      image: {
+        alt: 'Industrial manufacturing and equipment test engineering',
+      },
+    },
+    {
+      id: 'materials-chemicals',
+      title: 'Materials, Chemicals & Process Industries',
+      description:
+        'Process monitoring, materials characterization, and QA systems for chemicals, polymers, pulp/cellulose, and specialty materials.',
+      challenges: [
+        'Sensor and instrumentation integration for process data',
+        'Lab and production QA with consistent reporting',
+        'Systems that adapt as formulations or specs change',
+      ],
+      image: {
+        alt: 'Materials, chemicals, and process industries test engineering',
+      },
+    },
+    {
+      id: 'infrastructure-energy',
+      title: 'Infrastructure, Energy & Critical Systems',
+      description:
+        'Instrumentation and test for utilities, geotechnical monitoring, geosynthetics labs, and critical power/thermal infrastructure.',
+      challenges: [
+        'Long-term monitoring and data acquisition architectures',
+        'Field-ready and lab-based validation workflows',
+        'Reliable systems for safety-critical infrastructure',
+      ],
+      image: {
+        alt: 'Infrastructure, energy, and critical systems test engineering',
+      },
+    },
+  ] satisfies readonly IndustryVertical[],
+  closingCta: {
+    headline: 'Discuss Your Industry Needs',
+    subline: 'Tell us about your test challenges and we will help you scope the right engineering approach.',
+  },
+} as const
+
+export type ExpertiseArea = {
+  id: string
+  title: string
+  description: string
+  highlights: readonly string[]
+}
+
+export const expertiseContent = {
+  pageSubtitle:
+    'Services describe what we deliver. Expertise describes how we specialize: the platforms, disciplines, and engineering practices that make complex test programs succeed.',
+  areasHeading: 'Areas of Expertise',
+  areas: [
+    {
+      id: 'labview-teststand',
+      title: 'LabVIEW & TestStand Development',
+      description:
+        'Application and sequence development for automated test, data acquisition, and operator workflows using National Instruments platforms.',
+      highlights: [
+        'Modular architectures for maintainable codebases',
+        'TestStand process models and deployment configurations',
+        'Debugging and performance tuning in production environments',
+      ],
+    },
+    {
+      id: 'production-test-qa',
+      title: 'Production Test & QA Systems',
+      description:
+        'Engineering focused on manufacturing throughput, repeatability, and quality data for high-volume and regulated production lines.',
+      highlights: [
+        'End-of-line and in-circuit test strategies',
+        'Pass/fail reporting and manufacturing data integration',
+        'Reducing cycle time without sacrificing measurement integrity',
+      ],
+    },
+    {
+      id: 'hardware-integration',
+      title: 'Hardware Integration & Custom Fixtures',
+      description:
+        'Specification, design, and integration of instruments, motion, PXI, and custom hardware into complete test stations.',
+      highlights: [
+        'Instrument selection and SCPI/PXI control',
+        'Custom fixture and interconnect design',
+        'Lab-to-floor hardware reliability',
+      ],
+    },
+    {
+      id: 'requirements-vv',
+      title: 'Requirements & V&V',
+      description:
+        'Structured requirements, verification planning, and validation support so test systems meet customer and regulatory expectations.',
+      highlights: [
+        'Requirements traceability from spec to test coverage',
+        'Verification protocols and documented results',
+        'Support for customer and third-party audits',
+      ],
+    },
+    {
+      id: 'ni-alliance',
+      title: 'NI Platform & Alliance Partner',
+      description:
+        'Certified NI Alliance Partner expertise across LabVIEW, TestStand, and NI hardware ecosystems.',
+      highlights: [
+        'NI certified developers on staff',
+        'Best practices aligned with NI platform roadmaps',
+        'Efficient use of PXI, DAQ, and industry-standard drivers',
+      ],
+    },
+    {
+      id: 'rd-to-production',
+      title: 'Migration: R&D to Production',
+      description:
+        'Moving test code and architectures from engineering labs into production-ready systems customers rely on for years.',
+      highlights: [
+        'Refactoring R&D code for operator use and maintainability',
+        'Standardizing configurations across multiple test stations',
+        'Deployment support and production troubleshooting',
+      ],
+    },
+  ] satisfies readonly ExpertiseArea[],
+  closingCta: {
+    headline: 'Put Our Expertise to Work',
+    subline: 'Connect with AIT to scope your next LabVIEW, TestStand, or turnkey test project.',
   },
 } as const
 

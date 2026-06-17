@@ -1,19 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import ServiceCard from '../shared/components/services/ServiceCard.astro'
+import ButtonLink from '../shared/components/ui/ButtonLink.astro'
 import Container from '../shared/components/ui/Container.astro'
 import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Prose from '../shared/components/ui/Prose.astro'
 import Section from '../shared/components/ui/Section.astro'
-import { servicesContent } from '../shared/content/site'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import StatementCard from '../shared/components/ui/StatementCard.astro'
+import { routes, servicesContent } from '../shared/content/site'
 
 const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSection, letUsHelpSection] =
   servicesContent.sections
 ---
 
 <BaseLayout seoKey="services">
-  <PageHeader title="Services" />
+  <PageHeader title="Services" description={servicesContent.pageSubtitle} />
 
   <Section variant="white">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={servicesContent.lifecycleHeading} showDivider />
+        <Prose>{servicesContent.lifecycleIntro}</Prose>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            servicesContent.lifecyclePhases.map((phase) => (
+              <StatementCard title={phase.title} body={phase.body} />
+            ))
+          }
+        </div>
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <Prose class="mb-0">{servicesContent.industriesTeaser}</Prose>
+          <ButtonLink href={routes.industries} variant="secondary">
+            {servicesContent.industriesLinkLabel}
+          </ButtonLink>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="muted">
     <Container>
       <div class="grid gap-6 md:grid-cols-2">
         <div class="fade-in">
@@ -26,7 +52,7 @@ const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSecti
     </Container>
   </Section>
 
-  <Section variant="muted">
+  <Section variant="white">
     <Container>
       <div class="fade-in">
         <ServiceCard section={totalSolutionsSection} variant="accent" />
@@ -34,7 +60,7 @@ const [labviewSection, hardwareSection, totalSolutionsSection, howCanWeHelpSecti
     </Container>
   </Section>
 
-  <Section variant="white">
+  <Section variant="muted">
     <Container>
       <div class="grid gap-6 md:grid-cols-2">
         <div class="fade-in">

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import IndustryRow from '../shared/components/industries/IndustryRow.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Section from '../shared/components/ui/Section.astro'
+import { industriesContent, routes } from '../shared/content/site'
+
+const sectionVariants = ['white', 'muted'] as const
+---
+
+<BaseLayout seoKey="industries">
+  <PageHeader title="Industries We Serve" description={industriesContent.pageSubtitle} />
+
+  {
+    industriesContent.verticals.map((vertical, index) => (
+      <Section variant={sectionVariants[index % 2]}>
+        <Container>
+          <IndustryRow
+            id={vertical.id}
+            title={vertical.title}
+            description={vertical.description}
+            challenges={vertical.challenges}
+            image={vertical.image}
+            imagePosition={index % 2 === 0 ? 'right' : 'left'}
+          />
+        </Container>
+      </Section>
+    ))
+  }
+
+  <ClosingCta
+    headline={industriesContent.closingCta.headline}
+    subline={industriesContent.closingCta.subline}
+    primaryLink={{ href: routes.contact, label: 'Contact Us', variant: 'secondary' }}
+    secondaryLink={{
+      href: routes.expertise,
+      label: 'Technical Expertise',
+      variant: 'ghost',
+      class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+    }}
+  />
+</BaseLayout>

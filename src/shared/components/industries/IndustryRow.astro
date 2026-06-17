@@ -1,0 +1,93 @@
+---
+import ServiceBulletList from '../services/ServiceBulletList.astro'
+import SectionHeading from '../ui/SectionHeading.astro'
+import { cn } from '../../lib/cn'
+import { contentPairGrid, contentPairGridMediaFirst } from '../../lib/layout'
+
+type ImageData = {
+  src?: string
+  alt: string
+}
+
+type Props = {
+  id: string
+  title: string
+  description: string
+  challenges: readonly string[]
+  image: ImageData
+  imagePosition: 'left' | 'right'
+}
+
+const { id, title, description, challenges, image, imagePosition } = Astro.props
+
+const gridClass = imagePosition === 'left' ? contentPairGridMediaFirst : contentPairGrid
+---
+
+<div id={id} class={cn('fade-in', gridClass)}>
+  {
+    imagePosition === 'left' ? (
+      <div class="flex w-full justify-center md:max-w-lg md:justify-self-start">
+        <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-deep-teal/10 bg-white shadow-sm">
+          {
+            image.src ? (
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={640}
+                height={480}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div
+                class="flex h-full min-h-48 items-center justify-center bg-linear-to-br from-teal/5 to-cream p-8 text-center"
+                role="img"
+                aria-label={image.alt}
+              >
+                <span class="text-sm font-medium text-deep-teal/40">Industry image</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    ) : null
+  }
+
+  <div class="min-w-0">
+    <SectionHeading title={title} showDivider />
+    <p class="body-text mt-4">{description}</p>
+    <p class="mt-6 text-sm font-medium text-deep-teal">Typical challenges we solve</p>
+    <div class="mt-2">
+      <ServiceBulletList items={challenges} />
+    </div>
+  </div>
+
+  {
+    imagePosition === 'right' ? (
+      <div class="flex w-full justify-center md:max-w-lg md:justify-self-end">
+        <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-deep-teal/10 bg-white shadow-sm">
+          {
+            image.src ? (
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={640}
+                height={480}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div
+                class="flex h-full min-h-48 items-center justify-center bg-linear-to-br from-teal/5 to-cream p-8 text-center"
+                role="img"
+                aria-label={image.alt}
+              >
+                <span class="text-sm font-medium text-deep-teal/40">Industry image</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    ) : null
+  }
+</div>

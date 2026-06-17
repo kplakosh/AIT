@@ -43,15 +43,13 @@ Detailed page specs and copy requirements live in `additional_features.md` (loca
 | `/contact` | Contact | **Done** | Formspree form, details, map |
 | `/people` | Our People | **Done** | Culture, how we work, values, growth, team spotlights |
 | `/sustainability` | Sustainability | **Done** | Commitment, four pillars, quality & integrity |
+| `/industries` | Industries | **Done** | Six industry vertical cards |
+| `/expertise` | Expertise | **Done** | Six technical specialty cards |
 
-### Planned (Phases 10–13)
+### Planned (Phases 13–15)
 
 | Route | Nav (proposed) | Phase | Purpose |
 |-------|----------------|-------|---------|
-| `/sustainability` | Sustainability | 11 | People, community, environment, governance |
-| `/people` | Our People | 11 | Culture narrative, employee spotlights |
-| `/industries` | Industries | 12 | Six customer-derived industry verticals |
-| `/expertise` | Expertise | 12 | Technical specialty cards |
 | `/leadership` | Leadership | Optional | Bios + photos — Phase E / deferred |
 
 ### Target navigation (after Phases 11–12)
@@ -71,7 +69,7 @@ Add nav items **incrementally** as each page ships — do not expose links to un
 | Element | Content |
 |---------|---------|
 | **Logo** | Custom AIT logo (`logo.png`, `logo-on-dark.png`) |
-| **Navigation** | Home · About · Services · Careers · Contact |
+| **Navigation** | Home · About · Our People · Services · Industries · Expertise · Careers · Sustainability · Contact |
 | **Footer** | Logo, nav links, Copyright 2026 Advanced Instrument Technologies, Inc. |
 
 ### Home (`/`)
@@ -92,13 +90,12 @@ Add nav items **incrementally** as each page ships — do not expose links to un
 
 ### Services (`/services`)
 
-1. LabVIEW and TestStand — 5 bullets
-2. Hardware — 3 bullets
-3. Total Solutions — turnkey paragraph
-4. How can we help? — industries/examples paragraph
-5. Let us help you — contact CTA
-
-**Planned (Phase 12):** Lifecycle intro (Concept → Build → Deploy → Support); link to Industries.
+1. Lifecycle intro (Concept, Build, Deploy, Support) with link to Industries
+2. LabVIEW and TestStand — 5 bullets
+3. Hardware — 3 bullets
+4. Total Solutions — turnkey paragraph
+5. How can we help? — industries/examples paragraph
+6. Let us help you — contact CTA
 
 ### Careers (`/careers`) — new
 
@@ -298,7 +295,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 12 — Industries & Expertise *(next)*
+### Phase 12 — Industries & Expertise ✅
 
 **Goal:** Show who AIT serves and technical specialization (maps to **Phase C**).
 
@@ -324,7 +321,7 @@ The site header must **remain visible at the top of the viewport while the user 
 
 ---
 
-### Phase 13 — Homepage & Site-Wide Polish
+### Phase 13 — Homepage & Site-Wide Polish *(next)*
 
 **Goal:** Tie new content into Home and final UX polish (maps to **Phase D**).
 
@@ -393,8 +390,8 @@ The site header must **remain visible at the top of the viewport while the user 
 | 9 Careers | 1 day | ✅ |
 | 10 About foundation | 1–1.5 days | ✅ |
 | 11 Sustainability + People | 2–3 days | ✅ |
-| 12 Industries + Expertise | 2–3 days | ⏳ **Next** |
-| 13 Home polish | 1 day | ⏳ |
+| 12 Industries + Expertise | 2–3 days | ✅ |
+| 13 Home polish | 1 day | ⏳ **Next** |
 | 14 QA | 0.5 day | ⏳ |
 | 15 Deploy | 0.5 day | ⏳ |
 | **Remaining** | **~7–9 working days** | |
@@ -414,8 +411,8 @@ The site header must **remain visible at the top of the viewport while the user 
 | `JobApplicationForm` (Formspree) | Done | 9 |
 | `ValueCard` | Done | 10 |
 | `ClosingCta` | Done | 10 |
-| `IndustryCard` | Not started | 12 |
-| `ExpertiseCard` | Not started | 12 |
+| `IndustryCard` | Done | 12 |
+| `ExpertiseCard` | Done | 12 |
 | `TrustStrip` | Not started | 13 |
 | Employee spotlight card | Done | 11 |
 
@@ -495,8 +492,8 @@ Store keys in `.env` locally and as **GitHub Actions secrets** for production bu
 3. ~~Phase 9 — Careers~~ ✅  
 4. ~~Phase 10 — Approve About copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
 5. ~~Phase 11 — Approve Sustainability + People copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
-6. **Phase 12 — Approve Industries + Expertise card copy** → implement  
-7. Phase 13 — Home polish  
+6. ~~Phase 12 — Approve Industries + Expertise card copy~~ ✅ *(draft copy shipped — leadership review recommended)*  
+7. **Phase 13 — Home polish**  
 8. Phase 14 — QA  
 9. Phase 15 — Deploy staging  
 10. Production cutover to `aitechinc.com`

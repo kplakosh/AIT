@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ExpertiseCard from '../shared/components/expertise/ExpertiseCard.astro'
+import ClosingCta from '../shared/components/ui/ClosingCta.astro'
+import Container from '../shared/components/ui/Container.astro'
+import PageHeader from '../shared/components/ui/PageHeader.astro'
+import Section from '../shared/components/ui/Section.astro'
+import SectionHeading from '../shared/components/ui/SectionHeading.astro'
+import { expertiseContent, routes } from '../shared/content/site'
+---
+
+<BaseLayout seoKey="expertise">
+  <PageHeader title="Technical Expertise" description={expertiseContent.pageSubtitle} />
+
+  <Section variant="muted">
+    <Container>
+      <div class="fade-in">
+        <SectionHeading title={expertiseContent.areasHeading} showDivider />
+        <div class="grid gap-6 md:grid-cols-2">
+          {
+            expertiseContent.areas.map((area) => (
+              <ExpertiseCard
+                title={area.title}
+                description={area.description}
+                highlights={area.highlights}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <ClosingCta
+    headline={expertiseContent.closingCta.headline}
+    subline={expertiseContent.closingCta.subline}
+    primaryLink={{ href: routes.contact, label: 'Contact Us', variant: 'secondary' }}
+    secondaryLink={{
+      href: routes.services,
+      label: 'View Services',
+      variant: 'ghost',
+      class: 'border-white/30 text-white hover:border-white/50 hover:bg-white/10',
+    }}
+  />
+</BaseLayout>

@@ -1,7 +1,8 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
+import { ChevronDown, X } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { assets, navLinks, routes } from '../shared/content/site'
+import { assets, navItems, routes } from '../shared/content/site'
+import type { NavItemGroup } from '../shared/content/site'
 import { useFocusTrap } from './hooks/useFocusTrap'
 import { focusRing, focusRingOnDark } from '../shared/lib/a11y'
 import { cn } from '../shared/lib/cn'
@@ -19,11 +20,21 @@ type NavLinkItemProps = {
   href: string
   currentPath: string
   mobile?: boolean
+  nested?: boolean
+  dropdown?: boolean
   onClick?: () => void
   children: React.ReactNode
 }
 
-function NavLinkItem({ href, currentPath, mobile = false, onClick, children }: NavLinkItemProps) {
+function NavLinkItem({
+  href,
+  currentPath,
+  mobile = false,
+  nested = false,
+  dropdown = false,
+  onClick,
+  children,
+}: NavLinkItemProps) {
   const active = isActivePath(currentPath, href)
 
   return (
@@ -33,9 +44,17 @@ function NavLinkItem({ href, currentPath, mobile = false, onClick, children }: N
       className={cn(
         'font-medium transition-colors',
         mobile ? focusRingOnDark : focusRing,
-        mobile ? 'rounded-lg px-4 py-3 text-lg' : 'rounded-lg px-4 py-2 text-sm',
+        mobile
+          ? nested
+            ? 'rounded-lg py-2.5 pl-8 pr-4 text-base'
+            : 'rounded-lg px-4 py-3 text-lg'
+          : dropdown
+            ? 'block rounded-lg px-4 py-2 text-sm'
+            : 'rounded-lg px-4 py-2 text-sm',
         active
-          ? 'bg-teal text-white'
+          ? mobile || !dropdown
+            ? 'bg-teal text-white'
+            : 'bg-teal/10 text-teal'
           : mobile
             ? 'text-white/90 hover:bg-white/10'
             : 'text-deep-teal hover:bg-teal/10 hover:text-navy-plum',
@@ -45,6 +64,114 @@ function NavLinkItem({ href, currentPath, mobile = false, onClick, children }: N
       {children}
       {active ? <span className="sr-only"> (current page)</span> : null}
     </a>
+  )
+}
+
+type NavDropdownProps = {
+  group: NavItemGroup
+  currentPath: string
+}
+
+function NavDropdown({ group, currentPath }: NavDropdownProps) {
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const active = group.items.some((item) => isActivePath(currentPath, item.path))
+
+  useEffect(() => {
+    if (!open) {
+      return
+    }
+
+    const onPointerDown = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        className={cn(
+          'flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors',
+          focusRing,
+          active
+            ? 'bg-teal text-white'
+            : 'text-deep-teal hover:bg-teal/10 hover:text-navy-plum',
+        )}
+        aria-expanded={open}
+        aria-haspopup="true"
+        onClick={() => setOpen((current) => !current)}
+      >
+        {group.label}
+        <ChevronDown
+          className={cn('h-4 w-4 transition-transform', open && 'rotate-180')}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open ? (
+        <div
+          className="absolute left-0 top-full z-50 mt-1 min-w-48 rounded-lg border border-deep-teal/10 bg-white py-2 shadow-lg"
+          role="menu"
+        >
+          {group.items.map(({ label, path }) => (
+            <NavLinkItem
+              key={path}
+              href={path}
+              currentPath={currentPath}
+              dropdown
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </NavLinkItem>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+type MobileNavGroupProps = {
+  group: NavItemGroup
+  currentPath: string
+  onClose: () => void
+}
+
+function MobileNavGroup({ group, currentPath, onClose }: MobileNavGroupProps) {
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="px-4 pt-3 text-xs font-semibold uppercase tracking-wider text-white/50">
+        {group.label}
+      </span>
+      {group.items.map(({ label, path }) => (
+        <NavLinkItem
+          key={path}
+          href={path}
+          currentPath={currentPath}
+          mobile
+          nested
+          onClick={onClose}
+        >
+          {label}
+        </NavLinkItem>
+      ))}
+    </div>
   )
 }
 
@@ -114,17 +241,26 @@ function MobileNav({ open, currentPath, onClose }: MobileNavProps) {
               </button>
             </div>
             <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
-              {navLinks.map(({ label, path }) => (
-                <NavLinkItem
-                  key={path}
-                  href={path}
-                  currentPath={currentPath}
-                  mobile
-                  onClick={onClose}
-                >
-                  {label}
-                </NavLinkItem>
-              ))}
+              {navItems.map((item) =>
+                item.type === 'link' ? (
+                  <NavLinkItem
+                    key={item.path}
+                    href={item.path}
+                    currentPath={currentPath}
+                    mobile
+                    onClick={onClose}
+                  >
+                    {item.label}
+                  </NavLinkItem>
+                ) : (
+                  <MobileNavGroup
+                    key={item.label}
+                    group={item}
+                    currentPath={currentPath}
+                    onClose={onClose}
+                  />
+                ),
+              )}
             </nav>
             <div className="mt-auto border-t border-white/10 pt-6">
               <img
@@ -214,11 +350,15 @@ export default function SiteHeader({ currentPath }: SiteHeaderProps) {
           </a>
 
           <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
-            {navLinks.map(({ label, path }) => (
-              <NavLinkItem key={path} href={path} currentPath={currentPath}>
-                {label}
-              </NavLinkItem>
-            ))}
+            {navItems.map((item) =>
+              item.type === 'link' ? (
+                <NavLinkItem key={item.path} href={item.path} currentPath={currentPath}>
+                  {item.label}
+                </NavLinkItem>
+              ) : (
+                <NavDropdown key={item.label} group={item} currentPath={currentPath} />
+              ),
+            )}
           </nav>
 
           <MobileNavToggle

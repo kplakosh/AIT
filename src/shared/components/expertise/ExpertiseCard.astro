@@ -1,0 +1,20 @@
+---
+import ServiceBulletList from '../services/ServiceBulletList.astro'
+import Card from '../ui/Card.astro'
+
+type Props = {
+  title: string
+  description: string
+  highlights: readonly string[]
+}
+
+const { title, description, highlights } = Astro.props
+---
+
+<Card variant="elevated" class="h-full">
+  <h3 class="font-heading text-lg font-semibold text-deep-teal">{title}</h3>
+  <p class="body-text mt-3">{description}</p>
+  <div class="mt-4">
+    <ServiceBulletList items={highlights} />
+  </div>
+</Card>
