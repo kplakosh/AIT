@@ -21,7 +21,9 @@ const sectionVariants = ['white', 'muted'] as const
             id={vertical.id}
             title={vertical.title}
             description={vertical.description}
+            systems={vertical.systems}
             challenges={vertical.challenges}
+            closing={vertical.closing}
             image={vertical.image}
             imagePosition={index % 2 === 0 ? 'right' : 'left'}
           />

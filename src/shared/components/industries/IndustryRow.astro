@@ -12,13 +12,17 @@ type ImageData = {
 type Props = {
   id: string
   title: string
-  description: string
+  description: string | readonly string[]
+  systems?: readonly string[]
   challenges: readonly string[]
+  closing?: string
   image: ImageData
   imagePosition: 'left' | 'right'
 }
 
-const { id, title, description, challenges, image, imagePosition } = Astro.props
+const { id, title, description, systems, challenges, closing, image, imagePosition } = Astro.props
+
+const descriptionParagraphs = typeof description === 'string' ? [description] : description
 
 const gridClass = imagePosition === 'left' ? contentPairGridMediaFirst : contentPairGrid
 ---
@@ -55,11 +59,37 @@ const gridClass = imagePosition === 'left' ? contentPairGridMediaFirst : content
 
   <div class="min-w-0">
     <SectionHeading title={title} showDivider />
-    <p class="body-text mt-4">{description}</p>
-    <p class="mt-6 text-sm font-medium text-deep-teal">Typical challenges we solve</p>
-    <div class="mt-2">
-      <ServiceBulletList items={challenges} />
-    </div>
+    {
+      descriptionParagraphs.map((paragraph) => (
+        <p class="body-text mt-4 first:mt-4">{paragraph}</p>
+      ))
+    }
+    {
+      systems ? (
+        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-x-8 lg:gap-x-10">
+          <div class="min-w-0">
+            <p class="text-sm font-medium text-deep-teal">Typical Systems We Support</p>
+            <div class="mt-2">
+              <ServiceBulletList items={systems} />
+            </div>
+          </div>
+          <div class="min-w-0">
+            <p class="text-sm font-medium text-deep-teal">Typical Challenges We Solve</p>
+            <div class="mt-2">
+              <ServiceBulletList items={challenges} />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          <p class="mt-6 text-sm font-medium text-deep-teal">Typical Challenges We Solve</p>
+          <div class="mt-2">
+            <ServiceBulletList items={challenges} />
+          </div>
+        </>
+      )
+    }
+    {closing ? <p class="body-text mt-6">{closing}</p> : null}
   </div>
 
   {

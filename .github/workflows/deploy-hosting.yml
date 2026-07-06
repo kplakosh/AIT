@@ -1,0 +1,69 @@
+# Deploy the Astro static site to hosting.com (cPanel) via FTP.
+#
+# Required GitHub repository secrets (Settings → Secrets and variables → Actions):
+#   FTP_SERVER                        e.g. ftp.aitechinc.com or your hosting.com FTP host
+#   FTP_USERNAME                      FTP account username from cPanel → FTP Accounts
+#   FTP_PASSWORD                      FTP account password
+#   PUBLIC_SITE_URL                   e.g. https://www.aitechinc.com
+#   PUBLIC_FORMSPREE_FORM_ID          Contact form Formspree ID
+#   PUBLIC_FORMSPREE_CAREERS_FORM_ID  Careers form Formspree ID
+#
+# Optional: edit deploy-hosting.yml if your host uses a different folder, port, or protocol
+#   server-dir: /public_html/     subdomain example: /public_html/staging/
+#   protocol: ftps                try if plain ftp fails
+#   port: 21
+#
+# hosting.com setup:
+#   1. cPanel → FTP Accounts → create or use an account for your domain
+#   2. Note the server hostname, username, password, and document root
+#   3. Upload target is usually /public_html/ for the primary domain
+#   4. If FTP fails, change protocol to ftps or ask hosting.com support for the correct port
+
+name: Deploy to hosting.com
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: hosting-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: ${{ secrets.PUBLIC_SITE_URL }}
+          PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
+          PUBLIC_FORMSPREE_CAREERS_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_CAREERS_FORM_ID }}
+
+      - name: Deploy to hosting.com via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: /public_html/
+          dangerous-clean-slate: false

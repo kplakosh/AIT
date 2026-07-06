@@ -579,8 +579,10 @@ export const peopleContent = {
 export type IndustryVertical = {
   id: string
   title: string
-  description: string
+  description: string | readonly string[]
+  systems?: readonly string[]
   challenges: readonly string[]
+  closing?: string
   image: {
     src?: string
     alt: string
@@ -595,13 +597,27 @@ export const industriesContent = {
     {
       id: 'semiconductor-electronics',
       title: 'Semiconductor Equipment & Electronics Manufacturing',
-      description:
-        'Test and validation for capital equipment, EMS production lines, specialty gases, and RF/electronic subsystems, from R&D through manufacturing support.',
-      challenges: [
-        'High-throughput production test with repeatable yields',
-        'Capital equipment validation and subsystem integration',
-        'Migrating test sequences from development to factory floors',
+      description: [
+        'Modern semiconductor and electronics manufacturing depends on reliable test, measurement, and validation systems. AIT supports organizations developing and producing complex equipment, electronic assemblies, instrumentation, and manufacturing subsystems where accuracy, repeatability, and uptime are critical.',
+        'Our experience spans engineering environments ranging from research and development through full-scale production, helping teams transition test processes from prototype validation to manufacturing deployment.',
       ],
+      systems: [
+        'Automated production test stations',
+        'Electronic subsystem validation platforms',
+        'Instrument control and data acquisition systems',
+        'Manufacturing process monitoring solutions',
+        'Hardware-in-the-loop and functional test systems',
+        'Custom operator interfaces and reporting tools',
+      ],
+      challenges: [
+        'Improving test repeatability and measurement consistency',
+        'Increasing throughput while maintaining quality standards',
+        'Integrating multiple instruments and hardware platforms',
+        'Migrating development test processes into production environments',
+        'Creating scalable software architectures for long-term maintainability',
+      ],
+      closing:
+        'By combining software development, hardware integration, and systems engineering expertise, AIT helps manufacturers build robust testing environments that support product quality, operational efficiency, and continuous improvement.',
       image: {
         alt: 'Semiconductor equipment and electronics manufacturing test engineering',
       },
